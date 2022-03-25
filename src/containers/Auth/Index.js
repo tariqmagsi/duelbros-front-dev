@@ -50,7 +50,6 @@ const useStyles = makeStyles(theme => ({
 
 const Index = (props) => {
 
-    console.log('file: Index.js => line 48 => Index => props', props);
     let navigate = useNavigate();
 
     const classes = useStyles();
