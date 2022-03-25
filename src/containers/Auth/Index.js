@@ -20,7 +20,8 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         alignItems: 'center',
         height: '100vh',
-        backgroundColor: colors.backgroundPrimary,
+        backgroundColor: "white",
+        color: "white",
     },
     loginContainer: {
         backgroundColor: colors.black,
@@ -28,10 +29,13 @@ const useStyles = makeStyles(theme => ({
         overflow: 'hidden',
         flexDirection: 'row',
         display: 'flex',
-        width: '50%'
+        width: '60%',
     },
     tabs: {
-        backgroundColor: 'red',
+        backgroundColor: colors.backgroundPrimary,
+        color: "white",
+        paddingTop: 10,
+        paddingLeft: 50
     },
     imageLogo: {
         width: '100%',
@@ -98,17 +102,16 @@ const Index = (props) => {
         <div className={classes.root}>
             <div className={classes.loginContainer}>
                 <div style={{ width: '50%' }}>
-                    <Box >
+                    <Box>
                         <Tabs
                             value={value}
                             onChange={handleChange}
                             className={classes.tabs}
-                            // indicatorColor="secondary"
                             aria-label="secondary tabs example"
                             TabIndicatorProps={{ style: { background: colors.primary } }}
                         >
-                            <Tab value="one" label="Login" />
-                            <Tab value="two" label="Register" />
+                            <Tab value="one" label="Login"  className="fontSizeChange" style={{color: value==='one' ? colors.primary : "white"}}/>
+                            <Tab value="two" label="Register"  className="fontSizeChange" style={{color: value==='two' ? colors.primary : "white"}}/>
                         </Tabs>
                     </Box>
                     {
