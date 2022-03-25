@@ -24,13 +24,13 @@ const useStyles = makeStyles(theme => ({
         width: '50%'
     },
     tabs: {
-        backgroundColor: 'red',
+        backgroundColor: colors.backgroundPrimary,
     },
     imageLogo: {
         width: '100%',
     },
     loginForm: {
-        backgroundColor: 'red',
+        backgroundColor: colors.backgroundPrimary,
         paddingHorizontal: 20,
         alignItems: 'center',
         height: '100%'

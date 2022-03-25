@@ -1,8 +1,9 @@
 export const colors = {
     primary: '#3AA3D0',
     secondary: '#013F77',
-    backgroundPrimary: '#E5E5E5',
-    backgroundInput: '#DBE3F9',
+    backgroundPrimary: '#191d2c',
+    backgroundInput: '#141520',
+    textColor: "#81838b",
     // textPrimary: '#4B4B4B',
     textPrimary: '#75808B',
     textSecondary: '#A1989B',
