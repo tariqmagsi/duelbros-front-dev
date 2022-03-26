@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: 'green',
     },
     passwordLine: {
-        display: 'flex', 
+        display: 'flex',
         justifyContent: 'space-between'
     }
 }))
@@ -90,17 +90,17 @@ const Login = ({ handleSubmit, loading }) => {
                                 sx={{ input: { color: 'white', fontSize: "12px" } }}
                                 autoFocus
                                 className={classes.input}
-                                style={{color: "white !important"}}
+                                style={{ color: "white !important" }}
                                 color="info"
                                 size="small"
                             />
                         </Grid>
                         <Grid item>
                             <div className={classes.passwordLine}>
-                                <span style={{color: colors.textColor  }} className="fontSizeChange">
+                                <span style={{ color: colors.textColor }} className="fontSizeChange">
                                     PASSWORD*
                                 </span>
-                                <span onClick={() => alert('Forgot Password')} style={{color: colors.textColor, cursor: 'pointer'  }} className="fontSizeChange">
+                                <span onClick={() => alert('Forgot Password')} style={{ color: colors.textColor, cursor: 'pointer' }} className="fontSizeChange">
                                     Forgot Password?
                                 </span>
                             </div>
@@ -114,7 +114,7 @@ const Login = ({ handleSubmit, loading }) => {
                                 value={password}
                                 onChange={(event) => setPassword(event.target.value)}
                                 required
-                                color="secondary"
+                                color="info"
                                 className={classes.input}
                             />
                         </Grid>
@@ -136,7 +136,7 @@ const Login = ({ handleSubmit, loading }) => {
                         </Grid>
                     </Grid>
                 </form>
-                <div style={{marginTop:"calc(5% + 110px)", bottom: 0, textAlign: 'center'}} className="fontSizeChange">
+                <div style={{ marginTop: "calc(5% + 110px)", bottom: 0, textAlign: 'center' }} className="fontSizeChange">
                     This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
                 </div>
             </Container>
