@@ -4,6 +4,7 @@ import PrivateRoute from './PrivateRoute';
 import Dashboard from '../containers/Dashboard'
 import Login from '../containers/Auth/Index';
 import NotFound from './NotFound';
+import AdminDashboard from '../containers/AdminDashboard/Dashboard';
 
 const AppRoutes = () => {
     return (
@@ -12,7 +13,9 @@ const AppRoutes = () => {
                 <Routes>
                     <Route exact path='/' element={<PrivateRoute />}>
                         <Route exact path='/dashboard' element={<Dashboard />} />
+                        
                     </Route>
+                    <Route exact path='/admin_dashboard' element={<AdminDashboard />} />
                     <Route exact path='/login' element={<Login />} />
                     <Route exact path='/' element={<NotFound />} />
                 </Routes>
