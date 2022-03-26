@@ -3,9 +3,7 @@ import { colors } from '../../res/colors';
 import {
     makeStyles,
 } from "@mui/styles";
-import { Button, CircularProgress, Container, Grid, TextField, Typography } from '@mui/material';
-import { Service } from '../../config/service';
-import { login } from '../../utils';
+import { Button, CircularProgress, Container, Grid, TextField } from '@mui/material';
 
 const useStyles = makeStyles(theme => ({
     root: {
