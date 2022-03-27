@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'https://duelbros-dev-server.herokuapp.com/';
+const baseURL = 'http://localhost:5000/';
 
 const instance = axios.create({
     baseURL,

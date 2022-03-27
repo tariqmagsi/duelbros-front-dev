@@ -4,8 +4,11 @@ import PrivateRoute from './PrivateRoute';
 import Dashboard from '../containers/Dashboard'
 import Login from '../containers/Auth/Index';
 import NotFound from './NotFound';
-import AdminDashboard from '../containers/AdminDashboard/Dashboard';
 import Home from '../containers/App/Home';
+import Players from '../containers/AdminDashboard/Players';
+import Users from '../containers/AdminDashboard/Users';
+import Moderators from '../containers/AdminDashboard/Moderators';
+import AdminProfile from '../containers/AdminDashboard/AdminProfile';
 
 const AppRoutes = () => {
     return (
@@ -14,9 +17,11 @@ const AppRoutes = () => {
                 <Routes>
                     <Route exact path='/' element={<PrivateRoute />}>
                         <Route exact path='/dashboard' element={<Dashboard />} />
-                        
+                        <Route exact path='/admin_dashboard/users' element={<Users />} />
+                        <Route exact path='/admin_dashboard/players' element={<Players />} />
+                        <Route exact path='/admin_dashboard/moderators' element={<Moderators />} />
+                        <Route exact path='/admin_dashboard/profile' element={<AdminProfile />} />
                     </Route>
-                    <Route exact path='/admin_dashboard' element={<AdminDashboard />} />
                     <Route exact path='/home' element={<Home />} />
                     <Route exact path='/login' element={<Login />} />
                     <Route exact path='/' element={<NotFound />} />

@@ -1,6 +1,7 @@
 import { getToken } from '../utils';
-import { Apis, get, post, patch } from './';
+import { Apis, get, post, put } from './';
 
+const token = getToken()
 
 export const Service = {
     login: async (data) => {
@@ -15,6 +16,31 @@ export const Service = {
     },
     verifyToken: async (data) => {
         let result = await post(Apis.verifyToken, data);
+        if (result.status === 200) return result.data;
+        else throw result;
+    },
+    getUsers: async () => {
+        let result = await get(Apis.getUsers, token);
+        if (result.status === 200) return result.data;
+        else throw result;
+    },
+    getModerators: async () => {
+        let result = await get(Apis.getModerators, token);
+        if (result.status === 200) return result.data;
+        else throw result;
+    },
+    getPlayers: async () => {
+        let result = await get(Apis.getPlayers, token);
+        if (result.status === 200) return result.data;
+        else throw result;
+    },
+    getProfile: async () => {
+        let result = await get(Apis.getProfile, token);
+        if (result.status === 200) return result.data;
+        else throw result;
+    },
+    updateProfile: async (data) => {
+        let result = await put(Apis.getProfile, data, token);
         if (result.status === 200) return result.data;
         else throw result;
     },

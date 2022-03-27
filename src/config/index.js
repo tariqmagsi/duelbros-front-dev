@@ -6,6 +6,11 @@ export const Apis = {
     login: 'users/auth',
     register: 'users',
     verifyToken: 'user/verifyToken',
+    getUsers: 'users',
+    getModerators: 'users/moderators',
+    getPlayers: 'users/players',
+    getProfile: 'users/profile',
+    updateProfile: 'users'
 };
 
 export const headers = {

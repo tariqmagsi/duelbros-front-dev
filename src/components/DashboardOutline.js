@@ -9,12 +9,13 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from '../../components/ListItems';
-import { colors } from '../../res/colors';
+import { mainListItems, secondaryListItems } from './ListItems';
+import DashboardContainer from './DashboardContainer';
+import { colors } from '../res/colors';
+import { makeStyles } from '@mui/styles';
+import { PersonRounded } from '@mui/icons-material';
 
 const drawerWidth = 240;
 
@@ -64,8 +65,16 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const mdTheme = createTheme();
 
-function DashboardContent() {
-  const [open, setOpen] = React.useState(true);
+const useStyles = makeStyles({
+    paper: {
+      backgroundColor: `${colors.backgroundInput} !important`,
+      color: 'white !important'
+    }
+});
+
+function DashboardOutline({ChildComponent}) {
+  const [open, setOpen] = React.useState(false);
+  const classes = useStyles();
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -74,7 +83,7 @@ function DashboardContent() {
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open}>
+        <AppBar style={{backgroundColor: colors.backgroundInput}} position="absolute" open={open}>
           <Toolbar
             sx={{
               pr: '24px', // keep right padding when drawer closed
@@ -90,7 +99,7 @@ function DashboardContent() {
                 ...(open && { display: 'none' }),
               }}
             >
-              <MenuIcon />
+              <MenuIcon style={{color: 'white'}}/>
             </IconButton>
             <Typography
               component="h1"
@@ -99,16 +108,14 @@ function DashboardContent() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Dashboard
+              <img src={require('../assets/images/logo.png')} alt="" style={{height: '30px'}}/>
             </Typography>
             <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
+                <PersonRounded />
             </IconButton>
           </Toolbar>
         </AppBar>
-        <Drawer variant="permanent" open={open}>
+        <Drawer variant="permanent" classes={{ paper: classes.paper }} open={open}>
           <Toolbar
             sx={{
               display: 'flex',
@@ -118,22 +125,20 @@ function DashboardContent() {
             }}
           >
             <IconButton onClick={toggleDrawer}>
-              <ChevronLeftIcon />
+              <ChevronLeftIcon style={{color: 'white'}}/>
             </IconButton>
           </Toolbar>
-          <Divider style={{color: colors.dividerColor}}/>
+          <Divider style={{backgroundColor: colors.dividerColor}}/>
           <List component="nav">
             {mainListItems}
-            <Divider sx={{ my: 1 }} />
+            <Divider sx={{ my: 1 }} style={{backgroundColor: colors.dividerColor}}/>
             {secondaryListItems}
           </List>
         </Drawer>
-        
+        <DashboardContainer ChildComponent={ChildComponent}/>
       </Box>
     </ThemeProvider>
   );
 }
 
-export default function Dashboard() {
-  return <DashboardContent />;
-}
+export default DashboardOutline

@@ -7,7 +7,6 @@ import images from '../../assets/index';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import { Button, CircularProgress, Grid, Paper, TextField, Typography } from '@mui/material';
 import Login from './Login';
 import Register from './Register';
 import { Service } from '../../config/service';
@@ -127,9 +126,7 @@ const Index = (props) => {
                 </div>
 
                 <div style={{ width: '50%' }}>
-                    <img src={images.homeLogo}
-                        className={classes.imageLogo}
-                    />
+                    <img src={images.homeLogo} alt="" className={classes.imageLogo}/>
                 </div>
             </div>
         </div>

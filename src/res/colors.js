@@ -4,6 +4,7 @@ export const colors = {
     backgroundPrimary: '#191d2c',
     backgroundInput: '#141520',
     textColor: "#81838b",
+    dividerColor: '#43444d',
     // textPrimary: '#4B4B4B',
     textPrimary: '#75808B',
     textSecondary: '#A1989B',
