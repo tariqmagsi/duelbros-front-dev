@@ -5,3 +5,8 @@
 .textTransformChange {
     text-transform: none !important;
 }
+
+.linkStyle {
+    text-decoration: none;
+    color: white;
+}

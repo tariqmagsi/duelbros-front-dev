@@ -52,7 +52,7 @@ const useStyles = makeStyles(theme => ({
 
 const Register = ({ handleSubmit, loading }) => {
     const classes = useStyles();
-    const [userName, setUserName] = useState('');
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
@@ -66,9 +66,9 @@ const Register = ({ handleSubmit, loading }) => {
             return;
         }
         let obj = {
-            username: userName,
-            email: email,
-            password: password,
+            username,
+            email,
+            password,
         };
         handleSubmit(obj);
     }
@@ -80,15 +80,15 @@ const Register = ({ handleSubmit, loading }) => {
                     <Grid container direction="column" spacing={2}>
                         <Grid item>
                             <span style={{ paddingBottom: 8, textAlign: "left", color: colors.textColor }} className="fontSizeChange">
-                                USER NAME*
+                                USERNAME*
                             </span>
                             <TextField
                                 type="text"
-                                name="userName"
+                                name="username"
                                 variant="outlined"
-                                value={userName}
+                                value={username}
                                 fullWidth
-                                onChange={(event) => setUserName(event.target.value)}
+                                onChange={(event) => setUsername(event.target.value)}
                                 required
                                 sx={{ input: { color: 'white', fontSize: "12px" } }}
                                 autoFocus

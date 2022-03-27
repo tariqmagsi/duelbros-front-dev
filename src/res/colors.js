@@ -7,6 +7,7 @@ export const colors = {
     backgroundInput: '#141520',
     cartBackground: '#252837',
     textColor: "#81838b",
+    dividerColor: '#43444d',
     // textPrimary: '#4B4B4B',
     textPrimary: '#75808B',
     textSecondary: '#A1989B',
