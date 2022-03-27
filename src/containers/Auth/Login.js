@@ -54,7 +54,6 @@ const useStyles = makeStyles(theme => ({
 
 const Login = ({ handleSubmit, loading }) => {
     const classes = useStyles();
-    const [value, setValue] = useState('one');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 

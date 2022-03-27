@@ -6,6 +6,7 @@ import Login from '../containers/Auth/Index';
 import NotFound from './NotFound';
 import AdminDashboard from '../containers/AdminDashboard/Dashboard';
 import Home from '../containers/App/Home';
+import Profile from '../containers/UserAccount/Profile';
 
 const AppRoutes = () => {
     return (
@@ -14,11 +15,12 @@ const AppRoutes = () => {
                 <Routes>
                     <Route exact path='/' element={<PrivateRoute />}>
                         <Route exact path='/dashboard' element={<Dashboard />} />
-                        
+
                     </Route>
-                    <Route exact path='/admin_dashboard' element={<AdminDashboard />} />
-                    <Route exact path='/home' element={<Home />} />
                     <Route exact path='/login' element={<Login />} />
+                    <Route exact path='/home' element={<Home />} />
+                    <Route exact path='/Profile' element={<Profile />} />
+                    <Route exact path='/admin_dashboard' element={<AdminDashboard />} />
                     <Route exact path='/' element={<NotFound />} />
                 </Routes>
             </Fragment>

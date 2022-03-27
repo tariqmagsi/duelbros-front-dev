@@ -2,7 +2,10 @@ export const colors = {
     primary: '#3AA3D0',
     secondary: '#013F77',
     backgroundPrimary: '#191d2c',
+    backgroundSecondary: '#151521',
+    backgroundProfile: '#1a1d2c',
     backgroundInput: '#141520',
+    cartBackground: '#252837',
     textColor: "#81838b",
     // textPrimary: '#4B4B4B',
     textPrimary: '#75808B',
@@ -25,5 +28,4 @@ export const colors = {
     progress: '#FF9C2A',
     pending: '#BF2423',
     complete: '#067E38'
-
 };
