@@ -60,12 +60,16 @@ const AdminProfileForm = ({data}) => {
     const [username, setUsername] = useState(data && data.username ? data.username : '');
     const [loading, setLoading] = useState(false)
 
-    const handleUpdate = async (data) => {
+    const handleUpdate = async (event) => {
+        event.preventDefault()
         setLoading(true);
+        const data = {
+          username, 
+          email
+        }
         try {
-            const result = await Service.updateProfile(data)
+            const result = await Service.updateAdminProfile(data)
             console.log('file: Index.js => line 66 => handleSubmit => result', result);
-            alert('success')
         } catch (error) {
             // alert(error)
             console.log('Inside Catch => ', error);

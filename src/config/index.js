@@ -10,7 +10,7 @@ export const Apis = {
     getModerators: 'users/moderators',
     getPlayers: 'users/players',
     getProfile: 'users/profile',
-    updateProfile: 'users'
+    updateProfile: 'users/'
 };
 
 export const headers = {

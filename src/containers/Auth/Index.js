@@ -12,6 +12,7 @@ import Register from './Register';
 import { Service } from '../../config/service';
 import { login } from '../../utils';
 import { useNavigate } from 'react-router-dom';
+// import CustomizedDialogs from '../../components/Dialog';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -98,6 +99,7 @@ const Index = (props) => {
 
     return (
         <div className={classes.root}>
+            {/* <CustomizedDialogs children={<Register/>} open={true}/> */}
             <div className={classes.loginContainer}>
                 <div style={{ width: '50%' }}>
                     <Box>

@@ -114,9 +114,9 @@ export default function CustomPaginationActionsTable({data, columns, role}) {
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row, i) => (
-                role === "player" ? <PlayersRow row={row}/> :
-                role === "user" ? <UsersRow row={row}/> :
-                role === "moderator" ? <ModeratorsRow row={row}/> : 
+                role === "player" ? <PlayersRow key={i} row={row}/> :
+                role === "user" ? <UsersRow key={i} row={row}/> :
+                role === "moderator" ? <ModeratorsRow key={i} row={row}/> : 
                 <TableRow key={i} />
           ))}
 

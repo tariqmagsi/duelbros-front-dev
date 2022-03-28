@@ -5,6 +5,7 @@ import ListItemText from '@mui/material/ListItemText';
 import PeopleIcon from '@mui/icons-material/People';
 import { LogoutOutlined, PeopleAlt, PeopleAltOutlined, Person } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import { logout } from '../utils';
 
 const color = () => {return ({color: 'white'})}
 
@@ -47,7 +48,7 @@ export const secondaryListItems = (
         <ListItemText primary="Profile" />
       </ListItemButton>
     </Link>
-    <ListItemButton>
+    <ListItemButton onClick={() => {logout();}}>
       <ListItemIcon>
         <LogoutOutlined  style={color()}/>
       </ListItemIcon>

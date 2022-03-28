@@ -1,12 +1,12 @@
 import React from 'react';
-import { withStyles } from '@mui/material/styles';
+import { withStyles } from '@mui/styles';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import MuiDialogTitle from '@mui/material/DialogTitle';
 import MuiDialogContent from '@mui/material/DialogContent';
 import MuiDialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
+import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import { Slide } from '@mui/material';
 
@@ -39,7 +39,7 @@ const DialogTitle = withStyles(styles)((props) => {
 
 const DialogContent = withStyles((theme) => ({
     root: {
-        padding: theme.spacing(2),
+        // padding: theme.spacing(2),
     },
 }))(MuiDialogContent);
 
@@ -54,7 +54,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function CustomizedDialogs({ open, handleClose, title, children, size, footer, noFooter, fullScreen }) {
+export default function CustomizedDialogs({ open, handleClose, title, children, component, size, footer, noFooter, fullScreen }) {
     return (
         <div>
             <Dialog fullScreen={fullScreen}
@@ -65,19 +65,10 @@ export default function CustomizedDialogs({ open, handleClose, title, children, 
                 TransitionComponent={Transition}
             >
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                    {title}
+                    {/* {title} */}
                 </DialogTitle>
-                <DialogContent dividers>
+                {/* <DialogContent> */}
                     {children}
-                </DialogContent>
-                {noFooter ? <></> :
-                    <DialogActions>
-                        {footer}
-                        <Button autoFocus onClick={handleClose} color="primary">
-                            Close
-                        </Button>
-                    </DialogActions>
-                }
             </Dialog>
         </div>
     );

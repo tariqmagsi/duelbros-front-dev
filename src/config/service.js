@@ -40,7 +40,7 @@ export const Service = {
         else throw result;
     },
     updateProfile: async (data) => {
-        let result = await put(Apis.getProfile, data, token);
+        let result = await put(Apis.updateProfile, data, token);
         if (result.status === 200) return result.data;
         else throw result;
     },

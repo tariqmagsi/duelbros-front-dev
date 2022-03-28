@@ -110,9 +110,9 @@ function DashboardOutline({ChildComponent}) {
             >
               <img src={require('../assets/images/logo.png')} alt="" style={{height: '30px'}}/>
             </Typography>
-            <IconButton color="inherit">
+            {/* <IconButton color="inherit">
                 <PersonRounded />
-            </IconButton>
+            </IconButton> */}
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" classes={{ paper: classes.paper }} open={open}>
