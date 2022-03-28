@@ -75,7 +75,7 @@ const Index = (props) => {
             login(result.token);
             navigate("../dashboard", { replace: true });
         } catch (error) {
-            // alert(error)
+            alert(error)
             console.log('Inside Catch => ', error);
         } finally {
             setLoading(false)
@@ -90,7 +90,7 @@ const Index = (props) => {
             login(result.token);
             navigate("../dashboard", { replace: true });
         } catch (error) {
-            // alert(error)
+            alert(error)
             console.log('Inside Catch => ', error);
         } finally {
             setLoading(false)
@@ -110,8 +110,8 @@ const Index = (props) => {
                             aria-label="secondary tabs example"
                             TabIndicatorProps={{ style: { background: colors.primary } }}
                         >
-                            <Tab value="one" label="Login"  className="fontSizeChange" style={{color: value==='one' ? colors.primary : "white"}}/>
-                            <Tab value="two" label="Register"  className="fontSizeChange" style={{color: value==='two' ? colors.primary : "white"}}/>
+                            <Tab value="one" label="Login" className="fontSizeChange" style={{ color: value === 'one' ? colors.primary : "white" }} />
+                            <Tab value="two" label="Register" className="fontSizeChange" style={{ color: value === 'two' ? colors.primary : "white" }} />
                         </Tabs>
                     </Box>
                     {

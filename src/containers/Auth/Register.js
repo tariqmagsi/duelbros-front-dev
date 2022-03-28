@@ -61,8 +61,10 @@ const Register = ({ handleSubmit, loading }) => {
     const handleData = async (event) => {
         event.preventDefault();
 
-        if (password !== repeatPassword) alert('Password do not matched!')
-
+        if (password !== repeatPassword) {
+            alert('Password do not matched!');
+            return;
+        }
         let obj = {
             username,
             email,
@@ -70,6 +72,7 @@ const Register = ({ handleSubmit, loading }) => {
         };
         handleSubmit(obj);
     }
+
     return (
         <div className={classes.loginForm}>
             <Container>

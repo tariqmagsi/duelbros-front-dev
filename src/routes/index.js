@@ -5,6 +5,7 @@ import Dashboard from '../containers/Dashboard'
 import Login from '../containers/Auth/Index';
 import NotFound from './NotFound';
 import Home from '../containers/App/Home';
+import Profile from '../containers/UserAccount/Profile';
 import Players from '../containers/AdminDashboard/Players';
 import Users from '../containers/AdminDashboard/Users';
 import Moderators from '../containers/AdminDashboard/Moderators';
@@ -24,6 +25,8 @@ const AppRoutes = () => {
                     </Route>
                     <Route exact path='/home' element={<Home />} />
                     <Route exact path='/login' element={<Login />} />
+                    <Route exact path='/home' element={<Home />} />
+                    <Route exact path='/Profile' element={<Profile />} />
                     <Route exact path='/' element={<NotFound />} />
                 </Routes>
             </Fragment>
