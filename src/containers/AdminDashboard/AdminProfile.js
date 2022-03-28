@@ -1,7 +1,7 @@
 import { CircularProgress } from '@mui/material';
 import { useEffect, useState } from 'react';
 import AdminProfileForm from '../../components/AdminProfileForm';
-import DashboardOutline from '../../components/DashboardOutline';
+import DashboardOutline from './DashboardOutline';
 import { Service } from '../../config/service';
 
 const AdminProfile = () => {

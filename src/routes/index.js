@@ -26,7 +26,7 @@ const AppRoutes = () => {
                     <Route exact path='/home' element={<Home />} />
                     <Route exact path='/login' element={<Login />} />
                     <Route exact path='/home' element={<Home />} />
-                    <Route exact path='/Profile' element={<Profile />} />
+                    <Route exact path='/profile' element={<Profile />} />
                     <Route exact path='/' element={<NotFound />} />
                 </Routes>
             </Fragment>

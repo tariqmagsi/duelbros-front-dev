@@ -26,6 +26,7 @@ import {
     makeStyles,
 } from "@mui/styles";
 import images from '../../assets';
+import { PersonRounded } from '@mui/icons-material';
 
 const drawerWidth = 240;
 
@@ -91,6 +92,15 @@ const useStyles = makeStyles(theme => ({
     passwordLine: {
         display: 'flex',
         justifyContent: 'space-between'
+    },
+    paper: {
+        backgroundColor: `${colors.backgroundInput} !important`,
+        color: 'white !important'
+    },
+    dividerStyle: {
+        backgroundColor: colors.dividerColor, 
+        marginLeft: 10, 
+        marginRight: 10
     }
 }))
 
@@ -129,7 +139,7 @@ function DashboardContent() {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
 
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(false);
     const toggleDrawer = () => {
         setOpen(!open);
     };
@@ -138,7 +148,7 @@ function DashboardContent() {
         <ThemeProvider theme={mdTheme}>
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
-                <AppBar position="absolute" open={open}>
+                <AppBar style={{backgroundColor: colors.backgroundInput}} position="absolute" open={open}>
                     <Toolbar
                         sx={{
                             pr: '24px', // keep right padding when drawer closed
@@ -154,7 +164,7 @@ function DashboardContent() {
                                 ...(open && { display: 'none' }),
                             }}
                         >
-                            <MenuIcon />
+                            <MenuIcon style={{color: 'white'}}/>
                         </IconButton>
                         <Typography
                             component="h1"
@@ -163,34 +173,32 @@ function DashboardContent() {
                             noWrap
                             sx={{ flexGrow: 1 }}
                         >
-                            Dashboard
+                            <img src={images.logo} alt="" style={{height: '30px'}}/>
                         </Typography>
                         <IconButton color="inherit">
-                            <Badge badgeContent={4} color="secondary">
-                                <NotificationsIcon />
-                            </Badge>
+                            <PersonRounded />
                         </IconButton>
                     </Toolbar>
                 </AppBar>
-                <Drawer variant="permanent" open={open}>
+                <Drawer variant="permanent" classes={{ paper: classes.paper }} open={open}>
                     <Toolbar
                         sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'flex-end',
-                            px: [1],
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'flex-end',
+                        px: [1],
                         }}
                     >
                         <IconButton onClick={toggleDrawer}>
-                            <ChevronLeftIcon />
+                            <ChevronLeftIcon style={{color: 'white'}}/>
                         </IconButton>
                     </Toolbar>
-                    <Divider />
+                    <Divider classes={classes.dividerStyle}/>
                     <List component="nav">
-                        {mainListItems}
-                        <Divider sx={{ my: 1 }} />
-                        {secondaryListItems}
-                        <Divider sx={{ my: 1 }} />
+                        {mainListItems(open)}
+                        <Divider sx={{ my: 1 }}  classes={classes.dividerStyle}/>
+                        {secondaryListItems(open)}
+                        <Divider sx={{ my: 1 }}  classes={classes.dividerStyle}/>
                         {SignOutListItem}
                     </List>
                 </Drawer>
@@ -207,43 +215,47 @@ function DashboardContent() {
                     <div style={{ display: 'flex' }}>
 
                         <List
-                            sx={{ width: '10%', bgcolor: colors.backgroundSecondary }}
+                            sx={{ width: '10%', bgcolor: 'red', height: '100vh', position: 'fixed' }}
                             component="nav"
                             aria-labelledby="nested-list-subheader"
-                            subheader={
-                                <ListSubheader sx={{ color: 'white', bgcolor: colors.backgroundSecondary }} component="div" id="nested-list-subheader">
-                                    USER ACCOUNT
-                                </ListSubheader>
-                            }
+                            // subheader={
+                            //     <ListSubheader sx={{ color: 'white', bgcolor: colors.backgroundSecondary }} component="div" id="nested-list-subheader">
+                            //         USER ACCOUNT
+                            //     </ListSubheader>
+                            // }
                         >
+                            <ListItemText sx={{ color: 'white' }} primaryTypographyProps={{fontSize: '14px', marginLeft: '15px'}} primary="USER ACCOUNT" />
+                          
                             <ListItemButton>
-                                <ListItemText sx={{ color: 'white' }} primary="Profile" />
+                                <ListItemText sx={{ color: 'white', fontSize: '12px' }} primaryTypographyProps={{fontSize: '12px'}} primary="Profile" />
                             </ListItemButton>
                             <ListItemButton>
-                                <ListItemText sx={{ color: 'white' }} primary="History" />
+                                <ListItemText sx={{ color: 'white', fontSize: '12px' }} primaryTypographyProps={{fontSize: '12px'}} primary="History" />
                             </ListItemButton>
                         </List>
-                        <Container sx={{ mt: 4, mb: 4, width: '70%' }}>
+                        <Container sx={{ mt: 4, mb: 4, width: '70%', marginLeft: '10%' }}>
                             <Grid spacing={3}>
                                 <Grid item xs={12} md={8} lg={9}>
                                     <Paper
                                         sx={{
                                             p: 2,
-                                            // display: 'flex',
-                                            // flexDirection: 'column',
-                                            // height: 700,
-                                            // alignItems: 'center',
-                                            backgroundColor: colors.backgroundProfile
+                                            backgroundColor: colors.backgroundProfile,
+                                            border:  'none',
+                                            boxShadow: 0
                                         }}
                                     >
                                         <Typography align="center" sx={{ fontSize: 20, color: colors.white }} color="text.secondary" gutterBottom>
                                             PROFILE
                                         </Typography>
+                                        <Typography align="center" sx={{ fontSize: 14, color: colors.primary, marginBottom: -1, background: 'grey', padding: 2, borderRadius: '50%', width: 60 }} color="text.secondary" gutterBottom>
+                                            {/* <img src='' /> */}
+                                        </Typography>
                                         <Card sx={{
                                             minWidth: '100%',
                                             backgroundColor: colors.cartBackground,
                                             height: 80,
-                                            borderRadius: 3
+                                            borderRadius: 3,
+                                            boxShadow:  0,
                                         }}>
                                             <CardContent>
                                                 <Typography align="center" sx={{ fontSize: 14, color: colors.primary }} color="text.secondary" gutterBottom>
@@ -257,7 +269,7 @@ function DashboardContent() {
                                                 </Typography>
                                             </CardContent>
                                         </Card>
-                                        <Typography align="left" sx={{ fontSize: 12, color: colors.white, padding: 2 }} color="text.secondary" gutterBottom>
+                                        <Typography align="left" sx={{ fontSize: 12, color: colors.white, paddingTop: 2, paddingBottom: 1 }} color="text.secondary" gutterBottom>
                                             Overview
                                         </Typography>
                                         <div style={{ display: 'flex', }}>
@@ -266,7 +278,7 @@ function DashboardContent() {
                                                 backgroundColor: colors.cartBackground,
                                                 height: 70,
                                                 padding: 10,
-                                                borderRadius: 3,
+                                                borderRadius: 10,
                                                 display: 'flex'
                                             }}>
                                                 <div style={{ width: 30, height: 30 }}>
@@ -288,9 +300,9 @@ function DashboardContent() {
                                                 backgroundColor: colors.cartBackground,
                                                 height: 70,
                                                 padding: 10,
-                                                borderRadius: 3,
+                                                borderRadius: 10,
                                                 display: 'flex',
-                                                marginLeft: 30,
+                                                marginLeft: 30 
                                             }}>
                                                 <div style={{ width: 30, height: 30 }}>
                                                     <img src={images.history}
@@ -307,20 +319,22 @@ function DashboardContent() {
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <Typography align="left" sx={{ fontSize: 12, color: colors.white, padding: 2 }} color="text.secondary" gutterBottom>
+                                        <Divider sx={{marginTop: 3.5, marginBottom: 1, backgroundColor: 'white'}} />
+                                        <Typography align="left" sx={{ fontSize: 12, color: colors.white, paddingTop: 2, paddingBottom: 1 }} color="text.secondary" gutterBottom>
                                             LEVEL PROGRESS
                                         </Typography>
                                         <Card sx={{
                                             width: '100%',
                                             backgroundColor: colors.cartBackground,
                                             height: 70,
-                                            borderRadius: 3
+                                            borderRadius: 3,
+                                            boxShadow:  0
                                         }}>
                                             <CardContent sx={{
                                                 alignItems: 'center',
                                                 justifyContent: 'space-between',
                                                 display: 'flex',
+                                                marginTop: -0.5
 
                                             }} >
                                                 <div style={{
@@ -331,12 +345,12 @@ function DashboardContent() {
                                                     justifyContent: 'center',
                                                     alignItems: 'center'
                                                 }}>
-                                                    <Typography align="center" color={colors.white} >1</Typography>
+                                                    <Typography align="center" color={colors.white} sx={{paddingTop: 0.5}} >1</Typography>
                                                 </div>
                                                 <div style={{
                                                     width: '90%',
                                                 }}>
-                                                    <Typography color={colors.white}>510/1000</Typography>
+                                                    <Typography color={colors.white} sx={{marginBottom: -1}}>510/1000</Typography>
                                                     <Slider
                                                         size="medium"
                                                         defaultValue={50}
@@ -353,15 +367,15 @@ function DashboardContent() {
                                                     alignItems: 'center',
                                                     justifyContent: 'center'
                                                 }}>
-                                                    <Typography align="center" color={colors.white} >2</Typography>
+                                                    <Typography align="center" color={colors.white} sx={{paddingTop: 0.5}} >2</Typography>
                                                 </div>
                                             </CardContent>
                                         </Card>
 
-
-                                        <Container>
+                                        <Divider sx={{marginTop: 4, marginBottom: 1, backgroundColor: 'white'}} />
+                                        {/* <Container> */}
                                             <form>
-                                                <Grid container direction="column" spacing={2} sx={{ marginTop: 3 }}>
+                                                <Grid container direction="column" spacing={2} sx={{ marginTop: -1 }}>
                                                     <Grid item>
                                                         <div>
                                                             <Typography style={{ color: colors.textColor, fontSize: 12, marginTop: 10 }}>
@@ -413,13 +427,13 @@ function DashboardContent() {
                                             <div style={{ marginTop: "calc(5% + 110px)", bottom: 0, textAlign: 'center' }} className="fontSizeChange">
                                                 This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
                                             </div>
-                                        </Container>
+                                        {/* </Container> */}
                                     </Paper>
 
                                 </Grid>
                             </Grid>
                         </Container>
-                        <Container sx={{ mt: 4, mb: 4, width: '20%', backgroundColor: colors.backgroundSecondary }}>
+                        <Container sx={{ mt: 4, mb: 4, width: '20%', backgroundColor: colors.backgroundSecondary, height: '100vh', position: 'fixed', right: 15, top: 30 }}>
                             <Grid spacing={3}>
                                 <Typography color={colors.white}>chat</Typography>
                             </Grid>

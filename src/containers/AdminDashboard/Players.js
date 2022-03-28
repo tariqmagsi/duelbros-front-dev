@@ -1,7 +1,7 @@
 import { CircularProgress } from '@mui/material';
 import { useEffect, useState } from 'react';
-import DashboardOutline from '../../components/DashboardOutline';
-import DataTable from "../../components/DataTable"
+import DashboardOutline from './DashboardOutline';
+import DataTable from "./DataTable"
 import { Service } from '../../config/service';
 
 const Players = () => {

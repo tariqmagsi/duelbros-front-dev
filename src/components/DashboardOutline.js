@@ -1,78 +1,78 @@
-import * as React from 'react';
-import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import MuiDrawer from '@mui/material/Drawer';
-import Box from '@mui/material/Box';
-import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { mainListItems, secondaryListItems } from './ListItems';
-import DashboardContainer from './DashboardContainer';
-import { colors } from '../res/colors';
-import { makeStyles } from '@mui/styles';
-import { PersonRounded } from '@mui/icons-material';
+import * as React from "react";
+import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import MuiDrawer from "@mui/material/Drawer";
+import Box from "@mui/material/Box";
+import MuiAppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import List from "@mui/material/List";
+import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import { mainListItems, secondaryListItems } from "./ListItems";
+import DashboardContainer from "./DashboardContainer";
+import { colors } from "../../res/colors";
+import { makeStyles } from "@mui/styles";
+import images from "../../assets";
 
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
+  shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(['width', 'margin'], {
+  transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
+    transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
 }));
 
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme, open }) => ({
-    '& .MuiDrawer-paper': {
-      position: 'relative',
-      whiteSpace: 'nowrap',
-      width: drawerWidth,
-      transition: theme.transitions.create('width', {
+const Drawer = styled(MuiDrawer, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  "& .MuiDrawer-paper": {
+    position: "relative",
+    whiteSpace: "nowrap",
+    width: drawerWidth,
+    transition: theme.transitions.create("width", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    boxSizing: "border-box",
+    ...(!open && {
+      overflowX: "hidden",
+      transition: theme.transitions.create("width", {
         easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
+        duration: theme.transitions.duration.leavingScreen,
       }),
-      boxSizing: 'border-box',
-      ...(!open && {
-        overflowX: 'hidden',
-        transition: theme.transitions.create('width', {
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.leavingScreen,
-        }),
-        width: theme.spacing(7),
-        [theme.breakpoints.up('sm')]: {
-          width: theme.spacing(9),
-        },
-      }),
-    },
-  }),
-);
+      width: theme.spacing(7),
+      [theme.breakpoints.up("sm")]: {
+        width: theme.spacing(9),
+      },
+    }),
+  },
+}));
 
 const mdTheme = createTheme();
 
 const useStyles = makeStyles({
-    paper: {
-      backgroundColor: `${colors.backgroundInput} !important`,
-      color: 'white !important'
-    }
+  paper: {
+    backgroundColor: `${colors.backgroundInput} !important`,
+    color: "white !important",
+  },
 });
 
-function DashboardOutline({ChildComponent}) {
+function DashboardOutline({ ChildComponent }) {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
   const toggleDrawer = () => {
@@ -81,12 +81,16 @@ function DashboardOutline({ChildComponent}) {
 
   return (
     <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <AppBar style={{backgroundColor: colors.backgroundInput}} position="absolute" open={open}>
+        <AppBar
+          style={{ backgroundColor: colors.backgroundInput }}
+          position="absolute"
+          open={open}
+        >
           <Toolbar
             sx={{
-              pr: '24px', // keep right padding when drawer closed
+              pr: "24px", // keep right padding when drawer closed
             }}
           >
             <IconButton
@@ -95,11 +99,11 @@ function DashboardOutline({ChildComponent}) {
               aria-label="open drawer"
               onClick={toggleDrawer}
               sx={{
-                marginRight: '36px',
-                ...(open && { display: 'none' }),
+                marginRight: "36px",
+                ...(open && { display: "none" }),
               }}
             >
-              <MenuIcon style={{color: 'white'}}/>
+              <MenuIcon style={{ color: "white" }} />
             </IconButton>
             <Typography
               component="h1"
@@ -108,37 +112,50 @@ function DashboardOutline({ChildComponent}) {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              <img src={require('../assets/images/logo.png')} alt="" style={{height: '30px'}}/>
+              <img src={images.logo} alt="" style={{ height: "30px" }} />
             </Typography>
-            {/* <IconButton color="inherit">
-                <PersonRounded />
-            </IconButton> */}
+            <IconButton color="inherit">
+              <PersonRounded />
+            </IconButton>
           </Toolbar>
         </AppBar>
-        <Drawer variant="permanent" classes={{ paper: classes.paper }} open={open}>
+        <Drawer
+          variant="permanent"
+          classes={{ paper: classes.paper }}
+          open={open}
+        >
           <Toolbar
             sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'flex-end',
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-end",
               px: [1],
             }}
           >
             <IconButton onClick={toggleDrawer}>
-              <ChevronLeftIcon style={{color: 'white'}}/>
+              <ChevronLeftIcon style={{ color: "white" }} />
             </IconButton>
           </Toolbar>
-          <Divider style={{backgroundColor: colors.dividerColor}}/>
+          <Divider style={{ backgroundColor: colors.dividerColor }} />
           <List component="nav">
             {mainListItems}
-            <Divider sx={{ my: 1 }} style={{backgroundColor: colors.dividerColor}}/>
+            <Divider
+              sx={{ my: 1 }}
+              style={{ backgroundColor: colors.dividerColor }}
+            />
             {secondaryListItems}
+            <Divider
+              sx={{ my: 1 }}
+              style={{ backgroundColor: colors.dividerColor }}
+            />
+            {SignOutListItem}
           </List>
         </Drawer>
-        <DashboardContainer ChildComponent={ChildComponent}/>
+
+        <DashboardContainer ChildComponent={ChildComponent} />
       </Box>
     </ThemeProvider>
   );
 }
 
-export default DashboardOutline
+export default DashboardOutline;
