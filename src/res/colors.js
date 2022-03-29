@@ -8,6 +8,7 @@ export const colors = {
     cartBackground: '#252837',
     textColor: "#81838b",
     dividerColor: '#43444d',
+    chatBackground: '#21212b',
     // textPrimary: '#4B4B4B',
     textPrimary: '#75808B',
     textSecondary: '#A1989B',
@@ -25,7 +26,7 @@ export const colors = {
     secondaryGreen: '#0DB14B',
     primaryGrey: '#CDF0EA',
     primaryRed: '#E4A3D4',
-    ratingYellow: '#FDC500',
+    yellow: '#fcd145',
     progress: '#FF9C2A',
     pending: '#BF2423',
     complete: '#067E38'

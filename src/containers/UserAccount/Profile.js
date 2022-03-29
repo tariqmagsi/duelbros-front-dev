@@ -20,15 +20,25 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems, SignOutListItem } from './listItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import { Card, CardContent, ListSubheader, Slider, TextField } from '@mui/material';
+import { Button, Card, CardContent, ListSubheader, Slider, TextField } from '@mui/material';
 import { colors } from '../../res/colors';
+import CloseIcon from '@mui/icons-material/Close';
 import {
     makeStyles,
 } from "@mui/styles";
 import images from '../../assets';
 import { PersonRounded } from '@mui/icons-material';
+import EditIcon from '@mui/icons-material/Edit';
+import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';
 
 const drawerWidth = 240;
+
+const chatData = [
+    { id: 0, heading: 'user_example', text: 'Testing testing testing testing testing testing', image: images.history },
+    { id: 1, heading: 'user_example', text: 'Testing testing testing testing testing testing', image: images.history },
+    { id: 2, heading: 'user_example', text: 'Testing testing testing testing testing testing', image: images.history },
+    { id: 3, heading: 'user_example', text: 'Testing testing testing testing testing testing', image: images.history },
+]
 
 const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
@@ -98,8 +108,8 @@ const useStyles = makeStyles(theme => ({
         color: 'white !important'
     },
     dividerStyle: {
-        backgroundColor: colors.dividerColor, 
-        marginLeft: 10, 
+        backgroundColor: colors.dividerColor,
+        marginLeft: 10,
         marginRight: 10
     }
 }))
@@ -148,7 +158,7 @@ function DashboardContent() {
         <ThemeProvider theme={mdTheme}>
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
-                <AppBar style={{backgroundColor: colors.backgroundInput}} position="absolute" open={open}>
+                <AppBar style={{ backgroundColor: colors.backgroundInput }} position="absolute" open={open}>
                     <Toolbar
                         sx={{
                             pr: '24px', // keep right padding when drawer closed
@@ -164,7 +174,7 @@ function DashboardContent() {
                                 ...(open && { display: 'none' }),
                             }}
                         >
-                            <MenuIcon style={{color: 'white'}}/>
+                            <MenuIcon style={{ color: 'white' }} />
                         </IconButton>
                         <Typography
                             component="h1"
@@ -173,8 +183,28 @@ function DashboardContent() {
                             noWrap
                             sx={{ flexGrow: 1 }}
                         >
-                            <img src={images.logo} alt="" style={{height: '30px'}}/>
+                            <img src={images.logo} alt="" style={{ height: '30px' }} />
                         </Typography>
+                        <div style={{ backgroundColor: '#2c2c36', flex: 'display', justifyContent: 'center', alignItems: 'center' }}>
+
+                            <CurrencyExchangeOutlinedIcon style={{ color: colors.yellow }} />
+                            <Typography style={{ flex: 'display', justifyContent: 'center', }} color="#40aa77">5150M</Typography>
+                        </div>
+                        <Grid item>
+                            <Button
+                                variant="contained"
+                                type="submit"
+                                className={`${classes.button} textTransformChange`}
+                                size="medium"
+                                fullWidth
+                            >
+
+                                Cashier
+                            </Button>
+                        </Grid>
+                        <div style={{ background: 'red' }}>
+                            <Typography>Test</Typography>
+                        </div>
                         <IconButton color="inherit">
                             <PersonRounded />
                         </IconButton>
@@ -183,22 +213,22 @@ function DashboardContent() {
                 <Drawer variant="permanent" classes={{ paper: classes.paper }} open={open}>
                     <Toolbar
                         sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'flex-end',
-                        px: [1],
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'flex-end',
+                            px: [1],
                         }}
                     >
                         <IconButton onClick={toggleDrawer}>
-                            <ChevronLeftIcon style={{color: 'white'}}/>
+                            <ChevronLeftIcon style={{ color: 'white' }} />
                         </IconButton>
                     </Toolbar>
-                    <Divider classes={classes.dividerStyle}/>
+                    <Divider classes={classes.dividerStyle} />
                     <List component="nav">
                         {mainListItems(open)}
-                        <Divider sx={{ my: 1 }}  classes={classes.dividerStyle}/>
+                        <Divider sx={{ my: 1 }} classes={classes.dividerStyle} />
                         {secondaryListItems(open)}
-                        <Divider sx={{ my: 1 }}  classes={classes.dividerStyle}/>
+                        <Divider sx={{ my: 1 }} classes={classes.dividerStyle} />
                         {SignOutListItem}
                     </List>
                 </Drawer>
@@ -215,22 +245,22 @@ function DashboardContent() {
                     <div style={{ display: 'flex' }}>
 
                         <List
-                            sx={{ width: '10%', bgcolor: 'red', height: '100vh', position: 'fixed' }}
+                            sx={{ width: '10%', bgcolor: colors.backgroundInput, height: '100vh', position: 'fixed' }}
                             component="nav"
                             aria-labelledby="nested-list-subheader"
-                            // subheader={
-                            //     <ListSubheader sx={{ color: 'white', bgcolor: colors.backgroundSecondary }} component="div" id="nested-list-subheader">
-                            //         USER ACCOUNT
-                            //     </ListSubheader>
-                            // }
+                        // subheader={
+                        //     <ListSubheader sx={{ color: 'white', bgcolor: colors.backgroundSecondary }} component="div" id="nested-list-subheader">
+                        //         USER ACCOUNT
+                        //     </ListSubheader>
+                        // }
                         >
-                            <ListItemText sx={{ color: 'white' }} primaryTypographyProps={{fontSize: '14px', marginLeft: '15px'}} primary="USER ACCOUNT" />
-                          
+                            <ListItemText sx={{ color: 'white' }} primaryTypographyProps={{ fontSize: '14px', marginLeft: '15px' }} primary="USER ACCOUNT" />
+
                             <ListItemButton>
-                                <ListItemText sx={{ color: 'white', fontSize: '12px' }} primaryTypographyProps={{fontSize: '12px'}} primary="Profile" />
+                                <ListItemText sx={{ color: 'white', fontSize: '12px' }} primaryTypographyProps={{ fontSize: '12px' }} primary="Profile" />
                             </ListItemButton>
                             <ListItemButton>
-                                <ListItemText sx={{ color: 'white', fontSize: '12px' }} primaryTypographyProps={{fontSize: '12px'}} primary="History" />
+                                <ListItemText sx={{ color: 'white', fontSize: '12px' }} primaryTypographyProps={{ fontSize: '12px' }} primary="History" />
                             </ListItemButton>
                         </List>
                         <Container sx={{ mt: 4, mb: 4, width: '70%', marginLeft: '10%' }}>
@@ -240,24 +270,43 @@ function DashboardContent() {
                                         sx={{
                                             p: 2,
                                             backgroundColor: colors.backgroundProfile,
-                                            border:  'none',
+                                            border: 'none',
                                             boxShadow: 0
                                         }}
                                     >
-                                        <Typography align="center" sx={{ fontSize: 20, color: colors.white }} color="text.secondary" gutterBottom>
+                                        <Typography align="center" sx={{ fontSize: 20, color: colors.white, marginBottom: 3 }} color="text.secondary" gutterBottom>
                                             PROFILE
                                         </Typography>
-                                        <Typography align="center" sx={{ fontSize: 14, color: colors.primary, marginBottom: -1, background: 'grey', padding: 2, borderRadius: '50%', width: 60 }} color="text.secondary" gutterBottom>
-                                            {/* <img src='' /> */}
-                                        </Typography>
+                                        <div style={{
+                                            display: 'flex', justifyContent: 'center', alignItems: 'center',
+                                        }}>
+                                            <Grid container spacing={2} style={{
+                                                backgroundColor: '#3c4154',
+                                                borderRadius: '50%',
+                                                width: 80,
+                                                height: 80,
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                                zIndex: 1,
+                                                marginBottom: -25,
+                                                marginLeft: 5
+                                                // position: 'absolute',
+                                                // shadow: ''
+                                            }} justify="center">
+                                                <img src={images.gallery} alt="" style={{ height: "25px" }} />
+                                            </Grid>
+                                        </div>
                                         <Card sx={{
                                             minWidth: '100%',
                                             backgroundColor: colors.cartBackground,
-                                            height: 80,
+                                            height: 120,
                                             borderRadius: 3,
-                                            boxShadow:  0,
+                                            boxShadow: 0,
                                         }}>
                                             <CardContent>
+                                                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                                    <EditIcon style={{ color: colors.white }} />
+                                                </div>
                                                 <Typography align="center" sx={{ fontSize: 14, color: colors.primary }} color="text.secondary" gutterBottom>
                                                     Bluefox8899
                                                 </Typography>
@@ -302,7 +351,7 @@ function DashboardContent() {
                                                 padding: 10,
                                                 borderRadius: 10,
                                                 display: 'flex',
-                                                marginLeft: 30 
+                                                marginLeft: 30
                                             }}>
                                                 <div style={{ width: 30, height: 30 }}>
                                                     <img src={images.history}
@@ -319,7 +368,7 @@ function DashboardContent() {
                                                 </div>
                                             </div>
                                         </div>
-                                        <Divider sx={{marginTop: 3.5, marginBottom: 1, backgroundColor: 'white'}} />
+                                        <Divider sx={{ marginTop: 3.5, marginBottom: 1, backgroundColor: 'white' }} />
                                         <Typography align="left" sx={{ fontSize: 12, color: colors.white, paddingTop: 2, paddingBottom: 1 }} color="text.secondary" gutterBottom>
                                             LEVEL PROGRESS
                                         </Typography>
@@ -328,7 +377,7 @@ function DashboardContent() {
                                             backgroundColor: colors.cartBackground,
                                             height: 70,
                                             borderRadius: 3,
-                                            boxShadow:  0
+                                            boxShadow: 0
                                         }}>
                                             <CardContent sx={{
                                                 alignItems: 'center',
@@ -345,12 +394,12 @@ function DashboardContent() {
                                                     justifyContent: 'center',
                                                     alignItems: 'center'
                                                 }}>
-                                                    <Typography align="center" color={colors.white} sx={{paddingTop: 0.5}} >1</Typography>
+                                                    <Typography align="center" color={colors.white} sx={{ paddingTop: 0.5 }} >1</Typography>
                                                 </div>
                                                 <div style={{
                                                     width: '90%',
                                                 }}>
-                                                    <Typography color={colors.white} sx={{marginBottom: -1}}>510/1000</Typography>
+                                                    <Typography color={colors.white} sx={{ marginBottom: -1 }}>510/1000</Typography>
                                                     <Slider
                                                         size="medium"
                                                         defaultValue={50}
@@ -367,66 +416,66 @@ function DashboardContent() {
                                                     alignItems: 'center',
                                                     justifyContent: 'center'
                                                 }}>
-                                                    <Typography align="center" color={colors.white} sx={{paddingTop: 0.5}} >2</Typography>
+                                                    <Typography align="center" color={colors.white} sx={{ paddingTop: 0.5 }} >2</Typography>
                                                 </div>
                                             </CardContent>
                                         </Card>
 
-                                        <Divider sx={{marginTop: 4, marginBottom: 1, backgroundColor: 'white'}} />
+                                        <Divider sx={{ marginTop: 4, marginBottom: 1, backgroundColor: 'white' }} />
                                         {/* <Container> */}
-                                            <form>
-                                                <Grid container direction="column" spacing={2} sx={{ marginTop: -1 }}>
-                                                    <Grid item>
-                                                        <div>
-                                                            <Typography style={{ color: colors.textColor, fontSize: 12, marginTop: 10 }}>
-                                                                EMAIL*
-                                                            </Typography>
+                                        <form>
+                                            <Grid container direction="column" spacing={2} sx={{ marginTop: -1 }}>
+                                                <Grid item>
+                                                    <div>
+                                                        <Typography style={{ color: colors.textColor, fontSize: 12, marginTop: 10 }}>
+                                                            EMAIL*
+                                                        </Typography>
 
-                                                        </div>
-                                                        <TextField
-                                                            type="text"
-                                                            name="Email"
-                                                            variant="outlined"
-                                                            value={email}
-                                                            // fullWidth
-                                                            onChange={(event) => setEmail(event.target.value)}
-                                                            required
-                                                            sx={{ input: { color: 'white', fontSize: "12px", } }}
-                                                            className={classes.input}
-                                                            style={{ color: "white !important", width: '30%' }}
-                                                            color="info"
-                                                            size="small"
-                                                        />
+                                                    </div>
+                                                    <TextField
+                                                        type="text"
+                                                        name="Email"
+                                                        variant="outlined"
+                                                        value={email}
+                                                        // fullWidth
+                                                        onChange={(event) => setEmail(event.target.value)}
+                                                        required
+                                                        sx={{ input: { color: 'white', fontSize: "12px", } }}
+                                                        className={classes.input}
+                                                        style={{ color: "white !important", width: '30%' }}
+                                                        color="info"
+                                                        size="small"
+                                                    />
 
-                                                    </Grid>
-                                                    <Grid item>
-                                                        <div className={classes.passwordLine}>
-                                                            <Typography style={{ color: colors.textColor, fontSize: 12, marginTop: 10 }}>
-                                                                PASSWORD*
-                                                            </Typography>
-
-                                                        </div>
-                                                        <TextField
-                                                            type="password"
-                                                            name="password"
-                                                            variant="outlined"
-                                                            size='small'
-                                                            sx={{ input: { color: 'white', fontSize: "12px" } }}
-                                                            // fullWidth
-                                                            value={password}
-                                                            onChange={(event) => setPassword(event.target.value)}
-                                                            required
-                                                            color="info"
-                                                            className={classes.input}
-                                                            style={{ color: "white !important", width: '30%' }}
-
-                                                        />
-                                                    </Grid>
                                                 </Grid>
-                                            </form>
-                                            <div style={{ marginTop: "calc(5% + 110px)", bottom: 0, textAlign: 'center' }} className="fontSizeChange">
-                                                This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
-                                            </div>
+                                                <Grid item>
+                                                    <div className={classes.passwordLine}>
+                                                        <Typography style={{ color: colors.textColor, fontSize: 12, marginTop: 10 }}>
+                                                            PASSWORD*
+                                                        </Typography>
+
+                                                    </div>
+                                                    <TextField
+                                                        type="password"
+                                                        name="password"
+                                                        variant="outlined"
+                                                        size='small'
+                                                        sx={{ input: { color: 'white', fontSize: "12px" } }}
+                                                        // fullWidth
+                                                        value={password}
+                                                        onChange={(event) => setPassword(event.target.value)}
+                                                        required
+                                                        color="info"
+                                                        className={classes.input}
+                                                        style={{ color: "white !important", width: '30%' }}
+
+                                                    />
+                                                </Grid>
+                                            </Grid>
+                                        </form>
+                                        <div style={{ marginTop: "calc(5% + 110px)", bottom: 0, textAlign: 'center' }} className="fontSizeChange">
+                                            This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
+                                        </div>
                                         {/* </Container> */}
                                     </Paper>
 
@@ -434,9 +483,37 @@ function DashboardContent() {
                             </Grid>
                         </Container>
                         <Container sx={{ mt: 4, mb: 4, width: '20%', backgroundColor: colors.backgroundSecondary, height: '100vh', position: 'fixed', right: 15, top: 30 }}>
-                            <Grid spacing={3}>
-                                <Typography color={colors.white}>chat</Typography>
+                            <Grid spacing={3} sx={{
+                                backgroundColor: colors.chatBackground,
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                display: 'flex',
+                                padding: 2
+                            }}>
+                                <Typography color={colors.white}></Typography>
+                                <Typography color={colors.white}>User chat</Typography>
+                                <CloseIcon style={{ color: '#696975' }} />
                             </Grid>
+                            <tbody>
+                                {chatData && chatData.map(user =>
+                                    <Grid spacing={3} sx={{
+                                        backgroundColor: colors.chatBackground,
+                                        // justifyContent: 'space-between',
+                                        display: 'flex',
+                                        padding: 2,
+                                        borderRadius: 5,
+                                        marginTop: 2,
+                                    }}>
+                                        <img src={user.image} alt="" style={{ height: "20px", margin: 8 }} />
+                                        <Typography color={colors.white} >
+                                            <span style={{ fontSize: 18, fontWeight: 'bold' }} color="white">{user.heading}</span>
+                                            <span style={{ marginLeft: 8 }}>
+                                                {user.text}
+                                            </span>
+                                        </Typography>
+                                    </Grid>
+                                )}
+                            </tbody>
                         </Container>
                     </div>
 
