@@ -17,7 +17,7 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import PlayersRow from './PlayersRow';
 import { TableHead } from '@mui/material';
-import UsersRow from '../../components/UsersRow';
+import UsersRow from './UsersRow';
 import ModeratorsRow from './ModeratorsRow';
 
 function TablePaginationActions(props) {

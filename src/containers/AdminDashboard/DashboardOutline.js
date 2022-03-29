@@ -16,6 +16,7 @@ import DashboardContainer from './DashboardContainer';
 import { colors } from '../../res/colors';
 import { makeStyles } from '@mui/styles';
 import images from '../../assets';
+import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -74,6 +75,7 @@ const useStyles = makeStyles({
 
 function DashboardOutline({ChildComponent}) {
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate()
   const classes = useStyles();
   const toggleDrawer = () => {
     setOpen(!open);
@@ -132,7 +134,7 @@ function DashboardOutline({ChildComponent}) {
           <List component="nav">
             {mainListItems}
             <Divider sx={{ my: 1 }} style={{backgroundColor: colors.dividerColor}}/>
-            {secondaryListItems}
+            {secondaryListItems(navigate)}
           </List>
         </Drawer>
         

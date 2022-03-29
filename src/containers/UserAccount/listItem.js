@@ -18,6 +18,7 @@ import MuiAccordion from "@mui/material/Accordion";
 import { colors } from "../../res/colors";
 import { styled } from "@mui/styles";
 import images from "../../assets";
+import { logout } from "../../utils";
 
 const Accordion = styled((props) => (
   <MuiAccordion
@@ -44,18 +45,18 @@ const styles = (theme) => ({
   highlightBox: {
     margin: 10,
     background: colors.backgroundProfile,
-    borderRadius: 5
+    borderRadius: 5,
   },
   marginIcon: {
-      marginLeft: -3
-  }
+    marginLeft: -3,
+  },
 });
 
 const classes = styles();
 
 const checkPage = (path) => {
-    return path === window.location.pathname
-}
+  return path === window.location.pathname;
+};
 
 export const mainListItems = (open) => {
   return (
@@ -72,8 +73,12 @@ export const mainListItems = (open) => {
           GAMES
         </AccordionSummary>
         <Link to="/admin_dashboard/users" className="linkStyle">
-        <ListItemButton style={checkPage('/duel_host') ? classes.highlightBox : {}}>
-          <ListItemIcon style={checkPage('/duel_host') ?  classes.marginIcon : {}}>
+          <ListItemButton
+            style={checkPage("/duel_host") ? classes.highlightBox : {}}
+          >
+            <ListItemIcon
+              style={checkPage("/duel_host") ? classes.marginIcon : {}}
+            >
               <SportsEsportsOutlined style={{ color: "white" }} />
             </ListItemIcon>
             <ListItemText
@@ -101,19 +106,25 @@ export const secondaryListItems = (open) => {
         >
           MORE
         </AccordionSummary>
-        <Link to='/profile' className="linkStyle">
-            <ListItemButton style={checkPage('/profile') ? classes.highlightBox : {}}>
-            <ListItemIcon style={checkPage('/profile') ?  classes.marginIcon : {}}>
-                <PersonOutline style={{ color: "white" }} />
+        <Link to="/profile" className="linkStyle">
+          <ListItemButton
+            style={checkPage("/profile") ? classes.highlightBox : {}}
+          >
+            <ListItemIcon
+              style={checkPage("/profile") ? classes.marginIcon : {}}
+            >
+              <PersonOutline style={{ color: "white" }} />
             </ListItemIcon>
             <ListItemText
-                primary="User Account"
-                primaryTypographyProps={classes.listItemText}
+              primary="User Account"
+              primaryTypographyProps={classes.listItemText}
             />
-            </ListItemButton>
+          </ListItemButton>
         </Link>
-        <ListItemButton style={checkPage('/cashier') ? classes.highlightBox : {}}>
-          <ListItemIcon style={checkPage('/cashier') ?  classes.marginIcon : {}}>
+        <ListItemButton
+          style={checkPage("/cashier") ? classes.highlightBox : {}}
+        >
+          <ListItemIcon style={checkPage("/cashier") ? classes.marginIcon : {}}>
             <img src={images.cashier} style={{ height: 16 }} />
           </ListItemIcon>
           <ListItemText
@@ -121,8 +132,10 @@ export const secondaryListItems = (open) => {
             primaryTypographyProps={classes.listItemText}
           />
         </ListItemButton>
-        <ListItemButton style={checkPage('/history') ? classes.highlightBox : {}}>
-          <ListItemIcon style={checkPage('/history') ?  classes.marginIcon : {}}>
+        <ListItemButton
+          style={checkPage("/history") ? classes.highlightBox : {}}
+        >
+          <ListItemIcon style={checkPage("/history") ? classes.marginIcon : {}}>
             <UpdateOutlined style={{ color: "white" }} />
           </ListItemIcon>
           <ListItemText
@@ -130,8 +143,10 @@ export const secondaryListItems = (open) => {
             primaryTypographyProps={classes.listItemText}
           />
         </ListItemButton>
-        <ListItemButton style={checkPage('/support') ? classes.highlightBox : {}}>
-          <ListItemIcon style={checkPage('/support') ?  classes.marginIcon : {}}>
+        <ListItemButton
+          style={checkPage("/support") ? classes.highlightBox : {}}
+        >
+          <ListItemIcon style={checkPage("/support") ? classes.marginIcon : {}}>
             <ContactSupportOutlined style={{ color: "white" }} />
           </ListItemIcon>
           <ListItemText
@@ -144,16 +159,18 @@ export const secondaryListItems = (open) => {
   );
 };
 
-export const SignOutListItem = (
-  <React.Fragment>
-    <ListItemButton>
-      <ListItemIcon>
-        <LogoutOutlined style={{ color: "white" }} />
-      </ListItemIcon>
-      <ListItemText
-        primary="Sign Out"
-        primaryTypographyProps={classes.listItemText}
-      />
-    </ListItemButton>
-  </React.Fragment>
-);
+export const SignOutListItem = (navigate) => {
+  return (
+    <React.Fragment>
+      <ListItemButton onClick={() => {logout(); navigate('/login')}}>
+        <ListItemIcon>
+          <LogoutOutlined style={{ color: "white" }} />
+        </ListItemIcon>
+        <ListItemText
+          primary="Sign Out"
+          primaryTypographyProps={classes.listItemText}
+        />
+      </ListItemButton>
+    </React.Fragment>
+  );
+};

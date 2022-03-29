@@ -9,17 +9,18 @@ const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
-        height: '500px',
+        // alignItems: 'center',
+        paddingTop: 30,
+        height: '400px',
         backgroundColor: colors.backgroundPrimary,
     },
-    loginContainer: {
+    DepositContainer: {
         backgroundColor: colors.black,
         borderRadius: 10,
         overflow: 'hidden',
         flexDirection: 'row',
         display: 'flex',
-        width: '50%'
+        width: '100%'
     },
     tabs: {
         backgroundColor: colors.backgroundPrimary,
@@ -27,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     imageLogo: {
         width: '100%',
     },
-    loginForm: {
+    DepositForm: {
         backgroundColor: colors.backgroundPrimary,
         paddingHorizontal: 20,
         alignItems: 'center',
@@ -44,6 +45,7 @@ const useStyles = makeStyles(theme => ({
     },
     button: {
         alignItems: 'center',
+        backgroundColor: 'green',
     },
     passwordLine: {
         display: 'flex',
@@ -51,35 +53,31 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const Login = ({ handleSubmit, loading }) => {
+const Deposit = ({ handleSubmit, loading }) => {
     const classes = useStyles();
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
 
 
     const handleData = async (event) => {
         event.preventDefault();
 
-        let obj = {
-            email: email,
-            password: password,
-        };
-        handleSubmit(obj);
     }
     return (
-        <div className={classes.loginForm}>
+        <div className={classes.root}>
             <Container>
                 <form onSubmit={handleData}>
                     <Grid container direction="column" spacing={2}>
                         <Grid item>
                             <span style={{ paddingBottom: 8, textAlign: "left", color: colors.textColor }} className="fontSizeChange">
-                                EMAIL*
+                                WITHDRAW OSRS GOLD
                             </span>
                             <TextField
                                 type="text"
                                 name="Email"
                                 variant="outlined"
                                 value={email}
+                                placeholder="Type in here"
                                 fullWidth
                                 onChange={(event) => setEmail(event.target.value)}
                                 required
@@ -94,21 +92,19 @@ const Login = ({ handleSubmit, loading }) => {
                         <Grid item>
                             <div className={classes.passwordLine}>
                                 <span style={{ color: colors.textColor }} className="fontSizeChange">
-                                    PASSWORD*
-                                </span>
-                                <span onClick={() => alert('Forgot Password')} style={{ color: colors.textColor, cursor: 'pointer' }} className="fontSizeChange">
-                                    Forgot Password?
+                                    RUNESCAPE USERNAME
                                 </span>
                             </div>
                             <TextField
-                                type="password"
-                                name="password"
+                                type="text"
+                                name="username"
                                 variant="outlined"
                                 size='small'
                                 sx={{ input: { color: 'white', fontSize: "12px" } }}
+                                placeholder="Type in here"
                                 fullWidth
-                                value={password}
-                                onChange={(event) => setPassword(event.target.value)}
+                                value={username}
+                                onChange={(event) => setUsername(event.target.value)}
                                 required
                                 color="info"
                                 className={classes.input}
@@ -120,27 +116,23 @@ const Login = ({ handleSubmit, loading }) => {
                                 type="submit"
                                 className={`${classes.button} textTransformChange`}
                                 size="small"
-                                fullWidth
                             >
                                 {
                                     loading ?
                                         <CircularProgress size={24} style={{ color: 'white' }} />
                                         :
-                                        'Login'
+                                        'Withdraw'
                                 }
                             </Button>
                         </Grid>
                     </Grid>
                 </form>
-                <div style={{ marginTop: "calc(5% + 110px)", bottom: 0, textAlign: 'center' }} className="fontSizeChange">
-                    This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
-                </div>
             </Container>
         </div>
     );
 };
 
 
-export default Login;
+export default Deposit;
 
 

@@ -1,5 +1,11 @@
+// import { Service } from "../config/service";
+import { Apis } from "../config";
+import Axios from '../axios'
+
 const TOKEN_KEY = 'jwt';
 const TYPE_KEY = 'type';
+
+export const getToken = () => localStorage.getItem(TOKEN_KEY);
 
 export const login = (token) => {
     localStorage.setItem(TOKEN_KEY, token);
@@ -14,11 +20,19 @@ export const logout = () => {
     localStorage.removeItem(TYPE_KEY);
 }
 
-export const isLogin = () => {
-    if (localStorage.getItem(TOKEN_KEY)) {
-        return true;
+export const isLogin = async () => {
+    let auth = false
+    if(!localStorage.getItem(TOKEN_KEY)) {
+        return false
     }
-    return false;
+
+    try {
+        await Axios.post(Apis.verifyToken, {}, getToken())
+        auth = true
+    } catch(e) {
+        auth = false
+    }
+    return auth
 }
 
 export const isGetType = () => {
@@ -27,8 +41,6 @@ export const isGetType = () => {
     }
     return false;
 }
-
-export const getToken = () => localStorage.getItem(TOKEN_KEY);
 
 export const getValue = (value) => {
     let result = '';

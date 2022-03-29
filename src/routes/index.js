@@ -10,6 +10,7 @@ import Players from '../containers/AdminDashboard/Players';
 import Users from '../containers/AdminDashboard/Users';
 import Moderators from '../containers/AdminDashboard/Moderators';
 import AdminProfile from '../containers/AdminDashboard/AdminProfile';
+import AuthDialog from '../containers/Auth/Dialog';
 
 const AppRoutes = () => {
     return (
@@ -17,16 +18,16 @@ const AppRoutes = () => {
             <Fragment>
                 <Routes>
                     <Route exact path='/' element={<PrivateRoute />}>
-                        <Route exact path='/dashboard' element={<Dashboard />} />
+                        {/* <Route exact path='/dashboard' element={<Dashboard />} /> */}
                         <Route exact path='/admin_dashboard/users' element={<Users />} />
                         <Route exact path='/admin_dashboard/players' element={<Players />} />
                         <Route exact path='/admin_dashboard/moderators' element={<Moderators />} />
                         <Route exact path='/admin_dashboard/profile' element={<AdminProfile />} />
+                        <Route exact path='/profile' element={<Profile />} />
                     </Route>
                     <Route exact path='/home' element={<Home />} />
-                    <Route exact path='/login' element={<Login />} />
+                    <Route exact path='/login' element={<AuthDialog open={true} />} />
                     <Route exact path='/home' element={<Home />} />
-                    <Route exact path='/profile' element={<Profile />} />
                     <Route exact path='/' element={<NotFound />} />
                 </Routes>
             </Fragment>

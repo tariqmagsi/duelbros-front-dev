@@ -38,21 +38,23 @@ export const mainListItems = (
   </React.Fragment>
 );
 
-export const secondaryListItems = (
-  <React.Fragment>
-    <Link to="/admin_dashboard/profile" className='linkStyle'>
-      <ListItemButton>
+export const secondaryListItems = (navigate) => { 
+  return (
+    <React.Fragment>
+      <Link to="/admin_dashboard/profile" className='linkStyle'>
+        <ListItemButton>
+          <ListItemIcon>
+            <Person style={color()}/>
+          </ListItemIcon>
+          <ListItemText primary="Profile" />
+        </ListItemButton>
+      </Link>
+      <ListItemButton onClick={() => {logout(); navigate('/login')}}>
         <ListItemIcon>
-          <Person style={color()}/>
+          <LogoutOutlined  style={color()}/>
         </ListItemIcon>
-        <ListItemText primary="Profile" />
+        <ListItemText primary="Sign Out" />
       </ListItemButton>
-    </Link>
-    <ListItemButton onClick={() => {logout();}}>
-      <ListItemIcon>
-        <LogoutOutlined  style={color()}/>
-      </ListItemIcon>
-      <ListItemText primary="Sign Out" />
-    </ListItemButton>
-  </React.Fragment>
-);
+    </React.Fragment>
+  );
+}

@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import Axios from '../axios';
 
 import { errorHandler } from './errorHandler';
@@ -5,12 +6,12 @@ import { errorHandler } from './errorHandler';
 export const Apis = {
     login: 'users/auth',
     register: 'users',
-    verifyToken: 'user/verifyToken',
+    verifyToken: 'users/auth/verifyToken',
     getUsers: 'users',
     getModerators: 'users/moderators',
     getPlayers: 'users/players',
     getProfile: 'users/profile',
-    updateProfile: 'users/'
+    updateAdminProfile: 'users/admins'
 };
 
 export const headers = {

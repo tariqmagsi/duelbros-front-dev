@@ -19,17 +19,16 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '100vh',
         backgroundColor: "white",
         color: "white",
     },
     loginContainer: {
-        backgroundColor: colors.black,
-        borderRadius: 10,
+        // backgroundColor: colors.black,
+        borderRadius: 0,
+        height: '550px',
         overflow: 'hidden',
         flexDirection: 'row',
         display: 'flex',
-        width: '60%',
     },
     tabs: {
         backgroundColor: colors.backgroundPrimary,
@@ -39,6 +38,7 @@ const useStyles = makeStyles(theme => ({
     },
     imageLogo: {
         width: '100%',
+        height: '550px'
     },
     loginForm: {
         backgroundColor: 'red',
@@ -48,7 +48,7 @@ const useStyles = makeStyles(theme => ({
     },
     input: {
         padding: 0,
-        width: '90%',
+        width: '100%',
     }
 }))
 
@@ -73,7 +73,9 @@ const Index = (props) => {
             const result = await Service.login(data)
             console.log('file: Index.js => line 66 => handleSubmit => result', result);
             login(result.token);
-            navigate("../dashboard", { replace: true });
+            if(result.data.role === 'admin') {
+                navigate("../admin_dashboard/users", { replace: true });
+            } else navigate("../profile", { replace: true });
         } catch (error) {
             alert(error)
             console.log('Inside Catch => ', error);
@@ -88,7 +90,9 @@ const Index = (props) => {
             const result = await Service.register(data)
             console.log('file: Index.js => line 66 => handleSubmit => result', result);
             login(result.token);
-            navigate("../dashboard", { replace: true });
+            if(result.data.role === 'admin') {
+                navigate("../admin_dashboard/users", { replace: true });
+            } else navigate("../profile", { replace: true });
         } catch (error) {
             alert(error)
             console.log('Inside Catch => ', error);
@@ -99,7 +103,6 @@ const Index = (props) => {
 
     return (
         <div className={classes.root}>
-            {/* <CustomizedDialogs children={<Register/>} open={true}/> */}
             <div className={classes.loginContainer}>
                 <div style={{ width: '50%' }}>
                     <Box>

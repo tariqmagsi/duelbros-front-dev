@@ -3,25 +3,24 @@ import { colors } from '../../res/colors';
 import {
     makeStyles,
 } from "@mui/styles";
-import { Button, CircularProgress, Grid, TextField, Container, Typography } from '@mui/material';
-import { Service } from '../../config/service';
-import { login } from '../../utils';
+import { Button, CircularProgress, Grid, TextField, Container, Typography, TextareaAutosize } from '@mui/material';
 
 const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '500px',
+        // justifyContent: 'center',
+        // alignItems: 'center',
+        paddingTop: 30,
+        height: '400px',
         backgroundColor: colors.backgroundPrimary,
     },
-    loginContainer: {
+    depositContainer: {
         backgroundColor: colors.black,
         borderRadius: 10,
         overflow: 'hidden',
         flexDirection: 'row',
         display: 'flex',
-        width: '50%'
+        width: '100%'
     },
     tabs: {
         backgroundColor: colors.backgroundPrimary,
@@ -29,65 +28,60 @@ const useStyles = makeStyles(theme => ({
     imageLogo: {
         width: '100%',
     },
-    loginForm: {
+    depositForm: {
         backgroundColor: colors.backgroundPrimary,
         paddingHorizontal: 20,
         alignItems: 'center',
         // height: '100%',
         display: "flex",
-        justifyContent: "center",
+        // justifyContent: "center",
         paddingLeft: 30,
         paddingRight: 30,
-        paddingTop: 50,
+        paddingTop: 10,
     },
     input: {
-        padding: 0,
+        padding: 5,
+        borderColor: colors.backgroundInput,
+        width: '90%',
         backgroundColor: colors.backgroundInput,
+        borderRadius: 5
     },
     button: {
         alignItems: 'center',
     }
 }))
 
-const Register = ({ handleSubmit, loading }) => {
+const Deposit = ({ handleSubmit, loading }) => {
     const classes = useStyles();
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [repeatPassword, setRepeatPassword] = useState('');
-
+    const [amount, setAmount] = useState('');
+    const [gameName, setGameName] = useState('');
+    const [comment, setComment] = useState('');
 
     const handleData = async (event) => {
         event.preventDefault();
 
-        if (password !== repeatPassword) {
-            alert('Password do not matched!');
-            return;
-        }
-        let obj = {
-            username,
-            email,
-            password,
-        };
-        handleSubmit(obj);
     }
 
     return (
         <div className={classes.root}>
             <Container>
+                <div style={{ marginBottom: 20, textAlign: "left", color: 'white' }}>
+                    Deposit with OSRS
+                </div>
                 <form onSubmit={handleData}>
                     <Grid container direction="column" spacing={2}>
                         <Grid item>
-                            <div style={{ paddingBottom: 8, textAlign: "left", color: colors.textColor }} className="fontSizeChange">
-                                USERNAME*
-                            </div>
+                            <span style={{ paddingBottom: 8, textAlign: "left", color: colors.textColor }} className="fontSizeChange">
+                                AMOUNT
+                            </span>
                             <TextField
-                                type="text"
-                                name="username"
+                                type="number"
+                                name="amount"
                                 variant="outlined"
-                                value={username}
+                                value={amount}
+                                placeholder="0"
                                 fullWidth
-                                onChange={(event) => setUsername(event.target.value)}
+                                onChange={(event) => setAmount(event.target.value)}
                                 required
                                 sx={{ input: { color: 'white', fontSize: "12px" } }}
                                 autoFocus
@@ -98,16 +92,17 @@ const Register = ({ handleSubmit, loading }) => {
                             />
                         </Grid>
                         <Grid item>
-                            <div style={{ paddingBottom: 8, textAlign: "left", color: colors.textColor }} className="fontSizeChange">
-                                EMAIL*
-                            </div>
+                            <span style={{ paddingBottom: 8, textAlign: "left", color: colors.textColor }} className="fontSizeChange">
+                                YOUR IN-GAME NAME
+                            </span>
                             <TextField
                                 type="text"
-                                name="Email"
+                                name="gameName"
                                 variant="outlined"
-                                value={email}
+                                value={gameName}
+                                placeholder="Type in here"
                                 fullWidth
-                                onChange={(event) => setEmail(event.target.value)}
+                                onChange={(event) => setGameName(event.target.value)}
                                 required
                                 sx={{ input: { color: 'white', fontSize: "12px" } }}
                                 className={classes.input}
@@ -117,39 +112,32 @@ const Register = ({ handleSubmit, loading }) => {
                             />
                         </Grid>
                         <Grid item>
-                            <div style={{ paddingBottom: 8, textAlign: "left", color: colors.textColor }} className="fontSizeChange">
-                                PASSWORD*
-                            </div>
-                            <TextField
-                                type="password"
-                                name="password"
+                            <span style={{ paddingBottom: 8, textAlign: "left", color: colors.textColor }} className="fontSizeChange">
+                                COMMENT(OPTIONAL)
+                            </span>
+                            <TextareaAutosize
+                                aria-label="minimum height"
+                                minRows={3}
+                                name="comment"
+                                value={comment}
+                                onChange={(event) => setComment(event.target.value)}
+                                placeholder="Type in here"
+                                className={classes.input}
+                                style={{ width: "100%", color: 'white', fontSize: "12px" }}
+                            />
+                            {/* <TextField
+                                type="text"
+                                name="comment"
                                 variant="outlined"
-                                value={password}
-                                onChange={(event) => setPassword(event.target.value)}
+                                value={comment}
+                                onChange={(event) => setComment(event.target.value)}
                                 required
                                 color="info"
                                 fullWidth
                                 className={classes.input}
                                 sx={{ input: { color: 'white', fontSize: "12px" } }}
                                 size="small"
-                            />
-                        </Grid>
-                        <Grid item>
-                            <div style={{ paddingBottom: 8, textAlign: "left", color: colors.textColor }} className="fontSizeChange">
-                                REPEAT PASSWORD*
-                            </div>
-                            <TextField
-                                type="password"
-                                name="password"
-                                variant="outlined"
-                                value={repeatPassword}
-                                onChange={(event) => setRepeatPassword(event.target.value)}
-                                required
-                                fullWidth
-                                className={classes.input}
-                                sx={{ input: { color: 'white', fontSize: "12px" } }}
-                                size="small"
-                            />
+                            /> */}
                         </Grid>
                         <Grid item>
                             <Button
@@ -157,27 +145,23 @@ const Register = ({ handleSubmit, loading }) => {
                                 type="submit"
                                 className={`${classes.button} textTransformChange`}
                                 size="small"
-                                fullWidth
                             >
                                 {
                                     loading ?
                                         <CircularProgress size={24} style={{ color: 'white' }} />
                                         :
-                                        'Register'
+                                        'Deposit'
                                 }
                             </Button>
                         </Grid>
                     </Grid>
                 </form>
-                <div style={{ marginTop: 50, bottom: 0, textAlign: 'center' }} className="fontSizeChange">
-                    This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
-                </div>
             </Container>
         </div>
     );
 };
 
 
-export default Register;
+export default Deposit;
 
 

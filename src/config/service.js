@@ -14,8 +14,8 @@ export const Service = {
         if (result.status === 200) return result.data;
         else throw result;
     },
-    verifyToken: async (data) => {
-        let result = await post(Apis.verifyToken, data);
+    verifyToken: async (data, token) => {
+        let result = await post(Apis.verifyToken, data, token);
         if (result.status === 200) return result.data;
         else throw result;
     },
@@ -39,8 +39,8 @@ export const Service = {
         if (result.status === 200) return result.data;
         else throw result;
     },
-    updateProfile: async (data) => {
-        let result = await put(Apis.updateProfile, data, token);
+    updateAdminProfile: async (data) => {
+        let result = await put(Apis.updateAdminProfile, data, token);
         if (result.status === 200) return result.data;
         else throw result;
     },
