@@ -58,8 +58,6 @@ const Index = (props) => {
 
     const classes = useStyles();
     const [value, setValue] = useState('one');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const [loading, setLoading] = useState('');
 
 
@@ -73,7 +71,7 @@ const Index = (props) => {
             const result = await Service.login(data)
             console.log('file: Index.js => line 66 => handleSubmit => result', result);
             login(result.token);
-            if(result.data.user.role === 'admin') {
+            if(result.data.user.role.includes('admin')) {
                 navigate("/admin_dashboard/users", { replace: true });
             } else navigate("../profile", { replace: true });
         } catch (error) {
@@ -90,7 +88,7 @@ const Index = (props) => {
             const result = await Service.register(data)
             console.log('file: Index.js => line 66 => handleSubmit => result', result);
             login(result.token);
-            if(result.data.user.role === 'admin') {
+            if(result.data.user.role.includes('admin')) {
                 navigate("../admin_dashboard/users", { replace: true });
             } else navigate("../profile", { replace: true });
         } catch (error) {
