@@ -19,10 +19,11 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
         backgroundColor: "white",
         color: "white",
+        borderRadius: 0
     },
     withdrawContainer: {
         backgroundColor: colors.black,
-        borderRadius: 10,
+        borderRadius: 0,
         overflow: 'hidden',
         flexDirection: 'row',
         display: 'flex',
@@ -74,7 +75,7 @@ const Index = (props) => {
         <div className={classes.root}>
             {/* <CustomizedDialogs children={<Register/>} open={true}/> */}
             {/* <div className={classes.withdrawContainer}> */}
-                <div style={{ width: '100%' }}>
+                <div style={{ width: '100%', borderRadius: 0 }}>
                     <Box>
                         <Tabs
                             value={value}

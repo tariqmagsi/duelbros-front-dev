@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import AdminProfileForm from '../../components/AdminProfileForm';
 import DashboardOutline from './DashboardOutline';
 import { Service } from '../../config/service';
+import { getToken } from '../../utils';
 
 const AdminProfile = () => {
     const [loading, setLoading] = useState(false)
@@ -11,7 +12,7 @@ const AdminProfile = () => {
     const getProfile = async () => {
         setLoading(true);
         try {
-            const result = await Service.getProfile()
+            const result = await Service.getProfile(getToken())
             setData(result.data)
         } catch (error) {
             // alert(error)

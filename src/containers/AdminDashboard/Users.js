@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import DashboardOutline from './DashboardOutline';
 import DataTable from "./DataTable"
 import { Service } from '../../config/service';
+import { getToken } from '../../utils';
 
 const Users = () => {
     const [loading, setLoading] = useState(false)
@@ -12,7 +13,7 @@ const Users = () => {
     const getUsers = async () => {
         setLoading(true);
         try {
-            const result = await Service.getUsers()
+            const result = await Service.getUsers(getToken())
             setData(result.data)
         } catch (error) {
             // alert(error)

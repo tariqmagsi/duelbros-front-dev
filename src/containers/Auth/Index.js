@@ -73,11 +73,11 @@ const Index = (props) => {
             const result = await Service.login(data)
             console.log('file: Index.js => line 66 => handleSubmit => result', result);
             login(result.token);
-            if(result.data.role === 'admin') {
-                navigate("../admin_dashboard/users", { replace: true });
+            if(result.data.user.role === 'admin') {
+                navigate("/admin_dashboard/users", { replace: true });
             } else navigate("../profile", { replace: true });
         } catch (error) {
-            alert(error)
+            // alert(error)
             console.log('Inside Catch => ', error);
         } finally {
             setLoading(false)
@@ -90,11 +90,11 @@ const Index = (props) => {
             const result = await Service.register(data)
             console.log('file: Index.js => line 66 => handleSubmit => result', result);
             login(result.token);
-            if(result.data.role === 'admin') {
+            if(result.data.user.role === 'admin') {
                 navigate("../admin_dashboard/users", { replace: true });
             } else navigate("../profile", { replace: true });
         } catch (error) {
-            alert(error)
+            // alert(error)
             console.log('Inside Catch => ', error);
         } finally {
             setLoading(false)

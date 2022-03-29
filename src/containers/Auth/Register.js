@@ -6,6 +6,7 @@ import {
 import { Button, CircularProgress, Grid, TextField, Container, Typography } from '@mui/material';
 import { Service } from '../../config/service';
 import { login } from '../../utils';
+import { toast } from 'react-toastify';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -61,7 +62,7 @@ const Register = ({ handleSubmit, loading }) => {
         event.preventDefault();
 
         if (password !== repeatPassword) {
-            alert('Password do not matched!');
+            toast.error('Password do not matched!');
             return;
         }
         let obj = {

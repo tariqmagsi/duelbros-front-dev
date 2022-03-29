@@ -30,6 +30,8 @@ import images from '../../assets';
 import { PersonRounded } from '@mui/icons-material';
 import EditIcon from '@mui/icons-material/Edit';
 import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';
+import { useNavigate } from 'react-router-dom';
+import CoinDialog from '../Coin/Dialog';
 
 const drawerWidth = 240;
 
@@ -144,12 +146,13 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const mdTheme = createTheme();
 
 function DashboardContent() {
-
+    const navigate = useNavigate()
     const classes = useStyles();
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
 
     const [open, setOpen] = React.useState(false);
+    const [openD, setOpenD] = React.useState(false);
     const toggleDrawer = () => {
         setOpen(!open);
     };
@@ -176,34 +179,27 @@ function DashboardContent() {
                         >
                             <MenuIcon style={{ color: 'white' }} />
                         </IconButton>
-                        <Typography
-                            component="h1"
-                            variant="h6"
-                            color="inherit"
-                            noWrap
-                            sx={{ flexGrow: 1 }}
-                        >
-                            <img src={images.logo} alt="" style={{ height: '30px' }} />
-                        </Typography>
-                        <div style={{ backgroundColor: '#2c2c36', flex: 'display', justifyContent: 'center', alignItems: 'center' }}>
+                  
+                        <img src={images.logo} alt="" style={{ height: '30px' }} />
+                        
+                        <div style={{display: 'flex', textAlign: 'center', margin: "auto"}}>
+                            <div style={{ backgroundColor: '#2c2c36', paddingLeft: 10, paddingRight: 10, borderRadius: 5 }}>
+                                <span><CurrencyExchangeOutlinedIcon style={{ color: colors.yellow, marginTop: 5 }} /></span>
+                                <span style={{color: "#40aa77"}}>5150M</span>
+                            </div>
+                            <div>
+                                <Button
+                                    variant="contained"
+                                    type="submit"
+                                    className={`${classes.button} textTransformChange`}
+                                    size="medium"
+                                    fullWidth
+                                    onClick={() => setOpenD(true)}
+                                >
 
-                            <CurrencyExchangeOutlinedIcon style={{ color: colors.yellow }} />
-                            <Typography style={{ flex: 'display', justifyContent: 'center', }} color="#40aa77">5150M</Typography>
-                        </div>
-                        <Grid item>
-                            <Button
-                                variant="contained"
-                                type="submit"
-                                className={`${classes.button} textTransformChange`}
-                                size="medium"
-                                fullWidth
-                            >
-
-                                Cashier
-                            </Button>
-                        </Grid>
-                        <div style={{ background: 'red' }}>
-                            <Typography>Test</Typography>
+                                    Cashier
+                                </Button>
+                            </div>
                         </div>
                         <IconButton color="inherit">
                             <PersonRounded />
@@ -229,7 +225,7 @@ function DashboardContent() {
                         <Divider sx={{ my: 1 }} classes={classes.dividerStyle} />
                         {secondaryListItems(open)}
                         <Divider sx={{ my: 1 }} classes={classes.dividerStyle} />
-                        {SignOutListItem}
+                        {SignOutListItem(navigate)}
                     </List>
                 </Drawer>
                 <Box
@@ -488,7 +484,9 @@ function DashboardContent() {
                                 justifyContent: 'space-between',
                                 alignItems: 'center',
                                 display: 'flex',
-                                padding: 2
+                                padding: 2,
+                                marginLeft: -3,
+                                marginRight: -3
                             }}>
                                 <Typography color={colors.white}></Typography>
                                 <Typography color={colors.white}>User chat</Typography>
@@ -506,8 +504,8 @@ function DashboardContent() {
                                     }}>
                                         <img src={user.image} alt="" style={{ height: "20px", margin: 8 }} />
                                         <Typography color={colors.white} >
-                                            <span style={{ fontSize: 18, fontWeight: 'bold' }} color="white">{user.heading}</span>
-                                            <span style={{ marginLeft: 8 }}>
+                                            <span style={{ fontSize: 12, fontWeight: 'bold' }} color="white">{user.heading}</span>
+                                            <span style={{ marginLeft: 8, fontSize: 12, }}>
                                                 {user.text}
                                             </span>
                                         </Typography>
@@ -516,7 +514,7 @@ function DashboardContent() {
                             </tbody>
                         </Container>
                     </div>
-
+                    <CoinDialog open={openD} handleClose={() => setOpenD(false)} />
                 </Box>
             </Box>
         </ThemeProvider>

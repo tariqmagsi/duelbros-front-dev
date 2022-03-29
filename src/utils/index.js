@@ -21,18 +21,18 @@ export const logout = () => {
 }
 
 export const isLogin = async () => {
-    let auth = false
-    if(!localStorage.getItem(TOKEN_KEY)) {
-        return false
+    // let auth = false
+    if(localStorage.getItem(TOKEN_KEY)) {
+        return true
     }
-
-    try {
-        await Axios.post(Apis.verifyToken, {}, getToken())
-        auth = true
-    } catch(e) {
-        auth = false
-    }
-    return auth
+    return false
+    // try {
+    //     await Axios.post(Apis.verifyToken, {}, getToken())
+    //     auth = true
+    // } catch(e) {
+    //     auth = false
+    // }
+    // return auth
 }
 
 export const isGetType = () => {

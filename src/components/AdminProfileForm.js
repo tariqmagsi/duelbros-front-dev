@@ -5,6 +5,7 @@ import {
 } from "@mui/styles";
 import { Button, CircularProgress, Grid, TextField } from '@mui/material';
 import { Service } from '../config/service';
+import { getToken } from '../utils';
 // import { Service } from '../../config/service';
 
 const useStyles = makeStyles(theme => ({
@@ -68,7 +69,7 @@ const AdminProfileForm = ({data}) => {
           email
         }
         try {
-            const result = await Service.updateAdminProfile(data)
+            const result = await Service.updateAdminProfile(data, getToken())
             console.log('file: Index.js => line 66 => handleSubmit => result', result);
         } catch (error) {
             // alert(error)

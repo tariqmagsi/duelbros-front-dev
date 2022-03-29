@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import DashboardOutline from './DashboardOutline';
 import DataTable from "./DataTable"
 import { Service } from '../../config/service';
+import { getToken } from '../../utils';
 
 const Moderators = () => {
     const [loading, setLoading] = useState(false)
@@ -12,7 +13,7 @@ const Moderators = () => {
     const getModerators = async () => {
         setLoading(true);
         try {
-            const result = await Service.getModerators()
+            const result = await Service.getModerators(getToken())
             setData(result.data)
         } catch (error) {
             // alert(error)

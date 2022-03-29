@@ -19,27 +19,27 @@ export const Service = {
         if (result.status === 200) return result.data;
         else throw result;
     },
-    getUsers: async () => {
+    getUsers: async (token) => {
         let result = await get(Apis.getUsers, token);
         if (result.status === 200) return result.data;
         else throw result;
     },
-    getModerators: async () => {
+    getModerators: async (token) => {
         let result = await get(Apis.getModerators, token);
         if (result.status === 200) return result.data;
         else throw result;
     },
-    getPlayers: async () => {
+    getPlayers: async (token) => {
         let result = await get(Apis.getPlayers, token);
         if (result.status === 200) return result.data;
         else throw result;
     },
-    getProfile: async () => {
+    getProfile: async (token) => {
         let result = await get(Apis.getProfile, token);
         if (result.status === 200) return result.data;
         else throw result;
     },
-    updateAdminProfile: async (data) => {
+    updateAdminProfile: async (data, token) => {
         let result = await put(Apis.updateAdminProfile, data, token);
         if (result.status === 200) return result.data;
         else throw result;
