@@ -1,5 +1,5 @@
 import { getToken } from '../utils';
-import { Apis, get, post, put } from './';
+import { Apis, get, post, put, zendesk_post } from './';
 
 const token = getToken()
 
@@ -44,6 +44,11 @@ export const Service = {
         if (result.status === 200) return result.data;
         else throw result;
     },
+    createTicketZendesk: async (data) => {
+        let result = await zendesk_post(Apis.zendeskTicket, data)
+        if (result.status === 200) return result.data;
+        else throw result;
+    }
 };
 
 

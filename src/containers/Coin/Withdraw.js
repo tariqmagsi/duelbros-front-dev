@@ -53,15 +53,21 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const Deposit = ({ handleSubmit, loading }) => {
+const Withdraw = ({ handleSubmit, loading }) => {
     const classes = useStyles();
-    const [email, setEmail] = useState('');
+    const [osrs, setOsrs] = useState('');
     const [username, setUsername] = useState('');
 
 
     const handleData = async (event) => {
         event.preventDefault();
-
+        const data = {
+            ticket: {
+              subject: `Withdraw Request from ${username}`,
+              comment: { body: `Hi. I want to withraw ${osrs} coins` },
+            },
+          };
+          handleSubmit(data);
     }
     return (
         <div className={classes.root}>
@@ -74,12 +80,12 @@ const Deposit = ({ handleSubmit, loading }) => {
                             </span>
                             <TextField
                                 type="text"
-                                name="Email"
+                                name="osrs"
                                 variant="outlined"
-                                value={email}
+                                value={osrs}
                                 placeholder="Type in here"
                                 fullWidth
-                                onChange={(event) => setEmail(event.target.value)}
+                                onChange={(event) => setOsrs(event.target.value)}
                                 required
                                 sx={{ input: { color: 'white', fontSize: "12px" } }}
                                 autoFocus
@@ -133,6 +139,6 @@ const Deposit = ({ handleSubmit, loading }) => {
 };
 
 
-export default Deposit;
+export default Withdraw;
 
 

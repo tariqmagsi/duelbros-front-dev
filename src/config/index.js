@@ -1,5 +1,6 @@
 import { toast } from 'react-toastify';
 import Axios from '../axios';
+import axios from 'axios'
 
 import { errorHandler } from './errorHandler';
 
@@ -11,7 +12,8 @@ export const Apis = {
     getModerators: 'users/moderators',
     getPlayers: 'users/players',
     getProfile: 'users/profile',
-    updateAdminProfile: 'users/admins'
+    updateAdminProfile: 'users/admins',
+    zendeskTicket: 'tickets.json'
 };
 
 export const headers = {
@@ -33,6 +35,15 @@ export const get = async (endPoint, token) => {
 export const post = async (endPoint, data, token) => {
     try {
         const result = await Axios.post(endPoint, data, { headers: { Authorization: `Bearer ${token}` } });
+        return result;
+    } catch (e) {
+        throw errorHandler(e);
+    }
+};
+
+export const zendesk_post = async (endPoint, data) => {
+    try {
+        const result = await axios.post(`${process.env.REACT_APP_ZENDESK_URL}${endPoint}`, data, { auth: { username: `${process.env.REACT_APP_ZENDESK_USERNAME}/token`, password: process.env.REACT_APP_ZENDESK_TOKEN } });
         return result;
     } catch (e) {
         throw errorHandler(e);
