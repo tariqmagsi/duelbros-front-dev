@@ -2,7 +2,7 @@
 import { Apis } from "../config";
 import Axios from '../axios'
 
-const TOKEN_KEY = 'jwt';
+const TOKEN_KEY = '@userToken';
 const TYPE_KEY = 'type';
 
 export const getToken = () => localStorage.getItem(TOKEN_KEY);
@@ -22,17 +22,13 @@ export const logout = () => {
 
 export const isLogin = async () => {
     // let auth = false
-    if(localStorage.getItem(TOKEN_KEY)) {
-        return true
+    if (localStorage.getItem(TOKEN_KEY => {
+        console.log('file: index.js => line 26 => isLogin => TOKEN_KEY', TOKEN_KEY);
+
+    })) {
+        // return true
     }
     return false
-    // try {
-    //     await Axios.post(Apis.verifyToken, {}, getToken())
-    //     auth = true
-    // } catch(e) {
-    //     auth = false
-    // }
-    // return auth
 }
 
 export const isGetType = () => {

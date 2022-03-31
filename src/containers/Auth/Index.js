@@ -12,6 +12,7 @@ import Register from './Register';
 import { Service } from '../../config/service';
 import { login } from '../../utils';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 // import CustomizedDialogs from '../../components/Dialog';
 
 const useStyles = makeStyles(theme => ({
@@ -55,6 +56,8 @@ const useStyles = makeStyles(theme => ({
 const Index = (props) => {
 
     let navigate = useNavigate();
+    const auth = useAuth();
+
 
     const classes = useStyles();
     const [value, setValue] = useState('one');
@@ -69,11 +72,15 @@ const Index = (props) => {
         setLoading(true);
         try {
             const result = await Service.login(data)
-            console.log('file: Index.js => line 66 => handleSubmit => result', result);
-            login(result.token);
-            if(result.data.user.role.includes('admin')) {
-                navigate("/admin_dashboard/users", { replace: true });
-            } else navigate("../profile", { replace: true });
+            if (result) {
+                console.log('file: Index.js => line 75 => handleLogin => result', result.data);
+                auth.signin(result);
+                localStorage.setItem('@userToken', result.token);
+                // login(result.token);
+                if (result.data.user.role.includes('admin')) {
+                    navigate("/admin_dashboard/users", { replace: true });
+                } else navigate("../profile", { replace: true });
+            }
         } catch (error) {
             // alert(error)
             console.log('Inside Catch => ', error);
@@ -88,7 +95,7 @@ const Index = (props) => {
             const result = await Service.register(data)
             console.log('file: Index.js => line 66 => handleSubmit => result', result);
             login(result.token);
-            if(result.data.user.role.includes('admin')) {
+            if (result.data.user.role.includes('admin')) {
                 navigate("../admin_dashboard/users", { replace: true });
             } else navigate("../profile", { replace: true });
         } catch (error) {
@@ -129,7 +136,7 @@ const Index = (props) => {
                 </div>
 
                 <div style={{ width: '50%' }}>
-                    <img src={images.homeLogo} alt="" className={classes.imageLogo}/>
+                    <img src={images.homeLogo} alt="" className={classes.imageLogo} />
                 </div>
             </div>
         </div>

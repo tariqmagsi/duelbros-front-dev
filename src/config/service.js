@@ -1,7 +1,7 @@
 import { getToken } from '../utils';
 import { Apis, get, post, put } from './';
+const token = localStorage.getItem('@userToken');
 
-const token = getToken()
 
 export const Service = {
     login: async (data) => {
@@ -14,7 +14,7 @@ export const Service = {
         if (result.status === 200) return result.data;
         else throw result;
     },
-    verifyToken: async (data, token) => {
+    verifyToken: async (token, data) => {
         let result = await post(Apis.verifyToken, data, token);
         if (result.status === 200) return result.data;
         else throw result;
@@ -34,7 +34,7 @@ export const Service = {
         if (result.status === 200) return result.data;
         else throw result;
     },
-    getProfile: async (token) => {
+    getProfile: async () => {
         let result = await get(Apis.getProfile, token);
         if (result.status === 200) return result.data;
         else throw result;
@@ -44,6 +44,7 @@ export const Service = {
         if (result.status === 200) return result.data;
         else throw result;
     },
+
 };
 
 

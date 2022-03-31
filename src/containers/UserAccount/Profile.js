@@ -20,18 +20,19 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems, SignOutListItem } from './listItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import { Button, Card, CardContent, ListSubheader, Slider, TextField } from '@mui/material';
+import { Button, Card, CardContent, InputAdornment, ListSubheader, Slider, TextField } from '@mui/material';
 import { colors } from '../../res/colors';
 import CloseIcon from '@mui/icons-material/Close';
 import {
     makeStyles,
 } from "@mui/styles";
 import images from '../../assets';
-import { PersonRounded } from '@mui/icons-material';
+import { PersonRounded, Visibility, VisibilityOff } from '@mui/icons-material';
 import EditIcon from '@mui/icons-material/Edit';
 import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';
 import { useNavigate } from 'react-router-dom';
 import CoinDialog from '../Coin/Dialog';
+import { Service } from '../../config/service';
 
 const drawerWidth = 240;
 
@@ -62,6 +63,10 @@ const AppBar = styled(MuiAppBar, {
 
 
 const useStyles = makeStyles(theme => ({
+    divider: {
+        // Theme Color, or use css color in quote
+        background: 'red',
+    },
     root: {
         display: 'flex',
         justifyContent: 'center',
@@ -113,9 +118,17 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: colors.dividerColor,
         marginLeft: 10,
         marginRight: 10
-    }
+    },
+    highlightBox: {
+        margin: 10,
+        background: colors.backgroundProfile,
+        borderRadius: 5,
+    },
 }))
 
+const checkPage = (path) => {
+    return path === window.location.pathname;
+};
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
@@ -150,12 +163,36 @@ function DashboardContent() {
     const classes = useStyles();
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [name, setName] = React.useState('');
 
     const [open, setOpen] = React.useState(false);
     const [openD, setOpenD] = React.useState(false);
     const toggleDrawer = () => {
         setOpen(!open);
     };
+    const [isEmail, setIsEmail] = React.useState(false)
+    const [isPassword, setIsPassword] = React.useState(false)
+    const [showPassword, setShowPassword] = React.useState(false);
+
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
+    const handleMouseDownPassword = () => setShowPassword(!showPassword);
+
+
+    React.useEffect(() => {
+        getUserProfileHandler();
+    }, [])
+
+    const getUserProfileHandler = async () => {
+        try {
+            const { data } = await Service.getProfile()
+            setEmail(data.email);
+            setPassword(data.password);
+            setName(data.username);
+            console.log('file: Profile.js => line 187 => getUserProfileHandler => result', data);
+        } catch (error) {
+            console.log('Inside Catch => ', error);
+        }
+    }
 
     return (
         <ThemeProvider theme={mdTheme}>
@@ -179,13 +216,13 @@ function DashboardContent() {
                         >
                             <MenuIcon style={{ color: 'white' }} />
                         </IconButton>
-                  
+
                         <img src={images.logo} alt="" style={{ height: '30px' }} />
-                        
-                        <div style={{display: 'flex', textAlign: 'center', margin: "auto"}}>
-                            <div style={{ backgroundColor: '#2c2c36', paddingLeft: 10, paddingRight: 10, borderRadius: 5 }}>
-                                <span><CurrencyExchangeOutlinedIcon style={{ color: colors.yellow, marginTop: 5 }} /></span>
-                                <span style={{color: "#40aa77"}}>5150M</span>
+
+                        <div style={{ display: 'flex', textAlign: 'center', margin: "auto" }}>
+                            <div style={{ backgroundColor: '#2c2c36', padding: 5, borderRadius: 5, display: 'flex', textAlign: 'center', margin: "auto" }}>
+                                <span><CurrencyExchangeOutlinedIcon style={{ color: colors.yellow, }} /></span>
+                                <span style={{ color: "#40aa77", marginLeft: 4 }}>5150M</span>
                             </div>
                             <div>
                                 <Button
@@ -219,7 +256,7 @@ function DashboardContent() {
                             <ChevronLeftIcon style={{ color: 'white' }} />
                         </IconButton>
                     </Toolbar>
-                    <Divider classes={classes.dividerStyle} />
+                    <Divider classes={{ root: classes.divider }} sx={{ bgcolor: "red" }} />
                     <List component="nav">
                         {mainListItems(open)}
                         <Divider sx={{ my: 1 }} classes={classes.dividerStyle} />
@@ -252,15 +289,21 @@ function DashboardContent() {
                         >
                             <ListItemText sx={{ color: 'white' }} primaryTypographyProps={{ fontSize: '14px', marginLeft: '15px' }} primary="USER ACCOUNT" />
 
-                            <ListItemButton>
-                                <ListItemText sx={{ color: 'white', fontSize: '12px' }} primaryTypographyProps={{ fontSize: '12px' }} primary="Profile" />
+                            <ListItemButton
+                            // style={checkPage("/profile") ? classes.highlightBox : {}}
+                            >
+                                <ListItemText
+                                    sx={{ color: 'white', fontSize: '12px' }}
+                                    primaryTypographyProps={{ fontSize: '12px' }}
+                                    primary="Profile"
+                                />
                             </ListItemButton>
                             <ListItemButton>
                                 <ListItemText sx={{ color: 'white', fontSize: '12px' }} primaryTypographyProps={{ fontSize: '12px' }} primary="History" />
                             </ListItemButton>
                         </List>
                         <Container sx={{ mt: 4, mb: 4, width: '70%', marginLeft: '10%' }}>
-                            <Grid spacing={3}>
+                            <Grid>
                                 <Grid item xs={12} md={8} lg={9}>
                                     <Paper
                                         sx={{
@@ -304,7 +347,7 @@ function DashboardContent() {
                                                     <EditIcon style={{ color: colors.white }} />
                                                 </div>
                                                 <Typography align="center" sx={{ fontSize: 14, color: colors.primary }} color="text.secondary" gutterBottom>
-                                                    Bluefox8899
+                                                    {name}
                                                 </Typography>
                                                 <Typography variant="h5" component="div">
 
@@ -356,7 +399,7 @@ function DashboardContent() {
                                                 </div>
                                                 <div style={{ marginLeft: 20 }}>
                                                     <Typography align="left" sx={{ fontSize: 14, color: colors.textPrimary }} color="text.secondary" gutterBottom>
-                                                        TOTAL WAGERED
+                                                        TOTAL BETS
                                                     </Typography>
                                                     <Typography align="left" sx={{ fontSize: 16 }} color={colors.white} gutterBottom>
                                                         0.00
@@ -364,7 +407,7 @@ function DashboardContent() {
                                                 </div>
                                             </div>
                                         </div>
-                                        <Divider sx={{ marginTop: 3.5, marginBottom: 1, backgroundColor: 'white' }} />
+                                        <Divider sx={{ marginTop: 3.5, marginBottom: 1, backgroundColor: '#454857' }} />
                                         <Typography align="left" sx={{ fontSize: 12, color: colors.white, paddingTop: 2, paddingBottom: 1 }} color="text.secondary" gutterBottom>
                                             LEVEL PROGRESS
                                         </Typography>
@@ -417,7 +460,7 @@ function DashboardContent() {
                                             </CardContent>
                                         </Card>
 
-                                        <Divider sx={{ marginTop: 4, marginBottom: 1, backgroundColor: 'white' }} />
+                                        <Divider sx={{ marginTop: 4, marginBottom: 1, backgroundColor: '#454857' }} />
                                         {/* <Container> */}
                                         <form>
                                             <Grid container direction="column" spacing={2} sx={{ marginTop: -1 }}>
@@ -428,21 +471,27 @@ function DashboardContent() {
                                                         </Typography>
 
                                                     </div>
-                                                    <TextField
-                                                        type="text"
-                                                        name="Email"
-                                                        variant="outlined"
-                                                        value={email}
-                                                        // fullWidth
-                                                        onChange={(event) => setEmail(event.target.value)}
-                                                        required
-                                                        sx={{ input: { color: 'white', fontSize: "12px", } }}
-                                                        className={classes.input}
-                                                        style={{ color: "white !important", width: '30%' }}
-                                                        color="info"
-                                                        size="small"
-                                                    />
+                                                    <div className='row'>
 
+                                                        <TextField
+                                                            type="text"
+                                                            name="Email"
+                                                            variant="outlined"
+                                                            value={email}
+                                                            // fullWidth
+                                                            onChange={(event) => setEmail(event.target.value)}
+                                                            required
+                                                            sx={{ input: { color: 'white', fontSize: "12px", } }}
+                                                            className={classes.input}
+                                                            style={{ color: "white !important", width: '30%' }}
+                                                            color="info"
+                                                            size="small"
+                                                            inputProps={
+                                                                { readOnly: isEmail === true ? false : true, }
+                                                            }
+                                                        />
+                                                        <EditIcon style={{ color: colors.white, marginLeft: 20 }} onClick={() => setIsEmail(true)} />
+                                                    </div>
                                                 </Grid>
                                                 <Grid item>
                                                     <div className={classes.passwordLine}>
@@ -451,21 +500,38 @@ function DashboardContent() {
                                                         </Typography>
 
                                                     </div>
-                                                    <TextField
-                                                        type="password"
-                                                        name="password"
-                                                        variant="outlined"
-                                                        size='small'
-                                                        sx={{ input: { color: 'white', fontSize: "12px" } }}
-                                                        // fullWidth
-                                                        value={password}
-                                                        onChange={(event) => setPassword(event.target.value)}
-                                                        required
-                                                        color="info"
-                                                        className={classes.input}
-                                                        style={{ color: "white !important", width: '30%' }}
-
-                                                    />
+                                                    <div className='row'>
+                                                        <TextField
+                                                            // type="password"
+                                                            name="password"
+                                                            variant="outlined"
+                                                            size='small'
+                                                            sx={{ input: { color: 'white', fontSize: "12px" } }}
+                                                            // fullWidth
+                                                            value={password}
+                                                            onChange={(event) => setPassword(event.target.value)}
+                                                            required
+                                                            color="info"
+                                                            className={classes.input}
+                                                            style={{ color: "white !important", width: '30%' }}
+                                                            inputProps={{
+                                                                readOnly: isPassword === true ? false : true,
+                                                                endAdornment: (
+                                                                    <InputAdornment position="end">
+                                                                        <IconButton
+                                                                            aria-label="toggle password visibility"
+                                                                            onClick={handleClickShowPassword}
+                                                                            onMouseDown={handleMouseDownPassword}
+                                                                        >
+                                                                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                                                                        </IconButton>
+                                                                    </InputAdornment>
+                                                                )
+                                                            }}
+                                                            suffix="%"
+                                                        />
+                                                        <EditIcon style={{ color: colors.white, marginLeft: 20 }} onClick={() => setIsPassword(true)} />
+                                                    </div>
                                                 </Grid>
                                             </Grid>
                                         </form>
