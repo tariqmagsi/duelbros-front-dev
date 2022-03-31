@@ -46,7 +46,7 @@ export const Service = {
     },
     createTicketZendesk: async (data) => {
         let result = await zendesk_post(Apis.zendeskTicket, data)
-        if (result.status === 200) return result.data;
+        if (result.status === 200 || result.status === 201) return result.data;
         else throw result;
     }
 };

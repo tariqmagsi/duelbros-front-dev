@@ -11,6 +11,7 @@ import Withdraw from './Withdraw';
 import Deposit from './Deposit';
 import { useNavigate } from 'react-router-dom';
 import { Service } from '../../config/service';
+import { toast } from 'react-toastify';
 // import CustomizedDialogs from '../../components/Dialog';
 
 const useStyles = makeStyles(theme => ({
@@ -69,7 +70,7 @@ const Index = (props) => {
         try {
             const result = await Service.createTicketZendesk(data)
             console.log('file: Index.js => line 66 => handleSubmit => result', result);
-            
+            toast.success("Requested Successfully")
         } catch (error) {
             // alert(error)
             console.log('Inside Catch => ', error);
@@ -83,7 +84,7 @@ const Index = (props) => {
         try {
             const result = await Service.createTicketZendesk(data)
             console.log('file: Index.js => line 66 => handleSubmit => result', result);
-            
+            toast.success("Requested Successfully")
         } catch (error) {
             // alert(error)
             console.log('Inside Catch => ', error);
