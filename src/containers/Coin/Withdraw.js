@@ -66,8 +66,8 @@ const Withdraw = ({ handleSubmit, loading }) => {
               subject: `Withdraw Request from ${username}`,
               comment: { body: `Hi. I want to withraw ${osrs} coins` },
             },
-          };
-          handleSubmit(data);
+        };
+        handleSubmit(data);
     }
     return (
         <div className={classes.root}>
