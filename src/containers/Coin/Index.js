@@ -10,6 +10,8 @@ import Box from '@mui/material/Box';
 import Withdraw from './Withdraw';
 import Deposit from './Deposit';
 import { useNavigate } from 'react-router-dom';
+import { Service } from '../../config/service';
+import { toast } from 'react-toastify';
 // import CustomizedDialogs from '../../components/Dialog';
 
 const useStyles = makeStyles(theme => ({
@@ -64,11 +66,31 @@ const Index = (props) => {
     };
 
     const handleWithdraw = async (data) => {
-        
+        setLoading(true);
+        try {
+            const result = await Service.createTicketZendesk(data)
+            console.log('file: Index.js => line 66 => handleSubmit => result', result);
+            toast.success("Requested Successfully")
+        } catch (error) {
+            // alert(error)
+            console.log('Inside Catch => ', error);
+        } finally {
+            setLoading(false)
+        }
     };
 
     const handleDeposit = async (data) => {
-        
+        setLoading(true);
+        try {
+            const result = await Service.createTicketZendesk(data)
+            console.log('file: Index.js => line 66 => handleSubmit => result', result);
+            toast.success("Requested Successfully")
+        } catch (error) {
+            // alert(error)
+            console.log('Inside Catch => ', error);
+        } finally {
+            setLoading(false)
+        }
     };
 
     return (

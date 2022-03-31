@@ -1,6 +1,6 @@
 import { getToken } from '../utils';
-import { Apis, get, post, put } from './';
 const token = localStorage.getItem('@userToken');
+import { Apis, get, post, put, zendesk_post } from './';
 
 
 export const Service = {
@@ -44,7 +44,11 @@ export const Service = {
         if (result.status === 200) return result.data;
         else throw result;
     },
-
+    createTicketZendesk: async (data) => {
+        let result = await zendesk_post(Apis.zendeskTicket, data)
+        if (result.status === 200 || result.status === 201) return result.data;
+        else throw result;
+    }
 };
 
 
