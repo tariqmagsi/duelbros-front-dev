@@ -1,6 +1,6 @@
+import { post, get, put, zendesk_post, Apis } from '.';
 import { getToken } from '../utils';
 const token = localStorage.getItem('@userToken');
-import { Apis, get, post, put, zendesk_post } from './';
 
 
 export const Service = {
@@ -14,7 +14,7 @@ export const Service = {
         if (result.status === 200) return result.data;
         else throw result;
     },
-    verifyToken: async (token, data) => {
+    verifyToken: async (data) => {
         let result = await post(Apis.verifyToken, data, token);
         if (result.status === 200) return result.data;
         else throw result;

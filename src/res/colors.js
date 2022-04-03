@@ -29,5 +29,7 @@ export const colors = {
     yellow: '#fcd145',
     progress: '#FF9C2A',
     pending: '#BF2423',
-    complete: '#067E38'
+    complete: '#067E38',
+    red: '#F54C35',
+    blue: '#4F90AC'
 };

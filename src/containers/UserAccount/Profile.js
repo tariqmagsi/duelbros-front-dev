@@ -158,7 +158,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const mdTheme = createTheme();
 
-function DashboardContent() {
+function Profile() {
     const navigate = useNavigate()
     const classes = useStyles();
     const [email, setEmail] = React.useState('');
@@ -190,7 +190,7 @@ function DashboardContent() {
             setName(data.username);
             console.log('file: Profile.js => line 187 => getUserProfileHandler => result', data);
         } catch (error) {
-            console.log('Inside Catch => ', error);
+            console.log('file: Profile.js => line 193 => getUserProfileHandler => error', error);
         }
     }
 
@@ -220,8 +220,9 @@ function DashboardContent() {
                         <img src={images.logo} alt="" style={{ height: '30px' }} />
 
                         <div style={{ display: 'flex', textAlign: 'center', margin: "auto" }}>
-                            <div style={{ backgroundColor: '#2c2c36', padding: 5, borderRadius: 5, display: 'flex', textAlign: 'center', margin: "auto" }}>
-                                <span><CurrencyExchangeOutlinedIcon style={{ color: colors.yellow, }} /></span>
+                            <div style={{ backgroundColor: '#2c2c36', padding: 5, borderRadius: 5, display: 'flex', alignItems: 'center', margin: "auto", height: 40, }}>
+                                {/* <span><CurrencyExchangeOutlinedIcon style={{ color: colors.yellow, }} /></span> */}
+                                <img src={images.dollar} alt="" style={{ height: 20 }} />
                                 <span style={{ color: "#40aa77", marginLeft: 4 }}>5150M</span>
                             </div>
                             <div>
@@ -233,7 +234,6 @@ function DashboardContent() {
                                     fullWidth
                                     onClick={() => setOpenD(true)}
                                 >
-
                                     Cashier
                                 </Button>
                             </div>
@@ -369,8 +369,8 @@ function DashboardContent() {
                                                 borderRadius: 10,
                                                 display: 'flex'
                                             }}>
-                                                <div style={{ width: 30, height: 30 }}>
-                                                    <img src={images.history}
+                                                <div style={{ width: 30, height: 35 }}>
+                                                    <img src={images.blueCoin}
                                                         className={classes.imageLogo}
                                                     />
                                                 </div>
@@ -378,9 +378,19 @@ function DashboardContent() {
                                                     <Typography align="left" sx={{ fontSize: 14, color: colors.textPrimary }} color="text.secondary" gutterBottom>
                                                         TOTAL WAGERED
                                                     </Typography>
-                                                    <Typography align="left" sx={{ fontSize: 16 }} color={colors.white} gutterBottom>
-                                                        0.00
-                                                    </Typography>
+                                                    <div style={{
+                                                        display: 'flex',
+                                                        // alignItems: 'center'
+                                                    }}>
+                                                        <div style={{ width: 18, height: 18 }}>
+                                                            <img src={images.dollar}
+                                                                className={classes.imageLogo}
+                                                            />
+                                                        </div>
+                                                        <Typography variant="caption" align="left" sx={{ fontSize: 16, marginLeft: 1 }} color={colors.white} gutterBottom>
+                                                            0.00
+                                                        </Typography>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div style={{
@@ -393,7 +403,7 @@ function DashboardContent() {
                                                 marginLeft: 30
                                             }}>
                                                 <div style={{ width: 30, height: 30 }}>
-                                                    <img src={images.history}
+                                                    <img src={images.gift}
                                                         className={classes.imageLogo}
                                                     />
                                                 </div>
@@ -401,9 +411,19 @@ function DashboardContent() {
                                                     <Typography align="left" sx={{ fontSize: 14, color: colors.textPrimary }} color="text.secondary" gutterBottom>
                                                         TOTAL BETS
                                                     </Typography>
-                                                    <Typography align="left" sx={{ fontSize: 16 }} color={colors.white} gutterBottom>
-                                                        0.00
-                                                    </Typography>
+                                                    <div style={{
+                                                        display: 'flex',
+                                                        // alignItems: 'center'
+                                                    }}>
+                                                        <div style={{ width: 18, height: 18 }}>
+                                                            <img src={images.dollar}
+                                                                className={classes.imageLogo}
+                                                            />
+                                                        </div>
+                                                        <Typography variant="caption" align="left" sx={{ fontSize: 16, marginLeft: 1 }} color={colors.white} gutterBottom>
+                                                            0.00
+                                                        </Typography>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -587,6 +607,4 @@ function DashboardContent() {
     );
 }
 
-export default function Profile() {
-    return <DashboardContent />;
-}
+export default Profile;
