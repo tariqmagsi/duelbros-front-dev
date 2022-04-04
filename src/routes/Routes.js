@@ -32,15 +32,14 @@ const AppRoutes = () => {
                         <Route exact path='/' element={<MatchComponent />}/>
                         <Route exact path='/' element={<PrivateRoute />}>
                             {/* <Route exact path='/dashboard' element={<Dashboard />} /> */}
+                            <Route exact path='/home' element={<Home />} />
+                            <Route exact path='/profile' element={<Profile />} />
                             <Route exact path='/admin_dashboard/users' element={<Users />} />
                             <Route exact path='/admin_dashboard/players' element={<Players />} />
                             <Route exact path='/admin_dashboard/moderators' element={<Moderators />} />
                             <Route exact path='/admin_dashboard/profile' element={<AdminProfile />} />
-                            <Route exact path='/profile' element={<Profile />} />
                         </Route>
                         <Route exact path='/login' element={<AuthDialog open={true} />} />
-                        <Route exact path='/home' element={<Home />} />
-                        <Route exact path='/home' element={<Home />} />
                         <Route path='/' element={<NotFound />} />
                     </Routes>
                 </Fragment>

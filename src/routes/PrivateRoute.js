@@ -5,7 +5,6 @@ import { isLogin } from '../utils';
 
 const PrivateRoute = () => {
     const auth = useAuth();
-    console.log('file: PrivateRoute.js => line 8 => PrivateRoute => auth', auth.user);
     return auth?.user ? <Outlet /> : <Navigate to="/login" />;
 }
 
