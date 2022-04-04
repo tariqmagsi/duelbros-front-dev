@@ -13,6 +13,7 @@ import AdminProfile from '../containers/AdminDashboard/AdminProfile';
 import AuthDialog from '../containers/Auth/Dialog';
 import useAuth from '../hooks/useAuth';
 import Loader from '../components/ui/Loader';
+import MatchComponent from '../containers/Match/Match';
 
 const AppRoutes = () => {
 
@@ -28,6 +29,7 @@ const AppRoutes = () => {
             <BrowserRouter>
                 <Fragment>
                     <Routes>
+                        <Route exact path='/' element={<MatchComponent />}/>
                         <Route exact path='/' element={<PrivateRoute />}>
                             {/* <Route exact path='/dashboard' element={<Dashboard />} /> */}
                             <Route exact path='/admin_dashboard/users' element={<Users />} />
@@ -39,7 +41,7 @@ const AppRoutes = () => {
                         <Route exact path='/login' element={<AuthDialog open={true} />} />
                         <Route exact path='/home' element={<Home />} />
                         <Route exact path='/home' element={<Home />} />
-                        <Route exact path='/' element={<NotFound />} />
+                        <Route path='/' element={<NotFound />} />
                     </Routes>
                 </Fragment>
             </BrowserRouter>

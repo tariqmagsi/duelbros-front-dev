@@ -1,6 +1,8 @@
-import { getToken } from '../utils';
-const token = localStorage.getItem('@userToken');
+// import { getToken } from '../utils';
 import { Apis, get, post, put, zendesk_post } from './';
+
+const token = localStorage.getItem('@userToken');
+
 
 
 export const Service = {

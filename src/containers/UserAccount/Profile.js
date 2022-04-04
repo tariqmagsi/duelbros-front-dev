@@ -502,7 +502,7 @@ function DashboardContent() {
                                                     </div>
                                                     <div className='row'>
                                                         <TextField
-                                                            // type="password"
+                                                            type="password"
                                                             name="password"
                                                             variant="outlined"
                                                             size='small'

@@ -1,36 +1,22 @@
 /* eslint-disable jsx-a11y/alt-text */
 import * as React from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
-import Box from "@mui/material/Box";
 import MuiAppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import Badge from "@mui/material/Badge";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import { mainListItems, secondaryListItems, SignOutListItem } from "./listItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
 import {
   Card,
   CardContent,
-  ListSubheader,
   Slider,
   TextField,
 } from "@mui/material";
 import { colors } from "../../res/colors";
 import { makeStyles } from "@mui/styles";
 import images from "../../assets";
-import { PersonRounded } from "@mui/icons-material";
 
 const drawerWidth = 240;
 
@@ -146,45 +132,9 @@ function MatchComponent() {
   };
 
   return (
-    <div style={{ display: "flex" }}>
-      <List
-        sx={{
-          width: "10%",
-          bgcolor: "red",
-          height: "100vh",
-          position: "fixed",
-        }}
-        component="nav"
-        aria-labelledby="nested-list-subheader"
-        // subheader={
-        //     <ListSubheader sx={{ color: 'white', bgcolor: colors.backgroundSecondary }} component="div" id="nested-list-subheader">
-        //         USER ACCOUNT
-        //     </ListSubheader>
-        // }
-      >
-        <ListItemText
-          sx={{ color: "white" }}
-          primaryTypographyProps={{ fontSize: "14px", marginLeft: "15px" }}
-          primary="USER ACCOUNT"
-        />
-
-        <ListItemButton>
-          <ListItemText
-            sx={{ color: "white", fontSize: "12px" }}
-            primaryTypographyProps={{ fontSize: "12px" }}
-            primary="Profile"
-          />
-        </ListItemButton>
-        <ListItemButton>
-          <ListItemText
-            sx={{ color: "white", fontSize: "12px" }}
-            primaryTypographyProps={{ fontSize: "12px" }}
-            primary="History"
-          />
-        </ListItemButton>
-      </List>
-      <Container sx={{ mt: 4, mb: 4, width: "70%", marginLeft: "10%" }}>
-        <Grid spacing={3}>
+    <div>
+      <Container sx={{ mt: 4, mb: 4, marginLeft: "10%" }}>
+        <Grid spacing={0}>
           <Grid item xs={12} md={8} lg={9}>
             <Paper
               sx={{
@@ -200,27 +150,13 @@ function MatchComponent() {
                 color="text.secondary"
                 gutterBottom
               >
-                PROFILE
-              </Typography>
-              <Typography
-                align="center"
-                sx={{
-                  fontSize: 14,
-                  color: colors.primary,
-                  marginBottom: -1,
-                  background: "grey",
-                  padding: 2,
-                  borderRadius: "50%",
-                  width: 60,
-                }}
-                color="text.secondary"
-                gutterBottom
-              >
-                {/* <img src='' /> */}
+                NEXT DUEL FORMAT
+                <div>
+                  <strong>WHIP</strong>
+                </div>
               </Typography>
               <Card
                 sx={{
-                  minWidth: "100%",
                   backgroundColor: colors.cartBackground,
                   height: 80,
                   borderRadius: 3,
@@ -230,21 +166,50 @@ function MatchComponent() {
                 <CardContent>
                   <Typography
                     align="center"
-                    sx={{ fontSize: 14, color: colors.primary }}
-                    color="text.secondary"
-                    gutterBottom
-                  >
-                    Bluefox8899
-                  </Typography>
-                  <Typography variant="h5" component="div"></Typography>
-                  <Typography
-                    align="center"
                     sx={{ fontSize: 14 }}
                     color={colors.white}
                     gutterBottom
                   >
-                    Member since 10.10.2020
+                    NEXT DUEL
                   </Typography>
+                  <Grid
+                    container
+                    direction="row"
+                    spacing={2}
+                    alignItems="center"
+                    sx={{ marginTop: -1 }}
+                  >
+                    <Grid item>
+                      <Typography
+                        align="center"
+                        sx={{ fontSize: 14 }}
+                        color={colors.white}
+                        gutterBottom
+                      >
+                        12
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography
+                        align="center"
+                        sx={{ fontSize: 14 }}
+                        color={colors.white}
+                        gutterBottom
+                      >
+                        25
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography
+                        align="center"
+                        sx={{ fontSize: 14 }}
+                        color={colors.white}
+                        gutterBottom
+                      >
+                        45
+                      </Typography>
+                    </Grid>
+                  </Grid>
                 </CardContent>
               </Card>
               <Typography
@@ -486,36 +451,9 @@ function MatchComponent() {
                   </Grid>
                 </Grid>
               </form>
-              <div
-                style={{
-                  marginTop: "calc(5% + 110px)",
-                  bottom: 0,
-                  textAlign: "center",
-                }}
-                className="fontSizeChange"
-              >
-                This site is protected by reCAPTCHA and the Google Privacy
-                Policy and Terms of Service apply.
-              </div>
               {/* </Container> */}
             </Paper>
           </Grid>
-        </Grid>
-      </Container>
-      <Container
-        sx={{
-          mt: 4,
-          mb: 4,
-          width: "20%",
-          backgroundColor: colors.backgroundSecondary,
-          height: "100vh",
-          position: "fixed",
-          right: 15,
-          top: 30,
-        }}
-      >
-        <Grid spacing={3}>
-          <Typography color={colors.white}>chat</Typography>
         </Grid>
       </Container>
     </div>
