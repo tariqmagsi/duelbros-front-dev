@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-// import { getToken } from '../utils';
-import { Apis, get, post, put, zendesk_post } from './';
-=======
 import { post, get, put, zendesk_post, Apis } from '.';
 import { getToken } from '../utils';
-const token = localStorage.getItem('@userToken');
->>>>>>> fcc7536c85957390d0474a9c61ec3c7a7c40abe9
 
 const token = localStorage.getItem('@userToken');
 
