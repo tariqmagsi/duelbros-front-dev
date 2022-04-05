@@ -8,6 +8,8 @@ export const Apis = {
     login: 'users/auth',
     register: 'users',
     verifyToken: 'users/auth/verifyToken',
+    registerPlayer: 'users/players',
+    registerModerator: 'users/moderators',
     getUsers: 'users',
     getModerators: 'users/moderators',
     getPlayers: 'users/players',

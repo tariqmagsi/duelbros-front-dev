@@ -19,6 +19,7 @@ import PlayersRow from './PlayersRow';
 import { TableHead } from '@mui/material';
 import UsersRow from './UsersRow';
 import ModeratorsRow from './ModeratorsRow';
+import UpdateDialog from './UpdateModal';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -82,9 +83,11 @@ TablePaginationActions.propTypes = {
 };
 
 
-export default function CustomPaginationActionsTable({data, columns, role}) {
+export default function CustomPaginationActionsTable({data, columns, role, type, handleOpen, handleClose, open, loading, update}) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [selectedRow, setSelectedRow] = React.useState(null)
+  const [id, setId] = React.useState(null)
   const rows = data
 
   // Avoid a layout jump when reaching the last page with empty rows.
@@ -101,6 +104,7 @@ export default function CustomPaginationActionsTable({data, columns, role}) {
   };
 
   return (
+    <>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
         <TableHead>
@@ -114,10 +118,10 @@ export default function CustomPaginationActionsTable({data, columns, role}) {
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row, i) => (
-                role === "player" ? <PlayersRow key={i} row={row}/> :
-                role === "user" ? <UsersRow key={i} row={row}/> :
-                role === "moderator" ? <ModeratorsRow key={i} row={row}/> : 
-                <TableRow key={i} />
+              role === "player" ? <PlayersRow key={i} row={row} handleOpen={handleOpen} selectedRow={selectedRow} setSelectedRow={() => {setSelectedRow({username: row.user_id ? row.user_id.username : "", password: row.user_id ? row.user_id.password : "", email: row.email ? row.user_id.email : "", coins: row.user_id ? row.user_id.coins : 0, ...row}, () => handleOpen());}}/> :
+              role === "user" ? <UsersRow key={i} row={row} handleOpen={handleOpen} selectedRow={selectedRow} setSelectedRow={() => {setSelectedRow(row); handleOpen()}}/> :
+              role === "moderator" ? <ModeratorsRow key={i} row={row} handleOpen={handleOpen} selectedRow={selectedRow} setSelectedRow={() => {setSelectedRow({username: row.user_id ? row.user_id.username : "", password: row.user_id ? row.user_id.password : "", email: row.email ? row.user_id.email : "", coins: row.user_id ? row.user_id.coins : 0, ...row}); handleOpen()}}/> : 
+              <TableRow key={i} />
           ))}
 
           {emptyRows > 0 && (
@@ -146,7 +150,9 @@ export default function CustomPaginationActionsTable({data, columns, role}) {
             />
           </TableRow>
         </TableFooter>
-      </Table>
+      </Table>  
     </TableContainer>
+    <UpdateDialog type={type} data={selectedRow} id={id} handleOpen={handleOpen} loading={loading} handleClose={handleClose} update={update} open={open}/>
+    </>
   );
 }

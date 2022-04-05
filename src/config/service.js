@@ -16,6 +16,16 @@ export const Service = {
         if (result.status === 200) return result.data;
         else throw result;
     },
+    registerPlayer: async (data, token) => {
+        let result = await post(Apis.registerPlayer, data, token);
+        if (result.status === 200) return result.data;
+        else throw result;
+    },
+    registerModerator: async (data, token) => {
+        let result = await post(Apis.registerModerator, data, token);
+        if (result.status === 200) return result.data;
+        else throw result;
+    },
     verifyToken: async (data) => {
         let result = await post(Apis.verifyToken, data, token);
         if (result.status === 200) return result.data;
@@ -36,7 +46,7 @@ export const Service = {
         if (result.status === 200) return result.data;
         else throw result;
     },
-    getProfile: async () => {
+    getProfile: async (token) => {
         let result = await get(Apis.getProfile, token);
         if (result.status === 200) return result.data;
         else throw result;
