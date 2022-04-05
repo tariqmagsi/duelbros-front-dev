@@ -381,14 +381,334 @@ function Home() {
                                                 <img src={images.armorRed} alt="" style={{ height: '25vh', alignItems: 'center', display: 'flex', Width: '25vw', marginTop: 10, }} />
                                             </div>
                                         </div>
+                                        <div style={{
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            alignItems: 'center',
+                                        }}>
+                                            <img src={images.coin} alt="" style={{ height: 30, width: 30 }} />
+                                            <div style={{
+                                                width: '90%'
+                                            }}>
+                                                <Typography color={colors.white} sx={{ marginBottom: -1 }}>4000/5000</Typography>
+                                                <Slider
+                                                    size="medium"
+                                                    defaultValue={50}
+                                                    // aria-label="Small"
+                                                    valueLabelDisplay="auto"
+                                                // color={colors.red}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div style={{
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                        }}>
+                                            <Typography color={'#555863'}>Team </Typography>
+                                            <Typography color={colors.white}>  </Typography>
+                                            <Typography variant="h6" color={colors.white}>  Zamorak Bets</Typography>
+                                        </div>
+                                        <div style={{
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                        }}>
+                                            <Typography color={'#555863'}>[5000 MAX]</Typography>
+                                        </div>
                                     </div>
                                 </div>
+
                                 <div style={{ width: '50%' }}>
-                                    <Typography align="center" sx={{ fontSize: 20, color: colors.blue, marginTop: 3 }} color="text.secondary" gutterBottom>
+                                    <Typography align="center" sx={{ fontSize: 20, color: colors.blue, }} color="text.secondary" gutterBottom>
                                         Saradomin
                                     </Typography>
+                                    <div style={{
+                                        backgroundColor: colors.cartBackground,
+                                        width: '80%',
+                                        margin: 5,
+                                        padding: 10,
+                                    }}>
+                                        <div style={{
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                        }}>
+                                            <div style={{
+                                                width: '50%'
+                                            }}>
+
+                                                <Button
+                                                    variant="contained"
+                                                    type="submit"
+                                                    className={`${classes.cartButton} textTransformChange`}
+                                                    size="small"
+                                                    fullWidth
+                                                    style={{
+                                                        backgroundColor: colors.blue
+                                                    }}
+                                                >
+                                                    Place your bet
+                                                </Button>
+
+                                                <img src={images.armorGreen} alt="" style={{ height: '25vh', alignItems: 'center', display: 'flex', Width: '25vw', marginTop: 10, }} />
+                                            </div>
+                                        </div>
+                                        <div style={{
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            alignItems: 'center',
+                                        }}>
+                                            <img src={images.coin} alt="" style={{ height: 30, width: 30 }} />
+                                            <div style={{
+                                                width: '90%'
+                                            }}>
+                                                <Typography color={colors.white} sx={{ marginBottom: -1 }}>4000/5000</Typography>
+                                                <Slider
+                                                    size="medium"
+                                                    defaultValue={50}
+                                                    // aria-label="Small"
+                                                    valueLabelDisplay="auto"
+                                                // color={colors.red}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div style={{
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                        }}>
+                                            <Typography color={'#555863'}>Team </Typography>
+                                            <Typography color={colors.white}>  </Typography>
+                                            <Typography variant="h6" color={colors.white}>  Saradomin Bets</Typography>
+                                        </div>
+                                        <div style={{
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                        }}>
+                                            <Typography color={'#555863'}>[5000 MAX]</Typography>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
+                            <div style={{
+                                marginTop: 20,
+                                marginBottom: 20,
+                                display: 'flex', justifyContent: 'center', alignItems: 'center',
+                            }}>
+                                <Typography align="center" sx={{ fontSize: 20, color: colors.white }} color="text.secondary" gutterBottom>
+                                    PREVIOUS DUEL 20
+                                </Typography>
+                            </div>
+
+                            <div style={{
+                                backgroundColor: colors.cartBackground,
+                                width: '100%',
+                                margin: 5,
+                                padding: 10,
+                                borderRadius: 10,
+                            }}>
+                                <div style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}>
+                                    <img src={images.armorRed} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorGreen} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorRed} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorGreen} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorRed} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorGreen} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorRed} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorGreen} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorRed} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorGreen} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorRed} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorGreen} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorRed} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorGreen} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorRed} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorGreen} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorRed} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorGreen} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorRed} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorGreen} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorRed} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorGreen} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorRed} alt="" style={{ height: 30 }} />
+                                    <img src={images.armorGreen} alt="" style={{ height: 30 }} />
+
+                                </div>
+                            </div>
+
+                            <Divider sx={{ marginTop: 4, marginBottom: 1, backgroundColor: '#454857' }} />
+
+                            <div style={{
+                                marginTop: 50,
+                                display: 'flex', justifyContent: 'center', alignItems: 'center',
+                            }}>
+                                <Typography align="center" sx={{ fontSize: 20, color: colors.white }} color="text.secondary" gutterBottom>
+                                    WATCH DUAL LIVE
+                                </Typography>
+                            </div>
+
+
+                            <div style={{
+                                // width: '100%',
+                                borderRadius: 20,
+                                // backgroundColor: 'red',
+                                marginTop: 10,
+                                display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                            }}>
+                                <div style={{
+                                    width: '50%',
+                                    height: 200,
+                                    backgroundColor: colors.cartBackground,
+                                    borderRadius: 10,
+                                    margin: 5,
+                                    padding: 10,
+                                }}>
+
+                                </div>
+                                <div style={{
+                                    width: '50%',
+                                    height: 200,
+                                    backgroundColor: colors.cartBackground,
+                                    borderRadius: 10,
+                                    margin: 5,
+                                    padding: 10,
+                                }}>
+
+                                </div>
+                            </div>
+
+
+                            <Divider sx={{ marginTop: 4, marginBottom: 1, backgroundColor: '#454857' }} />
+
+                            <div style={{
+                                marginTop: 50,
+                                display: 'flex', justifyContent: 'center', alignItems: 'center',
+                            }}>
+                                <Typography align="center" sx={{ fontSize: 20, color: colors.white }} color="text.secondary" gutterBottom>
+                                    DETAILED DUEL HISTORY
+                                </Typography>
+                            </div>
+
+
+                            <div style={{
+                                // width: '100%',
+                                borderRadius: 20,
+                                // backgroundColor: 'red',
+                                marginTop: 10,
+                                display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                            }}>
+                                <div style={{
+                                    width: '25%',
+                                    backgroundColor: '#303441',
+                                    borderRadius: 10,
+                                    margin: 5,
+                                    padding: 10,
+                                }}>
+                                    <Typography align="center" color={colors.red}>Zamorak</Typography>
+                                    <Typography align="center" color={colors.white}>won 54%</Typography>
+                                    <Typography align="center" color="#c4c5c9">of past 100 duels</Typography>
+                                </div>
+                                <div style={{
+                                    width: '25%',
+                                    backgroundColor: '#252837',
+                                    borderRadius: 10,
+                                    margin: 5,
+                                    padding: 10,
+                                }}>
+                                    <Typography align="center" color={colors.red}>Zamorak</Typography>
+                                    <Typography align="center" color={colors.white}>won 54%</Typography>
+                                    <Typography align="center" color="#c4c5c9">of past 100 duels</Typography>
+
+                                </div>
+                                <div style={{
+                                    width: '25%',
+                                    backgroundColor: '#303441',
+                                    borderRadius: 10,
+                                    margin: 5,
+                                    padding: 10,
+                                }}>
+                                    <Typography align="center" color={colors.red}>Zamorak</Typography>
+                                    <Typography align="center" color={colors.white}>won 54%</Typography>
+                                    <Typography align="center" color="#c4c5c9">of past 100 duels</Typography>
+
+                                </div>
+                                <div style={{
+                                    width: '25%',
+                                    backgroundColor: '#252837',
+                                    borderRadius: 10,
+                                    margin: 5,
+                                    padding: 10,
+                                }}>
+                                    <Typography align="center" color={colors.red}>Zamorak</Typography>
+                                    <Typography align="center" color={colors.white}>won 54%</Typography>
+                                    <Typography align="center" color="#c4c5c9">of past 100 duels</Typography>
+
+                                </div>
+                            </div>
+
+                            <div style={{
+                                // width: '100%',
+                                borderRadius: 20,
+                                // backgroundColor: 'red',
+                                marginTop: 10,
+                                display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                            }}>
+                                <div style={{
+                                    width: '25%',
+                                    backgroundColor: '#252837',
+                                    borderRadius: 10,
+                                    margin: 5,
+                                    padding: 10,
+                                }}>
+                                    <Typography align="center" color={colors.blue}>Zamorak</Typography>
+                                    <Typography align="center" color={colors.white}>won 54%</Typography>
+                                    <Typography align="center" color="#c4c5c9">of past 100 duels</Typography>
+
+                                </div>
+                                <div style={{
+                                    width: '25%',
+                                    backgroundColor: '#303441',
+                                    borderRadius: 10,
+                                    margin: 5,
+                                    padding: 10,
+                                }}>
+                                    <Typography align="center" color={colors.blue}>Zamorak</Typography>
+                                    <Typography align="center" color={colors.white}>won 54%</Typography>
+                                    <Typography align="center" color="#c4c5c9">of past 100 duels</Typography>
+                                </div>
+                                <div style={{
+                                    width: '25%',
+                                    backgroundColor: '#252837',
+                                    borderRadius: 10,
+                                    margin: 5,
+                                    padding: 10,
+                                }}>
+                                    <Typography align="center" color={colors.blue}>Zamorak</Typography>
+                                    <Typography align="center" color={colors.white}>won 54%</Typography>
+                                    <Typography align="center" color="#c4c5c9">of past 100 duels</Typography>
+
+                                </div>
+                                <div style={{
+                                    width: '25%',
+                                    backgroundColor: '#303441',
+                                    borderRadius: 10,
+                                    margin: 5,
+                                    padding: 10,
+                                }}>
+                                    <Typography align="center" color={colors.blue}>Zamorak</Typography>
+                                    <Typography align="center" color={colors.white}>won 54%</Typography>
+                                    <Typography align="center" color="#c4c5c9">of past 100 duels</Typography>
+
+                                </div>
+                            </div>
+
                         </div>
 
 
