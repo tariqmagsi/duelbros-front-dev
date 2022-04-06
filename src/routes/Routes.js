@@ -4,8 +4,8 @@ import PrivateRoute from './PrivateRoute';
 import Dashboard from '../containers/Dashboard'
 import Login from '../containers/Auth/Index';
 import NotFound from './NotFound';
-import Home from '../containers/App/Home';
-import Profile from '../containers/UserAccount/Profile';
+import Home from '../containers/App/index';
+import Profile from '../containers/UserAccount/index';
 import Players from '../containers/AdminDashboard/Players';
 import Users from '../containers/AdminDashboard/Users';
 import Moderators from '../containers/AdminDashboard/Moderators';
@@ -29,10 +29,10 @@ const AppRoutes = () => {
             <BrowserRouter>
                 <Fragment>
                     <Routes>
-                        <Route exact path='/' element={<MatchComponent />}/>
+                        <Route exact path='/' element={<Home />}/>
                         <Route exact path='/' element={<PrivateRoute />}>
                             {/* <Route exact path='/dashboard' element={<Dashboard />} /> */}
-                            <Route exact path='/home' element={<Home />} />
+                            {/* <Route exact path='/home' element={<Home />} /> */}
                             <Route exact path='/profile' element={<Profile />} />
                             <Route exact path='/admin_dashboard/users' element={<Users />} />
                             <Route exact path='/admin_dashboard/players' element={<Players />} />

@@ -1,5 +1,5 @@
 import { Box, Container, Grid, Toolbar } from "@mui/material"
-import { colors } from "../../res/colors"
+import { colors } from "../res/colors"
 
 
 const DashboardContainer = ({ChildComponent}) => {

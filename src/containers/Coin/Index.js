@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
         backgroundColor: "white",
         color: "white",
-        borderRadius: 0
+        borderRadius: 10
     },
     withdrawContainer: {
         backgroundColor: colors.black,

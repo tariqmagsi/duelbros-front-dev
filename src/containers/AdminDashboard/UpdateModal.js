@@ -72,7 +72,7 @@ export default function UpdateDialog({
         <DialogTitle>{type}</DialogTitle>
         <DialogContent>
           <form
-            onSubmit={() => {
+            onSubmit={(e) => {
               type === "Player" ? updatePlayer() : updateModeratorAndUser();
             }}
           >

@@ -40,7 +40,9 @@ export default function FormDialog({type, handleOpen, handleClose, open, loading
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>{type}</DialogTitle>
         <DialogContent>
-            <form onSubmit={() => {type === "Player" ? addPlayer() : addModeratorAndUser()}}>
+            <form onSubmit={(e) => {
+                e.preventDefault()
+                type === "Player" ? addPlayer() : addModeratorAndUser()}}>
                 <TextField
                     autoFocus
                     margin="dense"

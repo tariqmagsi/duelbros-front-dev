@@ -3,6 +3,7 @@ import Dialog from '@mui/material/Dialog';
 import { Slide } from '@mui/material';
 import { CloseOutlined } from '@mui/icons-material';
 import { colors } from '../res/colors';
+import useZendeskWidget from 'use-zendesk-widget';
 
 const styles = (theme) => ({
     root: {
@@ -23,6 +24,14 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function CustomizedDialogs({ open, handleClose, title, children, component, size, footer, noFooter, fullScreen }) {
+    useZendeskWidget("e0f2fa0f-a248-4d75-adea-b6cc706a0136", {
+        webWidget: {
+          color: { theme: '#61dafb' },
+          
+        },
+    
+    });
+
     return (
         <div>
             <Dialog fullScreen={fullScreen}

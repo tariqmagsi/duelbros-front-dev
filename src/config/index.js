@@ -15,7 +15,7 @@ export const Apis = {
     getPlayers: 'users/players',
     getProfile: 'users/profile',
     updateAdminProfile: 'users/admins',
-    zendeskTicket: 'tickets.json'
+    zendeskTicket: 'zendesk'
 };
 
 export const headers = {
@@ -45,7 +45,7 @@ export const post = async (endPoint, data, token) => {
 
 export const zendesk_post = async (endPoint, data) => {
     try {
-        const result = await axios.post(`${process.env.REACT_APP_ZENDESK_URL}${endPoint}`, data, { auth: { username: `${process.env.REACT_APP_ZENDESK_USERNAME}/token`, password: process.env.REACT_APP_ZENDESK_TOKEN } });
+        const result = await Axios.post(`${Apis.zendeskTicket}`, data);
         return result;
     } catch (e) {
         throw errorHandler(e);

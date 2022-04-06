@@ -11,11 +11,15 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { mainListItems, secondaryListItems } from "./ListItems";
+import { mainListItems, secondaryListItems, SignOutListItem } from "./ListItem";
 import DashboardContainer from "./DashboardContainer";
-import { colors } from "../../res/colors";
+import { colors } from "../res/colors";
 import { makeStyles } from "@mui/styles";
-import images from "../../assets";
+import images from "../assets";
+import { Button } from "@mui/material";
+import { PersonRounded } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import CoinDialog from "../containers/Coin/Dialog";
 
 const drawerWidth = 240;
 
@@ -74,6 +78,8 @@ const useStyles = makeStyles({
 
 function DashboardOutline({ ChildComponent }) {
   const [open, setOpen] = React.useState(false);
+  const [openD, setOpenD] = React.useState(false)
+  const navigate = useNavigate()
   const classes = useStyles();
   const toggleDrawer = () => {
     setOpen(!open);
@@ -105,18 +111,45 @@ function DashboardOutline({ ChildComponent }) {
             >
               <MenuIcon style={{ color: "white" }} />
             </IconButton>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
+
+            <img src={images.logo} alt="" style={{ height: "30px" }} />
+
+            <div
+              style={{ display: "flex", textAlign: "center", marginLeft: "20%" }}
             >
-              <img src={images.logo} alt="" style={{ height: "30px" }} />
-            </Typography>
-            <IconButton color="inherit">
-              <PersonRounded />
-            </IconButton>
+              <div
+                style={{
+                  backgroundColor: "#2c2c36",
+                  padding: 5,
+                  borderRadius: 5,
+                  display: "flex",
+                  alignItems: "center",
+                  margin: "auto",
+                  height: 40,
+                }}
+              >
+                {/* <span><CurrencyExchangeOutlinedIcon style={{ color: colors.yellow, }} /></span> */}
+                <img src={images.dollar} alt="" style={{ height: 20 }} />
+                <span style={{ color: "#40aa77", marginLeft: 4 }}>5150M</span>
+              </div>
+              <div>
+                <Button
+                  variant="contained"
+                  type="submit"
+                  className={`${classes.button} textTransformChange`}
+                  size="medium"
+                  fullWidth
+                  onClick={() => setOpenD(true)}
+                >
+                  Cashier
+                </Button>
+              </div>
+            </div>
+            <div style={{float: 'right', right: 20, position: 'absolute'}}>
+              <IconButton color="inherit">
+                <PersonRounded />
+              </IconButton>
+            </div>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -136,22 +169,19 @@ function DashboardOutline({ ChildComponent }) {
               <ChevronLeftIcon style={{ color: "white" }} />
             </IconButton>
           </Toolbar>
-          <Divider style={{ backgroundColor: colors.dividerColor }} />
+          <Divider
+            classes={{ root: classes.divider }}
+            sx={{ bgcolor: "#454857" }}
+          />
           <List component="nav">
-            {mainListItems}
-            <Divider
-              sx={{ my: 1 }}
-              style={{ backgroundColor: colors.dividerColor }}
-            />
-            {secondaryListItems}
-            <Divider
-              sx={{ my: 1 }}
-              style={{ backgroundColor: colors.dividerColor }}
-            />
-            {SignOutListItem}
+            {mainListItems(open)}
+            <Divider sx={{ my: 1, backgroundColor: "#454857" }} classes={classes.dividerStyle} />
+            {secondaryListItems(open)}
+            <Divider sx={{ my: 1, backgroundColor: "#454857" }} classes={classes.dividerStyle} />
+            {SignOutListItem(navigate)}
           </List>
         </Drawer>
-
+        <CoinDialog open={openD} handleOpen={() => setOpenD(true)} handleClose={() => setOpenD(false)} />
         <DashboardContainer ChildComponent={ChildComponent} />
       </Box>
     </ThemeProvider>
