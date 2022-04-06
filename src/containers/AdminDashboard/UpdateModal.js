@@ -18,8 +18,8 @@ export default function UpdateDialog({
 }) {
   const [username, setUsername] = React.useState(data?.user_id?.username);
   const [email, setEmail] = React.useState(data?.user_id?.email);
-  const [nickname, setNickname] = React.useState(data?.user_id?.coins);
-  const [coins, setCoins] = React.useState(data?.coins);
+  const [nickname, setNickname] = React.useState(data?.nickname);
+  const [coins, setCoins] = React.useState(data?.user_id?.coins);
   const [totalMatchCount, setTotalMatchCount] = React.useState(data?.total_match_count);
   const [totalWinsCount, setTotalWinsCount] = React.useState(data?.total_wins_count);
   const [totalLoseCount, setTotalLoseCount] = React.useState(data?.total_lose_count);
@@ -39,7 +39,9 @@ export default function UpdateDialog({
   };
 
   const updateModeratorAndUser = () => {
+      console.log(data)
     const objData = {
+      id: data?.user_id?._id,
       username,
       email,
       coins: coins ? coins : 0,

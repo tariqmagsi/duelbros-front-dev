@@ -39,6 +39,7 @@ import CurrencyExchangeOutlinedIcon from "@mui/icons-material/CurrencyExchangeOu
 import { useNavigate } from "react-router-dom";
 import CoinDialog from "../Coin/Dialog";
 import { Service } from "../../config/service";
+import { getToken } from "../../utils";
 
 const drawerWidth = 240;
 
@@ -158,7 +159,7 @@ function Profile() {
 
   const getUserProfileHandler = async () => {
     try {
-      const { data } = await Service.getProfile();
+      const { data } = await Service.getProfile(getToken());
       setEmail(data.email);
       setPassword(data.password);
       setName(data.username);
@@ -272,7 +273,8 @@ function Profile() {
               >
                 <CardContent>
                   <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                    <EditIcon style={{ color: colors.white }} />
+                    <img src={images.edit} onClick={() => setIsEmail(true)} style={{ color: colors.white, marginLeft: 20, height: 20, cursor: 'pointer' }}/>
+                    {/* <EditIcon style={{ color: colors.white }} /> */}
                   </div>
                   <Typography
                     align="center"
@@ -527,7 +529,7 @@ function Profile() {
                         variant="outlined"
                         value={email}
                         // fullWidth
-                        onChange={(event) => setEmail(event.target.value)}
+                        onChange={(event) => {}}
                         required
                         sx={{ input: { color: "white", fontSize: "12px" } }}
                         className={classes.input}
@@ -538,10 +540,11 @@ function Profile() {
                           readOnly: isEmail === true ? false : true,
                         }}
                       />
-                      <EditIcon
+                      <img src={images.edit} onClick={() => setIsEmail(true)} style={{ color: colors.white, marginLeft: 20, height: 20, cursor: 'pointer' }}/>
+                      {/* <EditIcon
                         style={{ color: colors.white, marginLeft: 20 }}
                         onClick={() => setIsEmail(true)}
-                      />
+                      /> */}
                     </div>
                   </Grid>
                   <Grid item>
@@ -565,7 +568,7 @@ function Profile() {
                         sx={{ input: { color: "white", fontSize: "12px" } }}
                         // fullWidth
                         value={password}
-                        onChange={(event) => setPassword(event.target.value)}
+                        onChange={(event) => {}}
                         required
                         color="info"
                         className={classes.input}
@@ -590,10 +593,11 @@ function Profile() {
                         }}
                         suffix="%"
                       />
-                      <EditIcon
+                      <img src={images.edit} onClick={() => setIsPassword(true)} style={{ color: colors.white, marginLeft: 20, height: 20, cursor: 'pointer' }}/>
+                      {/* <EditIcon
                         style={{ color: colors.white, marginLeft: 20 }}
                         onClick={() => setIsPassword(true)}
-                      />
+                      /> */}
                     </div>
                   </Grid>
                 </Grid>

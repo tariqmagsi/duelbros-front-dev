@@ -28,13 +28,13 @@ const Moderators = () => {
         }
     };
 
-    const updateModerator = async () => {
+    const updateModerator = async (data) => {
         console.log('file: Players.js => line 48 => updatePlayer => data', data);
         setLoadingBtn(true)
         try {
             const result = await Service.updateModerator(data, getToken())
             toast.success("Moderator updated successfully")
-            handleClose()
+            handleCloseUpdate()
             getModerators()
         } catch (error) {
             // alert(error)

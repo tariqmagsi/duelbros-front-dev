@@ -48,9 +48,9 @@ const Users = () => {
         console.log("ok")
         setLoadingBtn(true)
         try {
-            const result = await Service.registerPlayer(data, getToken())
+            const result = await Service.updateUser(data, getToken())
             toast.success("Player updated successfully")
-            handleClose()
+            handleCloseUpdate()
             getUsers()
         } catch (error) {
             // alert(error)

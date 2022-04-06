@@ -51,7 +51,7 @@ const Players = () => {
             const result = await Service.updatePlayer(data, getToken())
             console.log('file: Players.js => line 52 => updatePlayer => result', result);
             toast.success("Player updated successfully")
-            handleClose()
+            handleCloseUpdate()
             getPlayers()
         } catch (error) {
             // alert(error)

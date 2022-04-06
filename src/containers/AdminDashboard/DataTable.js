@@ -111,6 +111,8 @@ export default function CustomPaginationActionsTable({ data, columns, role, type
     }
     else if (type === 'moderator') {
       staticData = _data;
+    } else if (type === 'user') {
+      staticData = {user_id: _data}
     }
     // setSelectedRow(_data.id)
   }
@@ -131,7 +133,7 @@ export default function CustomPaginationActionsTable({ data, columns, role, type
               : rows
             ).map((row, i) => (
               role === "player" ? <PlayersRow key={i} row={row} handleOpen={handleOpen} setSelectedRow={handleSelectedRow.bind(this, 'player')} /> :
-                role === "user" ? <UsersRow key={i} row={row} handleOpen={handleOpen} setSelectedRow={() => { setSelectedRow(row); handleOpen() }} /> :
+                role === "user" ? <UsersRow key={i} row={row} handleOpen={handleOpen} setSelectedRow={handleSelectedRow.bind(this, 'user')} /> :
                   role === "moderator" ? <ModeratorsRow key={i} row={row} handleOpen={handleOpen} setSelectedRow={handleSelectedRow.bind(this, 'moderator')} /> :
                     <TableRow key={i} />
             ))}

@@ -12,6 +12,7 @@ const images = {
     dollar: require('./images/dollar.png'),
     armorGreen: require('./images/armorGreen.png'),
     armorRed: require('./images/armorRed.png'),
+    edit: require('./images/edit.png')
 }
 
 export default images;

@@ -36,6 +36,11 @@ export const Service = {
         let result = await put(`${Apis.updateModerator}${data.id}`, data, token);
         if (result.status === 200) return result.data;
         else throw result;
+    }, 
+    updateUser: async (data, token) => {
+        let result = await put(`${Apis.updateUser}${data.id}`, data, token);
+        if (result.status === 200) return result.data;
+        else throw result;
     },
     verifyToken: async (data) => {
         let result = await post(Apis.verifyToken, data, token);

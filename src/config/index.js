@@ -17,7 +17,8 @@ export const Apis = {
     updateAdminProfile: 'users/admins',
     zendeskTicket: 'zendesk',
     updatePlayer: 'users/players/',
-    updateModerator: 'users/moderator/'
+    updateModerator: 'users/moderators/',
+    updateUser: 'users/'
 };
 
 export const headers = {
