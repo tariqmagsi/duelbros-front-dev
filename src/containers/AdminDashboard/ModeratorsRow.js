@@ -1,7 +1,8 @@
+import { Edit } from "@mui/icons-material";
 import { TableCell, TableRow } from "@mui/material"
 
 
-const ModeratorsRow = ({row}) => {
+const ModeratorsRow = ({ row, handleOpen, setSelectedRow, }) => {
     return (
         <TableRow key={row._id}>
             <TableCell component="th" scope="row">
@@ -15,6 +16,12 @@ const ModeratorsRow = ({row}) => {
             </TableCell>
             <TableCell >
                 {row.total_match_count}
+            </TableCell>
+            <TableCell style={{ cursor: 'pointer' }}>
+                <Edit fontSize="small" onClick={() => {
+                    setSelectedRow(row);
+                    handleOpen()
+                }} />
             </TableCell>
         </TableRow>
     )

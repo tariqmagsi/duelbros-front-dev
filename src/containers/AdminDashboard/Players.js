@@ -45,10 +45,11 @@ const Players = () => {
     }
 
     const updatePlayer = async (data, id) => {
-        console.log("ok")
+        console.log('file: Players.js => line 48 => updatePlayer => data', data);
         setLoadingBtn(true)
         try {
-            const result = await Service.registerPlayer(data, getToken())
+            const result = await Service.updatePlayer(data, getToken())
+            console.log('file: Players.js => line 52 => updatePlayer => result', result);
             toast.success("Player updated successfully")
             handleClose()
             getPlayers()
@@ -71,7 +72,7 @@ const Players = () => {
     const handleOpenUpdate = () => {
         setOpenUpdate(true)
     }
-    
+
     const handleCloseUpdate = () => {
         setOpenUpdate(false)
     }
@@ -83,18 +84,18 @@ const Players = () => {
     return (
         <div>
             <DashboardOutline ChildComponent={() => {
-                    return loading ? <div style={{textAlign: "center"}}><CircularProgress /></div> 
-                    : 
+                return loading ? <div style={{ textAlign: "center" }}><CircularProgress /></div>
+                    :
                     <div>
-                        <div style={{textAlign: "center", fontSize: "24px", fontWeight: 'bold', color: 'white'}}>Players</div>
-                        <FormDialog type="Player" handleOpen={handleOpen} loading={loadingBtn} handleClose={handleClose} add={addPlayer} open={open}/>
-                        <br/>
-                        <DataTable data={data} columns={columns} role="player" type="Player" handleOpen={handleOpenUpdate} loading={loadingBtn} handleClose={handleCloseUpdate} update={updatePlayer} open={openUpdate}/>
-                    </div>  
-                }}
-                
+                        <div style={{ textAlign: "center", fontSize: "24px", fontWeight: 'bold', color: 'white' }}>Players</div>
+                        <FormDialog type="Player" handleOpen={handleOpen} loading={loadingBtn} handleClose={handleClose} add={addPlayer} open={open} />
+                        <br />
+                        <DataTable data={data} columns={columns} role="player" type="Player" handleOpen={handleOpenUpdate} loading={loadingBtn} handleClose={handleCloseUpdate} update={updatePlayer} open={openUpdate} />
+                    </div>
+            }}
+
             />
-                
+
         </div>
     )
 }

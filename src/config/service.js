@@ -26,6 +26,17 @@ export const Service = {
         if (result.status === 200) return result.data;
         else throw result;
     },
+    updatePlayer: async (data, token) => {
+        console.log('file: service.js => line 30 => updatePlayer: => data', data);
+        let result = await put(`${Apis.updatePlayer}${data.id}`, data, token);
+        if (result.status === 200) return result.data;
+        else throw result;
+    },
+    updateModerator: async (data, token) => {
+        let result = await put(`${Apis.updateModerator}${data.id}`, data, token);
+        if (result.status === 200) return result.data;
+        else throw result;
+    },
     verifyToken: async (data) => {
         let result = await post(Apis.verifyToken, data, token);
         if (result.status === 200) return result.data;
