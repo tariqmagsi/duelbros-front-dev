@@ -2,7 +2,7 @@ import { Edit } from "@mui/icons-material"
 import { Button, TableCell, TableRow } from "@mui/material"
 
 
-const PlayersRow = ({row, handleOpen, setSelectedRow, selectedRow}) => {
+const PlayersRow = ({ row, handleOpen, setSelectedRow, selectedRow }) => {
     return (
         <TableRow key={row._id}>
             <TableCell component="th" scope="row">
@@ -26,8 +26,11 @@ const PlayersRow = ({row, handleOpen, setSelectedRow, selectedRow}) => {
             <TableCell >
                 {row.total_wins_count}
             </TableCell>
-            <TableCell style={{cursor: 'pointer'}}>
-                <Edit fontSize="small" onClick={setSelectedRow}/>
+            <TableCell style={{ cursor: 'pointer' }}>
+                <Edit fontSize="small" onClick={() => {
+                    setSelectedRow(row);
+                    handleOpen()
+                }} />
             </TableCell>
         </TableRow>
     )

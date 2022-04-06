@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -21,6 +21,7 @@ import UsersRow from './UsersRow';
 import ModeratorsRow from './ModeratorsRow';
 import UpdateDialog from './UpdateModal';
 
+let staticData = '';
 function TablePaginationActions(props) {
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
@@ -83,11 +84,11 @@ TablePaginationActions.propTypes = {
 };
 
 
-export default function CustomPaginationActionsTable({data, columns, role, type, handleOpen, handleClose, open, loading, update}) {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [selectedRow, setSelectedRow] = React.useState(null)
-  const [id, setId] = React.useState(null)
+export default function CustomPaginationActionsTable({ data, columns, role, type, handleOpen, handleClose, open, loading, update }) {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [selectedRow, setSelectedRow] = useState('test')
+  const [id, setId] = useState(null)
   const rows = data
 
   // Avoid a layout jump when reaching the last page with empty rows.
@@ -103,56 +104,67 @@ export default function CustomPaginationActionsTable({data, columns, role, type,
     setPage(0);
   };
 
+  const handleSelectedRow = (type, _data) => {
+    console.log('file: DataTable.js => line 108 => handleSelectedRow => type, _data', type, _data);
+    if (type === 'player') {
+      staticData = _data;
+    }
+    else if (type === 'moderator') {
+      staticData = _data;
+    }
+    // setSelectedRow(_data.id)
+  }
+
   return (
     <>
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-        <TableHead>
-          <TableRow>
-            {columns.map(item => <TableCell style={{fontWeight: 'bold'}} component="th" key={item}>{item}</TableCell>)}
-          </TableRow>
-        </TableHead>
-        
-        <TableBody>
-          {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row, i) => (
-              role === "player" ? <PlayersRow key={i} row={row} handleOpen={handleOpen} selectedRow={selectedRow} setSelectedRow={() => {setSelectedRow({username: row.user_id ? row.user_id.username : "", password: row.user_id ? row.user_id.password : "", email: row.email ? row.user_id.email : "", coins: row.user_id ? row.user_id.coins : 0, ...row}, () => handleOpen());}}/> :
-              role === "user" ? <UsersRow key={i} row={row} handleOpen={handleOpen} selectedRow={selectedRow} setSelectedRow={() => {setSelectedRow(row); handleOpen()}}/> :
-              role === "moderator" ? <ModeratorsRow key={i} row={row} handleOpen={handleOpen} selectedRow={selectedRow} setSelectedRow={() => {setSelectedRow({username: row.user_id ? row.user_id.username : "", password: row.user_id ? row.user_id.password : "", email: row.email ? row.user_id.email : "", coins: row.user_id ? row.user_id.coins : 0, ...row}); handleOpen()}}/> : 
-              <TableRow key={i} />
-          ))}
-
-          {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+          <TableHead>
+            <TableRow>
+              {columns.map(item => <TableCell style={{ fontWeight: 'bold' }} component="th" key={item}>{item}</TableCell>)}
             </TableRow>
-          )}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={role === "player" ? 7 : role === "moderator" ? 4 : 3}
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              SelectProps={{
-                inputProps: {
-                  'aria-label': 'rows per page',
-                },
-                native: true,
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-            />
-          </TableRow>
-        </TableFooter>
-      </Table>  
-    </TableContainer>
-    <UpdateDialog type={type} data={selectedRow} id={id} handleOpen={handleOpen} loading={loading} handleClose={handleClose} update={update} open={open}/>
+          </TableHead>
+
+          <TableBody>
+            {(rowsPerPage > 0
+              ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : rows
+            ).map((row, i) => (
+              role === "player" ? <PlayersRow key={i} row={row} handleOpen={handleOpen} setSelectedRow={handleSelectedRow.bind(this, 'player')} /> :
+                role === "user" ? <UsersRow key={i} row={row} handleOpen={handleOpen} setSelectedRow={() => { setSelectedRow(row); handleOpen() }} /> :
+                  role === "moderator" ? <ModeratorsRow key={i} row={row} handleOpen={handleOpen} setSelectedRow={handleSelectedRow.bind(this, 'moderator')} /> :
+                    <TableRow key={i} />
+            ))}
+
+            {emptyRows > 0 && (
+              <TableRow style={{ height: 53 * emptyRows }}>
+                <TableCell colSpan={6} />
+              </TableRow>
+            )}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                colSpan={role === "player" ? 7 : role === "moderator" ? 4 : 3}
+                count={rows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                SelectProps={{
+                  inputProps: {
+                    'aria-label': 'rows per page',
+                  },
+                  native: true,
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+              />
+            </TableRow>
+          </TableFooter>
+        </Table>
+        <UpdateDialog type={type} data={staticData} id={id} handleOpen={handleOpen} loading={loading} handleClose={handleClose} update={update} open={open} />
+      </TableContainer>
     </>
   );
 }

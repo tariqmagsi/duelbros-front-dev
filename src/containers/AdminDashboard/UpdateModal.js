@@ -16,54 +16,36 @@ export default function UpdateDialog({
   data,
   id
 }) {
-  const [username, setUsername] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [nickname, setNickname] = React.useState("");
-  const [coins, setCoins] = React.useState(0);
-  const [totalMatchCount, setTotalMatchCount] = React.useState(0);
-  const [totalWinsCount, setTotalWinsCount] = React.useState(0);
-  const [totalLoseCount, setTotalLoseCount] = React.useState(0);
+  const [username, setUsername] = React.useState(data?.user_id?.username);
+  const [email, setEmail] = React.useState(data?.user_id?.email);
+  const [nickname, setNickname] = React.useState(data?.user_id?.coins);
+  const [coins, setCoins] = React.useState(data?.coins);
+  const [totalMatchCount, setTotalMatchCount] = React.useState(data?.total_match_count);
+  const [totalWinsCount, setTotalWinsCount] = React.useState(data?.total_wins_count);
+  const [totalLoseCount, setTotalLoseCount] = React.useState(data?.total_lose_count);
 
-  React.useEffect(() => {
-    console.log(id)
-    setUsername(data && data.username ? data.username : "");
-    setEmail(data && data.email ? data.email : "");
-    setPassword(data && data.password ? data.password : "");
-    setNickname(data && data.nickname ? data.nickname : "");
-    setCoins(data && data.coins ? data.coins : 0);
-    setTotalMatchCount(
-      data && data.total_match_count ? data.total_match_count : 0
-    );
-    setTotalWinsCount(
-      data && data.total_wins_count ? data.total_wins_count : 0
-    );
-    setTotalLoseCount(
-      data && data.total_lose_count ? data.total_lose_count : 0
-    );
-  }, []);
   const updatePlayer = () => {
-    const data = {
+    const objData = {
+      id: data?.user_id?._id,
       username,
       email,
-      password,
       nickname,
       total_match_count: totalMatchCount ? totalMatchCount : 0,
       total_wins_count: totalWinsCount ? totalWinsCount : 0,
       total_lose_count: totalLoseCount ? totalLoseCount : 0,
       coins: coins ? coins : 0,
     };
-    update(data);
+    update(objData);
   };
 
   const updateModeratorAndUser = () => {
-    const data = {
+    const objData = {
       username,
       email,
-      password,
       coins: coins ? coins : 0,
+      totalMatchCount
     };
-    update(data);
+    update(objData);
   };
 
   return (
@@ -72,7 +54,8 @@ export default function UpdateDialog({
         <DialogTitle>{type}</DialogTitle>
         <DialogContent>
           <form
-            onSubmit={() => {
+            onSubmit={(e) => {
+              e.preventDefault()
               type === "Player" ? updatePlayer() : updateModeratorAndUser();
             }}
           >
@@ -98,18 +81,6 @@ export default function UpdateDialog({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               fullWidth
-              variant="standard"
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              id="password"
-              label="Password"
-              type="password"
-              fullWidth
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
               variant="standard"
             />
             <TextField

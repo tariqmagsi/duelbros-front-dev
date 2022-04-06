@@ -12,7 +12,8 @@ const Moderators = () => {
     const [loadingBtn, setLoadingBtn] = useState(false)
     const [data, setData] = useState([])
     const [open, setOpen] = useState(false)
-    const columns = ["Username", "Email", "Coins", "Total Match Count"]
+    const [openUpdate, setOpenUpdate] = useState(false)
+    const columns = ["Username", "Email", "Coins", "Total Match Count", 'Edit']
 
     const getModerators = async () => {
         setLoading(true);
@@ -26,6 +27,22 @@ const Moderators = () => {
             setLoading(false)
         }
     };
+
+    const updateModerator = async () => {
+        console.log('file: Players.js => line 48 => updatePlayer => data', data);
+        setLoadingBtn(true)
+        try {
+            const result = await Service.updateModerator(data, getToken())
+            toast.success("Moderator updated successfully")
+            handleClose()
+            getModerators()
+        } catch (error) {
+            // alert(error)
+            console.log('Inside Catch => ', error);
+        } finally {
+            setLoadingBtn(false)
+        }
+    }
 
     const addModerator = async (data) => {
         console.log("ok")
@@ -43,6 +60,11 @@ const Moderators = () => {
         }
     }
 
+    const handleOpenUpdate = () => {
+        setOpenUpdate(true)
+    }
+
+
     const handleOpen = () => {
         setOpen(true)
     }
@@ -51,23 +73,30 @@ const Moderators = () => {
         setOpen(false)
     }
 
+    const handleCloseUpdate = () => {
+        setOpenUpdate(false)
+    }
+
+
+
     useEffect(() => {
         getModerators()
     }, [])
 
     return (
         <div>
-            <div style={{textAlign: "center", fontSize: "16px", color: 'white'}}>Moderators</div>
+            <div style={{ textAlign: "center", fontSize: "16px", color: 'white' }}>Moderators</div>
             <DashboardOutline ChildComponent={() => {
-                return loading ? <div style={{textAlign: "center"}}><CircularProgress /></div> 
-                : 
-                <div>
-                    <div style={{textAlign: "center", fontSize: "24px", fontWeight: 'bold', color: 'white'}}>Moderators</div>
-                    <FormDialog type="Moderator" handleOpen={handleOpen} loading={loadingBtn} handleClose={handleClose} add={addModerator} open={open}/>
-                    <br/>
-                    <DataTable data={data} columns={columns} role="moderator"/>
-                </div>
-                    }} />
+                return loading ? <div style={{ textAlign: "center" }}><CircularProgress /></div>
+                    :
+                    <div>
+                        <div style={{ textAlign: "center", fontSize: "24px", fontWeight: 'bold', color: 'white' }}>Moderators</div>
+                        <FormDialog type="Moderator" handleOpen={handleOpen} loading={loadingBtn} handleClose={handleClose} add={addModerator} open={open} />
+                        <br />
+                        <DataTable data={data} columns={columns} role="moderator" type="Moderator" handleOpen={handleOpenUpdate} loading={loadingBtn} handleClose={handleCloseUpdate} update={updateModerator} open={openUpdate} />
+
+                    </div>
+            }} />
         </div>
     )
 }
