@@ -1,4 +1,4 @@
-import { post, get, put, zendesk_post, Apis } from '.';
+import { post, get, put, zendesk_post, Apis, delete_post } from '.';
 import { getToken } from '../utils';
 
 const token = localStorage.getItem('@userToken');
@@ -12,33 +12,47 @@ export const Service = {
         else throw result;
     },
     register: async (data) => {
-        let result = await post(Apis.register, data);
+        let result = await post(Apis.CRUDUser, data);
         if (result.status === 200) return result.data;
         else throw result;
     },
     registerPlayer: async (data, token) => {
-        let result = await post(Apis.registerPlayer, data, token);
+        let result = await post(Apis.CRUDPlayer, data, token);
         if (result.status === 200) return result.data;
         else throw result;
     },
     registerModerator: async (data, token) => {
-        let result = await post(Apis.registerModerator, data, token);
+        let result = await post(Apis.CRUDModerator, data, token);
         if (result.status === 200) return result.data;
         else throw result;
     },
     updatePlayer: async (data, token) => {
-        console.log('file: service.js => line 30 => updatePlayer: => data', data);
-        let result = await put(`${Apis.updatePlayer}${data.id}`, data, token);
+        let result = await put(`${Apis.CRUDPlayer}${data.id}`, data, token);
+        if (result.status === 200) return result.data;
+        else throw result;
+    },
+    deletePlayer: async (data, token) => {
+        let result = await delete_post(`${Apis.CRUDPlayer}${data.id}`, null, token);
+        if (result.status === 200) return result.data;
+        else throw result;
+    },
+    deleteModerator: async (data, token) => {
+        let result = await delete_post(`${Apis.CRUDModerator}${data.id}`, null, token);
         if (result.status === 200) return result.data;
         else throw result;
     },
     updateModerator: async (data, token) => {
-        let result = await put(`${Apis.updateModerator}${data.id}`, data, token);
+        let result = await put(`${Apis.CRUDModerator}${data.id}`, data, token);
         if (result.status === 200) return result.data;
         else throw result;
-    }, 
+    },
     updateUser: async (data, token) => {
-        let result = await put(`${Apis.updateUser}${data.id}`, data, token);
+        let result = await put(`${Apis.CRUDUser}${data.id}`, data, token);
+        if (result.status === 200) return result.data;
+        else throw result;
+    },
+    deleteUser: async (data, token) => {
+        let result = await delete_post(`${Apis.CRUDUser}${data.id}`, null, token);
         if (result.status === 200) return result.data;
         else throw result;
     },
@@ -48,17 +62,17 @@ export const Service = {
         else throw result;
     },
     getUsers: async (token) => {
-        let result = await get(Apis.getUsers, token);
+        let result = await get(Apis.CRUDUser, token);
         if (result.status === 200) return result.data;
         else throw result;
     },
     getModerators: async (token) => {
-        let result = await get(Apis.getModerators, token);
+        let result = await get(Apis.CRUDModerator, token);
         if (result.status === 200) return result.data;
         else throw result;
     },
     getPlayers: async (token) => {
-        let result = await get(Apis.getPlayers, token);
+        let result = await get(Apis.CRUDPlayer, token);
         if (result.status === 200) return result.data;
         else throw result;
     },

@@ -84,7 +84,7 @@ TablePaginationActions.propTypes = {
 };
 
 
-export default function CustomPaginationActionsTable({ data, columns, role, type, handleOpen, handleClose, open, loading, update }) {
+export default function CustomPaginationActionsTable({ data, columns, role, type, handleOpen, handleClose, open, loading, loadingDltButton, update, deleteRow }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [selectedRow, setSelectedRow] = useState('test')
@@ -105,14 +105,13 @@ export default function CustomPaginationActionsTable({ data, columns, role, type
   };
 
   const handleSelectedRow = (type, _data) => {
-    console.log('file: DataTable.js => line 108 => handleSelectedRow => type, _data', type, _data);
     if (type === 'player') {
       staticData = _data;
     }
     else if (type === 'moderator') {
       staticData = _data;
     } else if (type === 'user') {
-      staticData = {user_id: _data}
+      staticData = { user_id: _data }
     }
     // setSelectedRow(_data.id)
   }
@@ -165,7 +164,7 @@ export default function CustomPaginationActionsTable({ data, columns, role, type
             </TableRow>
           </TableFooter>
         </Table>
-        <UpdateDialog type={type} data={staticData} id={id} handleOpen={handleOpen} loading={loading} handleClose={handleClose} update={update} open={open} />
+        <UpdateDialog type={type} data={staticData} id={id} handleOpen={handleOpen} loading={loading} loadingDltButton={loadingDltButton} handleClose={handleClose} update={update} open={open} deleteRow={deleteRow} />
       </TableContainer>
     </>
   );

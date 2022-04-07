@@ -7,7 +7,6 @@ export default function useProvideAuth() {
     const [loading, setLoading] = useState(true);
 
     const signin = (data) => {
-        console.log('file: userProvideAuth.js => line 10 => signin => data', data);
         setUser(data);
     };
 
@@ -19,10 +18,8 @@ export default function useProvideAuth() {
     const verifyToken = async () => {
         try {
             const token = localStorage.getItem('@userToken');
-            console.log('file: userProvideAuth.js => line 22 => verifyToken => token', token);
             if (!token) return user ? setUser(null) : null;
             const result = await Service.verifyToken(token);
-            console.log('file: userProvideAuth.js => line 25 => verifyToken => result', result);
             if (result) signin(result.data);
             else signout();
         } catch (err) {

@@ -7499,7 +7499,7 @@ react-transition-group@^4.4.2:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react@^17.0.2:
+react@^17.0.1, react@^17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
   integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
@@ -8626,6 +8626,14 @@ use-state-with-callback@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/use-state-with-callback/-/use-state-with-callback-2.0.3.tgz#3be56ca52b6afcfe364e0579749dfe588c47c01f"
   integrity sha512-bJXNAtJZW0xz16GIW54aDbYxRkZa2c8RdoKGQnJqE7GmRdVkZkKQBTR/9vH6T5tZX/7yCIhywE09NyeTQ9EJJQ==
+
+use-zendesk-widget@0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/use-zendesk-widget/-/use-zendesk-widget-0.0.8.tgz#02c4fbbe960afa7dc8d14576b0f0229b68c83a47"
+  integrity sha512-iWCfD4RcDspkQoKKE6xzaaC18k9mpf87DWKB2uwy8bGI+ddr5/vQ6a2fOGTEAfWPZC8+/Qd6OA2XETHQVcVnJw==
+  dependencies:
+    prop-types "^15.7.2"
+    react "^17.0.1"
 
 util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"

@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 const Moderators = () => {
     const [loading, setLoading] = useState(false)
     const [loadingBtn, setLoadingBtn] = useState(false)
+    const [loadingDltBtn, setLoadingDltBtn] = useState(false)
     const [data, setData] = useState([])
     const [open, setOpen] = useState(false)
     const [openUpdate, setOpenUpdate] = useState(false)
@@ -45,7 +46,6 @@ const Moderators = () => {
     }
 
     const addModerator = async (data) => {
-        console.log("ok")
         setLoadingBtn(true)
         try {
             const result = await Service.registerModerator(data, getToken())
@@ -59,6 +59,23 @@ const Moderators = () => {
             setLoadingBtn(false)
         }
     }
+
+    const deleteModerator = async (data) => {
+        setLoadingDltBtn(true)
+        try {
+            const result = await Service.deleteModerator(data, getToken())
+            toast.success("Moderator deleted successfully")
+            handleCloseUpdate()
+            getModerators()
+        } catch (error) {
+            // alert(error)
+            console.log('Inside Catch => ', error);
+        } finally {
+            setLoadingDltBtn(false)
+        }
+    }
+
+
 
     const handleOpenUpdate = () => {
         setOpenUpdate(true)
@@ -93,7 +110,7 @@ const Moderators = () => {
                         <div style={{ textAlign: "center", fontSize: "24px", fontWeight: 'bold', color: 'white' }}>Moderators</div>
                         <FormDialog type="Moderator" handleOpen={handleOpen} loading={loadingBtn} handleClose={handleClose} add={addModerator} open={open} />
                         <br />
-                        <DataTable data={data} columns={columns} role="moderator" type="Moderator" handleOpen={handleOpenUpdate} loading={loadingBtn} handleClose={handleCloseUpdate} update={updateModerator} open={openUpdate} />
+                        <DataTable data={data} columns={columns} role="moderator" type="Moderator" handleOpen={handleOpenUpdate} loading={loadingBtn} handleClose={handleCloseUpdate} update={updateModerator} open={openUpdate} deleteRow={deleteModerator} loadingDltButton={loadingDltBtn} />
 
                     </div>
             }} />

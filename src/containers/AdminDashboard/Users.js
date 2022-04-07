@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 const Users = () => {
     const [loading, setLoading] = useState(false)
     const [loadingBtn, setLoadingBtn] = useState(false)
+    const [loadingDltBtn, setLoadingDltBtn] = useState(false)
     const [data, setData] = useState([])
     const columns = ["Username", "Email", "Coins", "Edit"]
     const [open, setOpen] = useState(false)
@@ -60,6 +61,21 @@ const Users = () => {
         }
     }
 
+    const deleteUser = async (data, id) => {
+        setLoadingDltBtn(true)
+        try {
+            const result = await Service.deleteUser(data, getToken())
+            toast.success("Player deleted successfully")
+            handleCloseUpdate()
+            getUsers()
+        } catch (error) {
+            // alert(error)
+            console.log('Inside Catch => ', error);
+        } finally {
+            setLoadingDltBtn(false)
+        }
+    }
+
     const handleOpen = () => {
         setOpen(true)
     }
@@ -71,7 +87,7 @@ const Users = () => {
     const handleOpenUpdate = () => {
         setOpenUpdate(true)
     }
-    
+
     const handleCloseUpdate = () => {
         setOpenUpdate(false)
     }
@@ -82,18 +98,18 @@ const Users = () => {
 
     return (
         <div>
-            <div style={{textAlign: "center", fontSize: "16px", color: 'white'}}>Users</div>
+            <div style={{ textAlign: "center", fontSize: "16px", color: 'white' }}>Users</div>
 
             <DashboardOutline ChildComponent={() => {
-                return loading ? <div style={{textAlign: "center"}}><CircularProgress /></div> 
-                : 
+                return loading ? <div style={{ textAlign: "center" }}><CircularProgress /></div>
+                    :
                     <div>
-                        <div style={{textAlign: "center", fontSize: "24px", fontWeight: 'bold', color: 'white'}}>Users</div>
-                        <FormDialog type="User" handleOpen={handleOpen} loading={loadingBtn} handleClose={handleClose} add={addUser} open={open}/>
-                        <br/>
-                        <DataTable data={data} columns={columns} role="user" type="User" handleOpen={handleOpenUpdate} loading={loadingBtn} handleClose={handleCloseUpdate} update={updateUser} open={openUpdate}/>
+                        <div style={{ textAlign: "center", fontSize: "24px", fontWeight: 'bold', color: 'white' }}>Users</div>
+                        <FormDialog type="User" handleOpen={handleOpen} loading={loadingBtn} handleClose={handleClose} add={addUser} open={open} />
+                        <br />
+                        <DataTable data={data} columns={columns} role="user" type="User" handleOpen={handleOpenUpdate} loadingDltButton={loadingDltBtn} loading={loadingBtn} handleClose={handleCloseUpdate} update={updateUser} open={openUpdate} deleteRow={deleteUser} />
                     </div>
-                }} 
+            }}
             />
         </div>
     )

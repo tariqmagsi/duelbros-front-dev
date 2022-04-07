@@ -12,7 +12,9 @@ export default function UpdateDialog({
   handleClose,
   open,
   loading,
+  loadingDltButton,
   update,
+  deleteRow,
   data,
   id
 }) {
@@ -25,6 +27,7 @@ export default function UpdateDialog({
   const [totalLoseCount, setTotalLoseCount] = React.useState(data?.total_lose_count);
 
   const updatePlayer = () => {
+    console.log('button pressed update');
     const objData = {
       id: data?.user_id?._id,
       username,
@@ -38,8 +41,16 @@ export default function UpdateDialog({
     update(objData);
   };
 
+  const deletePlayer = () => {
+    const objData = {
+      id: data?.user_id?._id,
+    };
+    deleteRow(objData);
+  };
+
+
   const updateModeratorAndUser = () => {
-      console.log(data)
+    console.log(data)
     const objData = {
       id: data?.user_id?._id,
       username,
@@ -155,6 +166,13 @@ export default function UpdateDialog({
                 <CircularProgress size={24} style={{ color: "white" }} />
               ) : (
                 "Update"
+              )}
+            </Button>
+            <Button variant="contained" size="small" style={{ marginLeft: 10 }} onClick={deletePlayer}>
+              {loadingDltButton ? (
+                <CircularProgress size={24} style={{ color: "white", }} />
+              ) : (
+                "Delete"
               )}
             </Button>
           </form>

@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 const Players = () => {
     const [loading, setLoading] = useState(false)
     const [loadingBtn, setLoadingBtn] = useState(false)
+    const [loadingDltBtn, setLoadingDltBtn] = useState(false)
     const [open, setOpen] = useState(false)
     const [openUpdate, setOpenUpdate] = useState(false)
     const [data, setData] = useState([])
@@ -61,6 +62,22 @@ const Players = () => {
         }
     }
 
+    const deletePlayer = async (data, id) => {
+        setLoadingDltBtn(true)
+        try {
+            const result = await Service.deletePlayer(data, getToken())
+            console.log('file: Players.js => line 52 => updatePlayer => result', result);
+            toast.success("Player Delete successfully")
+            handleCloseUpdate()
+            getPlayers()
+        } catch (error) {
+            // alert(error)
+            console.log('Inside Catch => ', error);
+        } finally {
+            setLoadingDltBtn(false)
+        }
+    }
+
     const handleOpen = () => {
         setOpen(true)
     }
@@ -90,7 +107,7 @@ const Players = () => {
                         <div style={{ textAlign: "center", fontSize: "24px", fontWeight: 'bold', color: 'white' }}>Players</div>
                         <FormDialog type="Player" handleOpen={handleOpen} loading={loadingBtn} handleClose={handleClose} add={addPlayer} open={open} />
                         <br />
-                        <DataTable data={data} columns={columns} role="player" type="Player" handleOpen={handleOpenUpdate} loading={loadingBtn} handleClose={handleCloseUpdate} update={updatePlayer} open={openUpdate} />
+                        <DataTable data={data} columns={columns} role="player" type="Player" handleOpen={handleOpenUpdate} loading={loadingBtn} handleClose={handleCloseUpdate} update={updatePlayer} open={openUpdate} deleteRow={deletePlayer} loadingDltButton={loadingDltBtn} />
                     </div>
             }}
 

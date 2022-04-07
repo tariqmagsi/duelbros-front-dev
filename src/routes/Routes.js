@@ -18,7 +18,6 @@ import MatchComponent from '../containers/Match/Match';
 const AppRoutes = () => {
 
     const auth = useAuth();
-    console.log('file: Routes.js => line 20 => AppRoutes => auth', auth);
 
     useEffect(auth.verifyToken, []);
 
@@ -29,7 +28,7 @@ const AppRoutes = () => {
             <BrowserRouter>
                 <Fragment>
                     <Routes>
-                        <Route exact path='/' element={<Home />}/>
+                        <Route exact path='/' element={<Home />} />
                         <Route exact path='/' element={<PrivateRoute />}>
                             {/* <Route exact path='/dashboard' element={<Dashboard />} /> */}
                             {/* <Route exact path='/home' element={<Home />} /> */}

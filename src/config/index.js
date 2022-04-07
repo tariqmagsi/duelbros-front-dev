@@ -6,19 +6,13 @@ import { errorHandler } from './errorHandler';
 
 export const Apis = {
     login: 'users/auth',
-    register: 'users',
     verifyToken: 'users/auth/verifyToken',
-    registerPlayer: 'users/players',
-    registerModerator: 'users/moderators',
-    getUsers: 'users',
-    getModerators: 'users/moderators',
-    getPlayers: 'users/players',
+    CRUDPlayer: 'users/players/',
+    CRUDModerator: 'users/moderators/',
+    CRUDUser: 'users/',
     getProfile: 'users/profile',
     updateAdminProfile: 'users/admins',
     zendeskTicket: 'zendesk',
-    updatePlayer: 'users/players/',
-    updateModerator: 'users/moderators/',
-    updateUser: 'users/'
 };
 
 export const headers = {
@@ -26,6 +20,7 @@ export const headers = {
 };
 
 export const get = async (endPoint, token) => {
+    console.log('file: index.js => line 23 => get => endPoint, token', endPoint, token);
     try {
         const result = await Axios.get(endPoint, {
             headers: { Authorization: `Bearer ${token}` },
@@ -58,6 +53,15 @@ export const zendesk_post = async (endPoint, data) => {
 export const put = async (endPoint, data, token) => {
     try {
         const result = await Axios.put(endPoint, data, { headers: { Authorization: `Bearer ${token}` } });
+        return result;
+    } catch (e) {
+        throw errorHandler(e);
+    }
+};
+
+export const delete_post = async (endPoint, data, token) => {
+    try {
+        const result = await Axios.delete(endPoint, { headers: { Authorization: `Bearer ${token}` } });
         return result;
     } catch (e) {
         throw errorHandler(e);
