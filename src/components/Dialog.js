@@ -33,7 +33,7 @@ export default function CustomizedDialogs({ open, handleClose, title, children, 
                 open={open}
                 TransitionComponent={Transition}
             >
-                <CloseOutlined onClick={handleClose} style={{position: 'absolute', right: 10, top: 10, cursor: 'pointer', color: colors.buttonGray}}/>
+                <CloseOutlined onClick={handleClose} style={{ position: 'absolute', right: 10, top: 10, cursor: 'pointer', color: colors.buttonGray }} />
                 {children}
             </Dialog>
         </div>

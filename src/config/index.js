@@ -10,9 +10,11 @@ export const Apis = {
     CRUDPlayer: 'users/players/',
     CRUDModerator: 'users/moderators/',
     CRUDUser: 'users/',
+    updateUserRole: '/users/update/role/',
     getProfile: 'users/profile',
     updateAdminProfile: 'users/admins',
     zendeskTicket: 'zendesk',
+    getAllUsers: '/users/all'
 };
 
 export const headers = {
@@ -20,7 +22,6 @@ export const headers = {
 };
 
 export const get = async (endPoint, token) => {
-    console.log('file: index.js => line 23 => get => endPoint, token', endPoint, token);
     try {
         const result = await Axios.get(endPoint, {
             headers: { Authorization: `Bearer ${token}` },

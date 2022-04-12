@@ -10,6 +10,7 @@ import Players from '../containers/AdminDashboard/Players';
 import Users from '../containers/AdminDashboard/Users';
 import Moderators from '../containers/AdminDashboard/Moderators';
 import AdminProfile from '../containers/AdminDashboard/AdminProfile';
+import UsersRole from '../containers/AdminDashboard/UserRole';
 import AuthDialog from '../containers/Auth/Dialog';
 import useAuth from '../hooks/useAuth';
 import Loader from '../components/ui/Loader';
