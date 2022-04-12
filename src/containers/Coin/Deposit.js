@@ -63,6 +63,12 @@ const Deposit = ({ handleSubmit, loading }) => {
   const [gameName, setGameName] = useState("");
   const [comment, setComment] = useState("");
 
+  const setAllEmpty = () => {
+    setAmount('')
+    setGameName('')
+    setComment('')
+  }
+
   const handleData = async (event) => {
     event.preventDefault();
     const data = {
@@ -71,7 +77,7 @@ const Deposit = ({ handleSubmit, loading }) => {
         comment: { body: `Hi. I want to deposit ${amount} coins` },
       },
     };
-    handleSubmit(data);
+    handleSubmit(data, setAllEmpty);
   };
 
   return (
