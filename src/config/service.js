@@ -51,6 +51,11 @@ export const Service = {
         if (result.status === 200) return result.data;
         else throw result;
     },
+    updateUserRole: async (data, token) => {
+        let result = await put(`${Apis.updateUserRole}${data.id}`, data, token);
+        if (result.status === 200) return result.data;
+        else throw result;
+    },
     deleteUser: async (data, token) => {
         let result = await delete_post(`${Apis.CRUDUser}${data.id}`, null, token);
         if (result.status === 200) return result.data;
@@ -63,6 +68,11 @@ export const Service = {
     },
     getUsers: async (token) => {
         let result = await get(Apis.CRUDUser, token);
+        if (result.status === 200) return result.data;
+        else throw result;
+    },
+    getAllUsers: async (token) => {
+        let result = await get(Apis.getAllUsers, token);
         if (result.status === 200) return result.data;
         else throw result;
     },

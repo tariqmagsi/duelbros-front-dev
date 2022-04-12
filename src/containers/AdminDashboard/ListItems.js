@@ -7,14 +7,14 @@ import { LogoutOutlined, PeopleAlt, PeopleAltOutlined, Person } from '@mui/icons
 import { Link } from 'react-router-dom';
 import { logout } from '../../utils';
 
-const color = () => {return ({color: 'white'})}
+const color = () => { return ({ color: 'white' }) }
 
 export const mainListItems = (
   <React.Fragment>
     <Link to="/admin_dashboard/users" className='linkStyle'>
       <ListItemButton>
         <ListItemIcon>
-          <PeopleIcon  style={color()}/>
+          <PeopleIcon style={color()} />
         </ListItemIcon>
         <ListItemText primary="Users" />
       </ListItemButton>
@@ -22,7 +22,7 @@ export const mainListItems = (
     <Link to="/admin_dashboard/players" className='linkStyle'>
       <ListItemButton>
         <ListItemIcon>
-          <PeopleAltOutlined style={color()}/>
+          <PeopleAltOutlined style={color()} />
         </ListItemIcon>
         <ListItemText primary="Players" />
       </ListItemButton>
@@ -30,28 +30,36 @@ export const mainListItems = (
     <Link to="/admin_dashboard/moderators" className='linkStyle'>
       <ListItemButton>
         <ListItemIcon>
-          <PeopleAlt  style={color()}/>
+          <PeopleAlt style={color()} />
         </ListItemIcon>
         <ListItemText primary="Moderators" />
+      </ListItemButton>
+    </Link>
+    <Link to="/admin_dashboard/userRole" className='linkStyle'>
+      <ListItemButton>
+        <ListItemIcon>
+          <PeopleAlt style={color()} />
+        </ListItemIcon>
+        <ListItemText primary="User Role" />
       </ListItemButton>
     </Link>
   </React.Fragment>
 );
 
-export const secondaryListItems = (navigate) => { 
+export const secondaryListItems = (navigate) => {
   return (
     <React.Fragment>
       <Link to="/admin_dashboard/profile" className='linkStyle'>
         <ListItemButton>
           <ListItemIcon>
-            <Person style={color()}/>
+            <Person style={color()} />
           </ListItemIcon>
           <ListItemText primary="Profile" />
         </ListItemButton>
       </Link>
-      <ListItemButton onClick={() => {logout(); navigate('/login')}}>
+      <ListItemButton onClick={() => { logout(); navigate('/login') }}>
         <ListItemIcon>
-          <LogoutOutlined  style={color()}/>
+          <LogoutOutlined style={color()} />
         </ListItemIcon>
         <ListItemText primary="Sign Out" />
       </ListItemButton>
