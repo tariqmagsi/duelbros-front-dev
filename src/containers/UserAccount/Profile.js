@@ -40,6 +40,7 @@ import { useNavigate } from "react-router-dom";
 import CoinDialog from "../Coin/Dialog";
 import { Service } from "../../config/service";
 import { getToken } from "../../utils";
+import Chat from "../../components/Chat";
 
 const drawerWidth = 240;
 
@@ -606,68 +607,7 @@ function Profile() {
           </Grid>
         </Grid>
       </Container>
-      <Container
-        sx={{
-          mt: 4,
-          mb: 4,
-          width: "20%",
-          backgroundColor: colors.backgroundSecondary,
-          height: "100vh",
-          position: "fixed",
-          right: 15,
-          top: 30,
-        }}
-      >
-        <Grid
-          spacing={3}
-          sx={{
-            backgroundColor: colors.chatBackground,
-            justifyContent: "space-between",
-            alignItems: "center",
-            display: "flex",
-            padding: 2,
-            marginLeft: -3,
-            marginRight: -3,
-          }}
-        >
-          <Typography color={colors.white}></Typography>
-          <Typography color={colors.white}>User chat</Typography>
-          <CloseIcon style={{ color: "#696975" }} />
-        </Grid>
-        <tbody>
-          {chatData &&
-            chatData.map((user) => (
-              <Grid
-                spacing={3}
-                sx={{
-                  backgroundColor: colors.chatBackground,
-                  // justifyContent: 'space-between',
-                  display: "flex",
-                  padding: 2,
-                  borderRadius: 5,
-                  marginTop: 2,
-                }}
-              >
-                <img
-                  src={user.image}
-                  alt=""
-                  style={{ height: "20px", margin: 8 }}
-                />
-                <Typography color={colors.white}>
-                  <span
-                    style={{ fontSize: 12, fontWeight: "bold" }}
-                    color="white"
-                  >
-                    {user.heading}
-                  </span>
-                  <span style={{ marginLeft: 8, fontSize: 12 }}>
-                    {user.text}
-                  </span>
-                </Typography>
-              </Grid>
-            ))}
-        </tbody>
-      </Container>
+      <Chat />
       <CoinDialog open={openD} handleOpen={() => setOpenD(true)} handleClose={() => setOpenD(false)} />
     </div>
   );

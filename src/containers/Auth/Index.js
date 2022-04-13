@@ -60,7 +60,7 @@ const Index = (props) => {
 
 
     const classes = useStyles();
-    const [value, setValue] = useState('one');
+    const [value, setValue] = useState(props.type === 'login' ? 'one' : 'two');
     const [loading, setLoading] = useState('');
 
 

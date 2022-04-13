@@ -167,7 +167,7 @@ export default function CustomPaginationActionsTable({ data, columns, role, type
                         </TableRow>
                     </TableFooter>
                 </Table>
-                <UpdateDialog type={type} data={staticData} id={id} handleOpen={handleOpen} loading={loading} loadingDltButton={loadingDltButton} handleClose={handleClose} update={update} open={open} deleteRow={deleteRow} />
+                {open && <UpdateDialog type={type} data={staticData} id={id} handleOpen={handleOpen} loading={loading} loadingDltButton={loadingDltButton} handleClose={handleClose} update={update} open={open} deleteRow={deleteRow} />}
             </TableContainer>
         </>
     );

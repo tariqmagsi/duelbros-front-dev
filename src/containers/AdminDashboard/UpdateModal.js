@@ -51,12 +51,12 @@ export default function UpdateDialog({
     data,
     id
 }) {
-
+    console.log(data)
     const [username, setUsername] = React.useState(data?.user_id?.username);
     const [email, setEmail] = React.useState(data?.user_id?.email);
     const [nickname, setNickname] = React.useState(data?.nickname);
     const [coins, setCoins] = React.useState(data?.user_id?.coins);
-    const [personName, setPersonName] = React.useState([]);
+    const [personName, setPersonName] = React.useState(data?.user_id?.role);
     const [totalMatchCount, setTotalMatchCount] = React.useState(data?.total_match_count);
     const [totalWinsCount, setTotalWinsCount] = React.useState(data?.total_wins_count);
     const [totalLoseCount, setTotalLoseCount] = React.useState(data?.total_lose_count);
@@ -93,7 +93,8 @@ export default function UpdateDialog({
             totalMatchCount
         };
 
-        if (type === 'user_role') {
+        if (type === 'User Role') {
+            console.log(personName)
             objData = {
                 id: data?.user_id?._id,
                 role: personName
@@ -125,7 +126,7 @@ export default function UpdateDialog({
                         }}
                     >
                         {
-                            type !== 'user_role' && (
+                            type !== 'User Role' && (
                                 <>
                                     <TextField
                                         autoFocus
@@ -166,7 +167,7 @@ export default function UpdateDialog({
                             )
                         }
                         {
-                            type === 'user_role' && (
+                            type === 'User Role' && (
                                 <div style={{ backgroundColor: 'red' }}>
                                     {
                                         personName.map((name) => {
@@ -179,7 +180,7 @@ export default function UpdateDialog({
                             )
                         }
                         {
-                            type === 'user_role' && (
+                            type === 'User Role' && (
                                 <div>
                                     <FormControl sx={{ m: 1, width: 300, mt: 3 }}>
                                         <Select
@@ -274,13 +275,13 @@ export default function UpdateDialog({
                                 "Update"
                             )}
                         </Button>
-                        <Button variant="contained" size="small" style={{ marginLeft: 10 }} onClick={deletePlayer}>
+                        {type !== "User Role" && <Button variant="contained" size="small" style={{ marginLeft: 10 }} onClick={deletePlayer}>
                             {loadingDltButton ? (
                                 <CircularProgress size={24} style={{ color: "white", }} />
                             ) : (
                                 "Delete"
                             )}
-                        </Button>
+                        </Button>}
                     </form>
                 </DialogContent>
                 <DialogActions>

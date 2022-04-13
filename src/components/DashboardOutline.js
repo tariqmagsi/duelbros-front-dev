@@ -6,7 +6,6 @@ import Box from "@mui/material/Box";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -21,6 +20,7 @@ import { PersonRounded } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import CoinDialog from "../containers/Coin/Dialog";
 import useAuth from "../hooks/useAuth";
+import AuthDialog from "../containers/Auth/Dialog";
 
 const drawerWidth = 240;
 
@@ -95,6 +95,8 @@ const useStyles = makeStyles({
 function DashboardOutline({ ChildComponent }) {
   const [open, setOpen] = React.useState(false);
   const [openD, setOpenD] = React.useState(false)
+  const [openAuth, setOpenAuth] = React.useState(false)
+  const [type, setType] = React.useState("")
   const navigate = useNavigate()
   const classes = useStyles();
   const toggleDrawer = () => {
@@ -165,7 +167,7 @@ function DashboardOutline({ ChildComponent }) {
             </div>
             <div style={{ float: 'right', right: 20, position: 'absolute', display: 'flex', }}>
               {
-                !auth.loading ?
+                !auth?.user ?
                   <div>
                     <Button
                       variant="outlined"
@@ -175,13 +177,13 @@ function DashboardOutline({ ChildComponent }) {
                       // color={colors.primary}
                       style={{
                         backgroundColor: colors.black,
-                        width: '40%',
                         borderColor: colors.primary,
                         borderWidth: 1
                       }}
-                      onClick={() => { navigate('/login') }}
-
-                    // fullWidth
+                      onClick={() => {
+                        setOpenAuth(true)
+                        setType("login")
+                      }}
                     >
                       <span style={{ color: colors.primary }}>
                         LOGIN
@@ -192,16 +194,18 @@ function DashboardOutline({ ChildComponent }) {
                       type="submit"
                       className={`${classes.button} textTransformChange`}
                       size="small"
-                      // color={colors.primary}
                       sx={{
                         marginLeft: 2,
-                        width: '40%',
                         borderColor: colors.primary,
                         shadowColor: 'rgba(0, 0, 0, 0.1)',
                         shadowOpacity: '0.8',
                         elevation: 6,
                         shadowRadius: 15,
                         shadowOffset: { width: 1, height: 13 },
+                      }}
+                      onClick={() => {
+                        setOpenAuth(true)
+                        setType("register")
                       }}
                     // fullWidth
                     >
@@ -245,6 +249,7 @@ function DashboardOutline({ ChildComponent }) {
           </List>
         </Drawer>
         <CoinDialog open={openD} handleOpen={() => setOpenD(true)} handleClose={() => setOpenD(false)} />
+        <AuthDialog type={type} open={openAuth} handleClose={() => setOpenAuth(false)}/>
         <DashboardContainer ChildComponent={ChildComponent} />
       </Box>
     </ThemeProvider>

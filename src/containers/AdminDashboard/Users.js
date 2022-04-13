@@ -34,7 +34,7 @@ const Users = () => {
         setLoadingBtn(true)
         try {
             const result = await Service.register(data, getToken())
-            toast.success("Moderator added successfully")
+            toast.success("User added successfully")
             handleClose()
             getUsers()
         } catch (error) {
@@ -50,7 +50,7 @@ const Users = () => {
         setLoadingBtn(true)
         try {
             const result = await Service.updateUser(data, getToken())
-            toast.success("Player updated successfully")
+            toast.success("User updated successfully")
             handleCloseUpdate()
             getUsers()
         } catch (error) {
@@ -65,7 +65,7 @@ const Users = () => {
         setLoadingDltBtn(true)
         try {
             const result = await Service.deleteUser(data, getToken())
-            toast.success("Player deleted successfully")
+            toast.success("User deleted successfully")
             handleCloseUpdate()
             getUsers()
         } catch (error) {

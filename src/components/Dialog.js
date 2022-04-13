@@ -22,11 +22,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function CustomizedDialogs({ open, handleClose, title, children, component, size, footer, noFooter, fullScreen }) {
-
+export default function CustomizedDialogs({ open, handleClose, Children, size, fullScreen, type }) {
+    console.log(type)
     return (
         <div>
-            <Dialog fullScreen={fullScreen}
+            <Dialog 
+                fullScreen={fullScreen}
                 maxWidth={size ? size : 'md'}
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
@@ -34,7 +35,7 @@ export default function CustomizedDialogs({ open, handleClose, title, children, 
                 TransitionComponent={Transition}
             >
                 <CloseOutlined onClick={handleClose} style={{ position: 'absolute', right: 10, top: 10, cursor: 'pointer', color: colors.buttonGray }} />
-                {children}
+                <Children type={type}/>
             </Dialog>
         </div>
     );

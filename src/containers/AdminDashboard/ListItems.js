@@ -57,7 +57,7 @@ export const secondaryListItems = (navigate) => {
           <ListItemText primary="Profile" />
         </ListItemButton>
       </Link>
-      <ListItemButton onClick={() => { logout(); navigate('/login') }}>
+      <ListItemButton onClick={() => { logout(); navigate('/') }}>
         <ListItemIcon>
           <LogoutOutlined style={color()} />
         </ListItemIcon>

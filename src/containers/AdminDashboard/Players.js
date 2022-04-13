@@ -67,7 +67,7 @@ const Players = () => {
         try {
             const result = await Service.deletePlayer(data, getToken())
             console.log('file: Players.js => line 52 => updatePlayer => result', result);
-            toast.success("Player Delete successfully")
+            toast.success("Player deleted successfully")
             handleCloseUpdate()
             getPlayers()
         } catch (error) {

@@ -5,7 +5,7 @@ import Coin from "./Index"
 const CoinDialog = ({open, handleClose}) => {
 
     return (
-        <CustomizedDialogs children={<Coin />} open={open} handleClose={handleClose}/>
+        <CustomizedDialogs Children={() => {return <Coin />}} open={open} handleClose={handleClose}/>
     )
 }
 

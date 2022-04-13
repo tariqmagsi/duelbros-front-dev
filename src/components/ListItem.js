@@ -167,7 +167,7 @@ export const SignOutListItem = (navigate) => {
   return (
     <React.Fragment>
       {auth?.user && 
-        <ListItemButton onClick={() => {logout(); navigate('/login')}}>
+        <ListItemButton onClick={() => {logout(); navigate('/')}}>
           <ListItemIcon>
             <LogoutOutlined style={{ color: "white" }} />
           </ListItemIcon>

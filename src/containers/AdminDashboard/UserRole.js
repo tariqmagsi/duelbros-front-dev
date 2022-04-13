@@ -44,29 +44,14 @@ const UsersRole = () => {
         }
     };
 
-    const addUser = async (data) => {
-        setLoadingBtn(true)
-        try {
-            const result = await Service.register(data, getToken())
-            toast.success("Moderator added successfully")
-            handleClose()
-            getUsers()
-        } catch (error) {
-            // alert(error)
-            console.log('Inside Catch => ', error);
-        } finally {
-            setLoadingBtn(false)
-        }
-    }
-
     const updateUser = async (data, id) => {
         console.log('file: UserRole.js => line 63 => updateUser => data', data);
         setLoadingBtn(true)
         try {
             const result = await Service.updateUserRole(data, getToken())
-            toast.success("Player updated successfully")
+            toast.success("User Role updated successfully")
             handleCloseUpdate()
-            getUsers()
+            getAllUsers()
         } catch (error) {
             // alert(error)
             console.log('Inside Catch => ', error);
@@ -79,9 +64,9 @@ const UsersRole = () => {
         setLoadingDltBtn(true)
         try {
             const result = await Service.deleteUser(data, getToken())
-            toast.success("Player deleted successfully")
+            toast.success("User Role deleted successfully")
             handleCloseUpdate()
-            getUsers()
+            getAllUsers()
         } catch (error) {
             // alert(error)
             console.log('Inside Catch => ', error);
@@ -119,9 +104,7 @@ const UsersRole = () => {
                     :
                     <div>
                         <div style={{ textAlign: "center", fontSize: "24px", fontWeight: 'bold', color: 'white' }}>Users Role</div>
-                        <FormDialog type="User" handleOpen={handleOpen} loading={loadingBtn} handleClose={handleClose} add={addUser} open={open} />
-                        <br />
-                        <DataTable data={data} columns={columns} role="user_role" type="user_role" handleOpen={handleOpenUpdate} loadingDltButton={loadingDltBtn} loading={loadingBtn} handleClose={handleCloseUpdate} update={updateUser} open={openUpdate} deleteRow={deleteUser} />
+                        <DataTable data={data} columns={columns} role="user_role" type="User Role" handleOpen={handleOpenUpdate} loadingDltButton={loadingDltBtn} loading={loadingBtn} handleClose={handleCloseUpdate} update={updateUser} open={openUpdate} deleteRow={deleteUser} />
                     </div>
             }}
             />

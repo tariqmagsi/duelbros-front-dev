@@ -15,7 +15,7 @@ const UsersRoleRow = ({ row, handleOpen, setSelectedRow, }) => {
                 {row.coins}
             </TableCell>
             <TableCell>
-                {row.role}
+                {row.role.map((item, i) => item + (i === row.role.length - 1 ? "" : ", "))}
             </TableCell>
             <TableCell style={{ cursor: 'pointer' }}>
                 <Edit fontSize="small" onClick={() => {

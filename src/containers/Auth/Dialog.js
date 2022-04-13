@@ -2,10 +2,10 @@ import CustomizedDialogs from "../../components/Dialog"
 import Auth from "./Index"
 
 
-const AuthDialog = ({open, handleClose}) => {
+const AuthDialog = ({open, handleOpen, handleClose, type}) => {
 
     return (
-        <CustomizedDialogs children={<Auth />} open={open} handleClose={handleClose}/>
+        <CustomizedDialogs Children={() => {return <Auth type={type}/>}} type={type} open={open} handleOpen={handleOpen} handleClose={handleClose}/>
     )
 }
 
