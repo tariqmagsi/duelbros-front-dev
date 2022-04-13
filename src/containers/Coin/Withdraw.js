@@ -58,6 +58,10 @@ const Withdraw = ({ handleSubmit, loading }) => {
     const [osrs, setOsrs] = useState('');
     const [username, setUsername] = useState('');
 
+    const setAllEmpty = () => {
+        setOsrs('')
+        setUsername('')
+    }
 
     const handleData = async (event) => {
         event.preventDefault();
@@ -67,7 +71,7 @@ const Withdraw = ({ handleSubmit, loading }) => {
               comment: { body: `Hi. I want to withraw ${osrs} coins` },
             },
         };
-        handleSubmit(data);
+        handleSubmit(data, setAllEmpty);
     }
     return (
         <div className={classes.root}>

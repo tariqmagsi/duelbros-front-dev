@@ -18,36 +18,35 @@ import MatchComponent from '../containers/Match/Match';
 
 const AppRoutes = () => {
 
-    const auth = useAuth();
+    // const auth = useAuth();
 
-    useEffect(auth.verifyToken, []);
+    // useEffect(auth.verifyToken, []);
 
-    if (auth.loading) {
-        return <Loader />
-    } else {
-        return (
-            <BrowserRouter>
-                <Fragment>
-                    <Routes>
-                        <Route exact path='/' element={<Home />} />
-                        <Route exact path='/' element={<PrivateRoute />}>
-                            {/* <Route exact path='/dashboard' element={<Dashboard />} /> */}
-                            {/* <Route exact path='/home' element={<Home />} /> */}
-                            <Route exact path='/profile' element={<Profile />} />
-                            <Route exact path='/admin_dashboard/users' element={<Users />} />
-                            <Route exact path='/admin_dashboard/players' element={<Players />} />
-                            <Route exact path='/admin_dashboard/moderators' element={<Moderators />} />
-                            <Route exact path='/admin_dashboard/profile' element={<AdminProfile />} />
-                            <Route exact path='/admin_dashboard/userRole' element={<UsersRole />} />
-                        </Route>
-                        <Route exact path='/login' element={<AuthDialog open={true} />} />
-                        <Route path='/' element={<NotFound />} />
-                    </Routes>
-                </Fragment>
-            </BrowserRouter>
+    // if (auth.loading) {
+    //     return <Loader />
+    // } else {
+    return (
+        <BrowserRouter>
+            <Fragment>
+                <Routes>
+                    <Route exact path='/' element={<Home />} />
+                    <Route exact path='/' element={<PrivateRoute />}>
+                        {/* <Route exact path='/dashboard' element={<Dashboard />} /> */}
+                        {/* <Route exact path='/home' element={<Home />} /> */}
+                        <Route exact path='/profile' element={<Profile />} />
+                        <Route exact path='/admin_dashboard/users' element={<Users />} />
+                        <Route exact path='/admin_dashboard/players' element={<Players />} />
+                        <Route exact path='/admin_dashboard/moderators' element={<Moderators />} />
+                        <Route exact path='/admin_dashboard/profile' element={<AdminProfile />} />
+                    </Route>
+                    <Route exact path='/login' element={<AuthDialog open={true} />} />
+                    <Route path='/' element={<NotFound />} />
+                </Routes>
+            </Fragment>
+        </BrowserRouter>
 
-        );
-    }
+    );
+    // }
 }
 
 export default AppRoutes;

@@ -12,6 +12,7 @@ import Deposit from './Deposit';
 import { useNavigate } from 'react-router-dom';
 import { Service } from '../../config/service';
 import { toast } from 'react-toastify';
+import { ZendeskWidget } from 'use-zendesk-widget';
 // import CustomizedDialogs from '../../components/Dialog';
 
 const useStyles = makeStyles(theme => ({
@@ -65,12 +66,16 @@ const Index = (props) => {
         setValue(newValue);
     };
 
-    const handleWithdraw = async (data) => {
+    const handleWithdraw = async (data, setAllEmpty) => {
         setLoading(true);
         try {
             const result = await Service.createTicketZendesk(data)
             console.log('file: Index.js => line 66 => handleSubmit => result', result);
-            toast.success("Requested Successfully")
+            ZendeskWidget('webWidget', 'show')
+            ZendeskWidget('webWidget', 'open')
+            ZendeskWidget('webWidget', 'chat:send', data?.ticket?.comment?.body)
+            setAllEmpty()
+            // toast.success("Requested Successfully")
         } catch (error) {
             // alert(error)
             console.log('Inside Catch => ', error);
@@ -79,12 +84,16 @@ const Index = (props) => {
         }
     };
 
-    const handleDeposit = async (data) => {
+    const handleDeposit = async (data, setAllEmpty) => {
         setLoading(true);
         try {
             const result = await Service.createTicketZendesk(data)
             console.log('file: Index.js => line 66 => handleSubmit => result', result);
-            toast.success("Requested Successfully")
+            ZendeskWidget('webWidget', 'show')
+            ZendeskWidget('webWidget', 'open')
+            ZendeskWidget('webWidget', 'chat:send', data?.ticket?.comment?.body)
+            setAllEmpty()
+            // toast.success("Requested Successfully")
         } catch (error) {
             // alert(error)
             console.log('Inside Catch => ', error);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Dialog from '@mui/material/Dialog';
 import { Slide } from '@mui/material';
 import { CloseOutlined } from '@mui/icons-material';
