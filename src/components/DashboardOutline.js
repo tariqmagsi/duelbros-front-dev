@@ -20,6 +20,7 @@ import { Button } from "@mui/material";
 import { PersonRounded } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import CoinDialog from "../containers/Coin/Dialog";
+import useAuth from "../hooks/useAuth";
 
 const drawerWidth = 240;
 
@@ -74,6 +75,21 @@ const useStyles = makeStyles({
     backgroundColor: `${colors.backgroundInput} !important`,
     color: "white !important",
   },
+  button: {
+    backgroundColor: colors.primary,
+    padding: 10,
+    borderRadius: 8,
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingLeft: 50,
+    paddingRight: 50,
+    shadowColor: 'rgba(0, 0, 0, 0.1)',
+    shadowOpacity: 0.8,
+    elevation: 6,
+    shadowRadius: 15,
+    shadowOffset: { width: 1, height: 13 },
+    height: 40,
+  }
 });
 
 function DashboardOutline({ ChildComponent }) {
@@ -84,6 +100,8 @@ function DashboardOutline({ ChildComponent }) {
   const toggleDrawer = () => {
     setOpen(!open);
   };
+
+  const auth = useAuth();
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -136,7 +154,7 @@ function DashboardOutline({ ChildComponent }) {
                 <Button
                   variant="contained"
                   type="submit"
-                  className={`${classes.button} textTransformChange`}
+                  className={`${classes.buttonn} textTransformChange`}
                   size="medium"
                   fullWidth
                   onClick={() => setOpenD(true)}
@@ -145,10 +163,55 @@ function DashboardOutline({ ChildComponent }) {
                 </Button>
               </div>
             </div>
-            <div style={{float: 'right', right: 20, position: 'absolute'}}>
-              <IconButton color="inherit">
-                <PersonRounded />
-              </IconButton>
+            <div style={{ float: 'right', right: 20, position: 'absolute', display: 'flex', }}>
+              {
+                !auth.loading ?
+                  <div>
+                    <Button
+                      variant="outlined"
+                      type="submit"
+                      className={`${classes.button} textTransformChange`}
+                      size="small"
+                      // color={colors.primary}
+                      style={{
+                        backgroundColor: colors.black,
+                        width: '40%',
+                        borderColor: colors.primary,
+                        borderWidth: 1
+                      }}
+                      onClick={() => { navigate('/login') }}
+
+                    // fullWidth
+                    >
+                      <span style={{ color: colors.primary }}>
+                        LOGIN
+                      </span>
+                    </Button>
+                    <Button
+                      variant="contained"
+                      type="submit"
+                      className={`${classes.button} textTransformChange`}
+                      size="small"
+                      // color={colors.primary}
+                      sx={{
+                        marginLeft: 2,
+                        width: '40%',
+                        borderColor: colors.primary,
+                        shadowColor: 'rgba(0, 0, 0, 0.1)',
+                        shadowOpacity: '0.8',
+                        elevation: 6,
+                        shadowRadius: 15,
+                        shadowOffset: { width: 1, height: 13 },
+                      }}
+                    // fullWidth
+                    >
+                      REGISTER
+                    </Button>
+                  </div> : <IconButton color="inherit">
+                    <PersonRounded />
+                  </IconButton>
+              }
+
             </div>
           </Toolbar>
         </AppBar>

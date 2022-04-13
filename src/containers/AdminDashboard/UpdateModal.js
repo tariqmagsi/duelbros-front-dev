@@ -84,7 +84,6 @@ export default function UpdateDialog({
         deleteRow(objData);
     };
 
-
     const updateModeratorAndUser = () => {
         let objData = {
             id: data?.user_id?._id,
@@ -93,6 +92,7 @@ export default function UpdateDialog({
             coins: coins ? coins : 0,
             totalMatchCount
         };
+
         if (type === 'user_role') {
             objData = {
                 id: data?.user_id?._id,
