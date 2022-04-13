@@ -19,6 +19,7 @@ import { colors } from "../res/colors";
 import { styled } from "@mui/styles";
 import images from "../assets";
 import { logout } from "../utils";
+import useAuth from "../hooks/useAuth";
 
 const Accordion = styled((props) => (
   <MuiAccordion
@@ -159,18 +160,23 @@ export const secondaryListItems = (open) => {
   );
 };
 
+
+
 export const SignOutListItem = (navigate) => {
+  const auth = useAuth()
   return (
     <React.Fragment>
-      <ListItemButton onClick={() => {logout(); navigate('/login')}}>
-        <ListItemIcon>
-          <LogoutOutlined style={{ color: "white" }} />
-        </ListItemIcon>
-        <ListItemText
-          primary="Sign Out"
-          primaryTypographyProps={classes.listItemText}
-        />
-      </ListItemButton>
+      {auth?.user && 
+        <ListItemButton onClick={() => {logout(); navigate('/login')}}>
+          <ListItemIcon>
+            <LogoutOutlined style={{ color: "white" }} />
+          </ListItemIcon>
+          <ListItemText
+            primary="Sign Out"
+            primaryTypographyProps={classes.listItemText}
+          />
+        </ListItemButton>
+      }
     </React.Fragment>
   );
 };

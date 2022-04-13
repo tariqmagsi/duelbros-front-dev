@@ -1,8 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
-import Dashboard from '../containers/Dashboard'
-import Login from '../containers/Auth/Index';
 import NotFound from './NotFound';
 import Home from '../containers/App/index';
 import Profile from '../containers/UserAccount/index';
@@ -10,11 +8,7 @@ import Players from '../containers/AdminDashboard/Players';
 import Users from '../containers/AdminDashboard/Users';
 import Moderators from '../containers/AdminDashboard/Moderators';
 import AdminProfile from '../containers/AdminDashboard/AdminProfile';
-import UsersRole from '../containers/AdminDashboard/UserRole';
 import AuthDialog from '../containers/Auth/Dialog';
-import useAuth from '../hooks/useAuth';
-import Loader from '../components/ui/Loader';
-import MatchComponent from '../containers/Match/Match';
 
 const AppRoutes = () => {
 

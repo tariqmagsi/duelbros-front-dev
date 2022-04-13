@@ -27,7 +27,7 @@ import {
     makeStyles,
 } from "@mui/styles";
 import images from '../../assets';
-import { PersonRounded, Visibility, VisibilityOff } from '@mui/icons-material';
+import { MessageOutlined, PersonRounded, Visibility, VisibilityOff } from '@mui/icons-material';
 import EditIcon from '@mui/icons-material/Edit';
 import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';
 import { useNavigate } from 'react-router-dom';
@@ -82,14 +82,14 @@ const useStyles = makeStyles(theme => ({
         paddingRight: 30
     },
     input: {
-        backgroundColor: colors.backgroundInput,
+        backgroundColor: colors.backgroundSecondary,
         padding: 0,
         border: 'none',
         '& label.Mui-focused': {
             color: 'white',
         },
         '& .MuiInput-underline:after': {
-            borderBottomColor: 'black',
+            borderBottom: colors.backgroundSecondary,
         },
     },
     button: {
@@ -502,7 +502,7 @@ function Home() {
             </div>
 
 
-            <Container sx={{ mt: 4, mb: 4, width: '20%', backgroundColor: colors.backgroundSecondary, height: '100vh', position: 'fixed', right: 15, top: 30 }}>
+            <Container sx={{ mt: 4, mb: 4, width: '22%', backgroundColor: colors.backgroundSecondary, height: '100vh', position: 'fixed', right: 15, top: 30 }}>
                 <Grid spacing={3} sx={{
                     backgroundColor: colors.chatBackground,
                     justifyContent: 'space-between',
@@ -513,7 +513,12 @@ function Home() {
                     marginRight: -3
                 }}>
                     <Typography color={colors.white}></Typography>
-                    <Typography color={colors.white}>User chat</Typography>
+                    <Typography color={colors.white}>
+                        <Button variant="text" style={{padding: 10, borderRadius: 10, backgroundColor: 'rgba(25, 118, 210, 0.1)'}}>
+                            <MessageOutlined />
+                            <span style={{paddingTop: -20, paddingLeft: 10}}>Chat</span>
+                        </Button>
+                    </Typography>
                     <CloseIcon style={{ color: '#696975' }} />
                 </Grid>
                 <tbody>
@@ -535,24 +540,31 @@ function Home() {
                             </Typography>
                         </Grid>
                     )}
-                    <div style={{
-                        backgroundColor: colors.black,
-                        position: 'fixed',
-                        bottom: 0,
-                        width: 270
-                    }}>
+                   <div 
+                        style={{
+                            backgroundColor: colors.backgroundSecondary,
+                            position: 'fixed',
+                            bottom: 0,
+                            marginLeft: -23,
+                            padding: 10,
+                            width: "21.8%"
+                        }}
+                    >
                         <div style={{
                             alignItems: 'center',
                             display: 'flex',
-                            marginBottom: 10
+                            marginBottom: 10,
+                            borderTop: '1px solid gray',
+                            paddingTop: 10,
                         }}>
-
                             <img src={images.coin} alt="" style={{ height: "20px", }} />
                             <span style={{ fontSize: 12, fontWeight: 'bold', color: 'white', marginLeft: 10 }} > john_doeeteest</span>
                         </div>
                         <div style={{
                             alignItems: 'center',
                             display: 'flex',
+                            borderTop: '1px solid gray',
+                            paddingTop: 10
                             // justifyContent: 'space-between'
                         }}>
 
@@ -577,6 +589,7 @@ function Home() {
                         </div>
                     </div>
                 </tbody>
+                
             </Container>
             <CoinDialog open={openD} handleClose={() => setOpenD(false)} />
         </div>
