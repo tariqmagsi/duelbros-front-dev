@@ -42,9 +42,9 @@ export const post = async (endPoint, data, token) => {
     }
 };
 
-export const zendesk_post = async (endPoint, data) => {
+export const zendesk_post = async (endPoint, data, token) => {
     try {
-        const result = await Axios.post(`${Apis.zendeskTicket}`, data);
+        const result = await Axios.post(`${Apis.zendeskTicket}`, data, { headers: { Authorization: `Bearer ${token}` } });
         return result;
     } catch (e) {
         throw errorHandler(e);

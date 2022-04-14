@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { Service } from '../../config/service';
 import { toast } from 'react-toastify';
 import { ZendeskWidget } from 'use-zendesk-widget';
+import { getToken } from '../../utils';
 // import CustomizedDialogs from '../../components/Dialog';
 
 const useStyles = makeStyles(theme => ({
@@ -66,14 +67,18 @@ const Index = (props) => {
         setValue(newValue);
     };
 
+    const zendeskChat = (data) => {
+        ZendeskWidget('webWidget', 'show')
+        ZendeskWidget('webWidget', 'open')
+        ZendeskWidget('webWidget', 'chat:send', data)
+    }
+
     const handleWithdraw = async (data, setAllEmpty) => {
         setLoading(true);
         try {
-            const result = await Service.createTicketZendesk(data)
+            const result = await Service.createTicketZendesk(data, getToken())
             console.log('file: Index.js => line 66 => handleSubmit => result', result);
-            ZendeskWidget('webWidget', 'show')
-            ZendeskWidget('webWidget', 'open')
-            ZendeskWidget('webWidget', 'chat:send', data?.ticket?.comment?.body)
+            zendeskChat(data?.ticket?.comment?.body)
             setAllEmpty()
             // toast.success("Requested Successfully")
         } catch (error) {
@@ -87,11 +92,9 @@ const Index = (props) => {
     const handleDeposit = async (data, setAllEmpty) => {
         setLoading(true);
         try {
-            const result = await Service.createTicketZendesk(data)
+            const result = await Service.createTicketZendesk(data, getToken())
             console.log('file: Index.js => line 66 => handleSubmit => result', result);
-            ZendeskWidget('webWidget', 'show')
-            ZendeskWidget('webWidget', 'open')
-            ZendeskWidget('webWidget', 'chat:send', data?.ticket?.comment?.body)
+            zendeskChat(data?.ticket?.comment?.body)
             setAllEmpty()
             // toast.success("Requested Successfully")
         } catch (error) {
