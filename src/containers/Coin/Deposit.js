@@ -74,7 +74,7 @@ const Deposit = ({ handleSubmit, loading }) => {
     const data = {
       ticket: {
         subject: `Deposit Request ${gameName}`,
-        comment: { body: `Hi. I want to deposit ${amount} coins` },
+        comment: { body: `Hi. I want to deposit ${amount} coins.` },
       },
     };
     handleSubmit(data, setAllEmpty);

@@ -70,6 +70,16 @@ const Index = (props) => {
     const zendeskChat = (data) => {
         ZendeskWidget('webWidget', 'show')
         ZendeskWidget('webWidget', 'open')
+        // ZendeskWidget('webWidget', 'prefill', {
+        //     name: {
+        //       value: 'isamu',
+        //       readOnly: true // optional
+        //     },
+        //     email: {
+        //       value: 'isamu@voltron.com',
+        //       readOnly: true // optional
+        //     }
+        // })
         ZendeskWidget('webWidget', 'chat:send', data)
     }
 
@@ -78,7 +88,7 @@ const Index = (props) => {
         try {
             const result = await Service.createTicketZendesk(data, getToken())
             console.log('file: Index.js => line 66 => handleSubmit => result', result);
-            zendeskChat(data?.ticket?.comment?.body)
+            zendeskChat(`${data?.ticket?.comment?.body}`)
             setAllEmpty()
             // toast.success("Requested Successfully")
         } catch (error) {
